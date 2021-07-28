@@ -121,7 +121,7 @@
               </span>
             </div>
             <select id="role" name="role" class="form-control custom-select bg-white border-left-0 border-md @error('role') is-invalid @enderror">
-              <option>Mendaftar Sebagai</option>
+              <option value="">Mendaftar Sebagai</option>
               <option value="Pemilik">Pemilik Kost</option>
               <option value="Pencari">Pencari Kost</option>
             </select>
@@ -133,7 +133,7 @@
           </div>
 
           <!-- Password -->
-          <div class="input-group col-lg-6 mb-4">
+          <div class="input-group col-lg-12 mb-4">
             <div class="input-group-prepend">
               <span class="input-group-text bg-white px-4 border-md border-right-0">
                 <i class="fa fa-lock text-muted"></i>
@@ -148,7 +148,7 @@
           </div>
 
           <!-- Password Confirmation -->
-          <div class="input-group col-lg-6 mb-4">
+          <div class="input-group col-lg-12 mb-4">
             <div class="input-group-prepend">
               <span class="input-group-text bg-white px-4 border-md border-right-0">
                 <i class="fa fa-lock text-muted"></i>
