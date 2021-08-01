@@ -8,7 +8,7 @@
         <div class="profile-header mb-2">
           <div class="relative">
             <div class="cover-container">
-                <img class="img-fluid bg-cover rounded-0 w-100" src="{{asset('bg_foto/' .$show->bg_foto)}}" style="min-height: 400px; max-height:400px">
+                <img class="img-fluid bg-cover rounded-0 w-100" src="{{asset('images/bg_foto/' .$show->bg_foto)}}" style="min-height: 400px; max-height:400px">
             </div>
             <div class="profile-img-container d-flex align-items-center justify-content-between">
                 <img src="{{asset('assets/images/profile/profile.jpg')}}" class="rounded-circle img-border box-shadow-1" alt="Card image">

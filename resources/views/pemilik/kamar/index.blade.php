@@ -53,7 +53,7 @@
                         <td>{{$item->harga_kamar}}</td>
                         <td class="text-center">
                           <a href="{{route('kamar.show', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
-                          <a href="{{route('kamar.edit', $item->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                          <a href="{{route('kamar.edit', $item->slug)}}" class="btn btn-warning btn-sm">Edit</a>
                         </td>
                       </tr>
                       @php

@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('select-regency','Owner\KamarController@selectRegency'); // Select Regency
+Route::get('select-district','Owner\KamarController@selectDistrict'); // Select District
 
 Auth::routes();
 
@@ -21,11 +23,13 @@ Route::get('/','Frontend\FrontendsController@homepage');
 Route::get('/room/{slug}','Frontend\FrontendsController@showkamar'); //Show Kamar
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', 'HomeController@index');
+  Route::get('/home', 'HomeController@index');
 
   ////// PEMILIK \\\\\\
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
+
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
+
     Route::get('profile','Owner\ProfileController@profile'); // Profile
     Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
     Route::post('testimoni','Owner\ProfileController@testimoni');

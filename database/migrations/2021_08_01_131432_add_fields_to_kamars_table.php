@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvinsisTable extends Migration
+class AddFieldsToKamarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateProvinsisTable extends Migration
      */
     public function up()
     {
-        Schema::create('provinsis', function (Blueprint $table) {
-            $table->bigIncrements('kode');
-            $table->string('nama');
-            $table->timestamps();
+        Schema::table('kamars', function (Blueprint $table) {
+            $table->string('regency_id')->after('province_id');
+            $table->string('district_id')->after('regency_id');
         });
     }
 
@@ -27,6 +26,8 @@ class CreateProvinsisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provinsis');
+        Schema::table('kamars', function (Blueprint $table) {
+            //
+        });
     }
 }

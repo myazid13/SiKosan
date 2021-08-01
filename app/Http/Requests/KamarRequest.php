@@ -33,13 +33,15 @@ class KamarRequest extends FormRequest
           'stok_kamar'            => 'required|numeric',
           'harga_kamar'           => 'required|numeric',
           'listrik'               => 'required',
-          'provinsi_id'           => 'required|exists:provinsis,kode',
-          'addmore[0][name]'      => 'required',
-          'addkm[0][name]'        => 'required',
-          'addbersama[0][name]'   => 'required',
-          'addparkir[0][name]'    => 'required',
-          'addarea[0][name]'      => 'required',
-          'addfoto[0][name]'      => 'required|image|mimes:jpeg,png,jpg|max:2048'
+          'province_id'           => 'required',
+          'regency_id'            => 'required',
+          'district_id'           => 'required',
+          // 'addmore[0][name]'      => 'required',
+          // 'addkm[0][name]'        => 'required',
+          // 'addbersama[0][name]'   => 'required',
+          // 'addparkir[0][name]'    => 'required',
+          // 'addarea[0][name]'      => 'required',
+          // 'addfoto[0][name]'      => 'required|image|mimes:jpeg,png,jpg|max:2048'
           ];
     }
 
@@ -60,17 +62,16 @@ class KamarRequest extends FormRequest
         'harga_kamar.required'          => 'Harga Kamar tidak boleh kosong.',
         'harga_kamar.numeric'           => 'Harga Kamar hanya mendukung angka',
         'listrik.required'              => 'Biaya Listrik harus dipilih',
-        'provinsi_id.required'          => 'Provinsi harus dipilih.',
-        'provinsi_id.exists'            => 'Provinsi yang dipilih tidak tersedia.',
-        'addmore[0][name].required'     => 'Fasilitas Kamar tidak boleh kosong.',
-        'addkm[0][name].required'       => 'Fasilitas Kamar Mandi tidak boleh kosong.',
-        'addbersama[0][name].required'  => 'Fasilitas Bersama tidak boleh kosong.',
-        'addparkir[0][name].required'   => 'Fasilitas Parkir tidak boleh kosong.',
-        'addarea[0][name].required'     => 'Area Lingkuangan tidak boleh kosong.',
-        'addfoto[0][name].required'     => 'Foto Kamar tidak boleh kosong.',
-        'addfoto[0][name].image'        => 'Foto Kamar hanya mendukung gamar',
-        'addfoto[0][name].mimes'        => 'Foto Kamar hanya mendukung .jpeg, .png, .jpg',
-        'addfoto[0][name].max'          => 'Ukuran File Foto Kamat tidak boleh lebih dari 2MB'
+        'province_id.required'          => 'Provinsi harus dipilih.',
+        // 'addmore[0][name].required'     => 'Fasilitas Kamar tidak boleh kosong.',
+        // 'addkm[0][name].required'       => 'Fasilitas Kamar Mandi tidak boleh kosong.',
+        // 'addbersama[0][name].required'  => 'Fasilitas Bersama tidak boleh kosong.',
+        // 'addparkir[0][name].required'   => 'Fasilitas Parkir tidak boleh kosong.',
+        // 'addarea[0][name].required'     => 'Area Lingkuangan tidak boleh kosong.',
+        // 'addfoto[0][name].required'     => 'Foto Kamar tidak boleh kosong.',
+        // 'addfoto[0][name].image'        => 'Foto Kamar hanya mendukung gamar',
+        // 'addfoto[0][name].mimes'        => 'Foto Kamar hanya mendukung .jpeg, .png, .jpg',
+        // 'addfoto[0][name].max'          => 'Ukuran File Foto Kamat tidak boleh lebih dari 2MB'
       ];
     }
 }
