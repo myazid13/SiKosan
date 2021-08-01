@@ -72,7 +72,7 @@
 
           <div class="form-group">
             <label for="Tanggal Transfer">Tanggal Transfer</label>
-            <input type="text" name="tgl_transfer" class="form-control" placeholder="Tanggal Transfer">
+            <input type="date" name="tgl_transfer" class="form-control" placeholder="Tanggal Transfer">
           </div>
 
           <div class="form-group">

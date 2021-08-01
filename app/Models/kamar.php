@@ -57,7 +57,7 @@ class kamar extends Model
 
     public function provinsi()
     {
-      return $this->hasOne('App\Models\provinsi','kode','provinsi_id');
+      return $this->hasOne('App\Models\Province','id','province_id');
     }
 
     public function transaksi()

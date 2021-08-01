@@ -1,14 +1,40 @@
 <?php
-use App\Models\{provinsi,User,DataUser,payment,Transaction};
+use App\Models\{Province,Regency,District,User,DataUser,payment,Transaction};
 
-// Ambil nama provinsi by kode
+// Ambil nama provinsi by id
 if (! function_exists('getNameProvinsi'))
 {
-    function getNameProvinsi($kode=0)
+    function getNameProvinsi($id=0)
     {
-        $model = new provinsi;
-        $data  = $model::where('kode',$kode)->first();
-        $name = !empty($data) ? $data->nama : 'Not Found';
+        $model = new Province;
+        $data  = $model::where('id',$id)->first();
+        $name = !empty($data) ? $data->name : 'Not Found';
+        $name = !empty($name) ? $name : 'Not Found';
+        return $name;
+    }
+}
+
+// Ambil nama kota by id
+if (! function_exists('getNameRegency'))
+{
+    function getNameRegency($id=0)
+    {
+        $model = new Regency;
+        $data  = $model::where('id',$id)->first();
+        $name = !empty($data) ? $data->name : 'Not Found';
+        $name = !empty($name) ? $name : 'Not Found';
+        return $name;
+    }
+}
+
+// Ambil nama district by id
+if (! function_exists('getNameDistrict'))
+{
+    function getNameDistrict($id=0)
+    {
+        $model = new District;
+        $data  = $model::where('id',$id)->first();
+        $name = !empty($data) ? $data->name : 'Not Found';
         $name = !empty($name) ? $name : 'Not Found';
         return $name;
     }
