@@ -30,7 +30,6 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
 
-    Route::get('profile','Owner\ProfileController@profile'); // Profile
     Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
     Route::post('testimoni','Owner\ProfileController@testimoni');
 
@@ -50,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('tagihan','User\TransactionController@tagihan'); // Ambil data tagihan
     Route::get('myroom','User\MyRoomsController@myroom'); // Kamar aktif
   });
+
+  ////// GLOBAL ROUTE \\\\\\
+  Route::get('profile','GlobalController@profile');
+  Route::put('profile/{id}','GlobalController@profileUpdate');
 
 });
 
