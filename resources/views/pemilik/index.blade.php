@@ -38,12 +38,12 @@
         <div class="card text-center">
             <div class="card-content">
                 <div class="card-body">
-                    <div class="avatar bg-rgba-danger p-50 m-0 mb-1">
+                    <div class="avatar bg-rgba-primary p-50 m-0 mb-1">
                         <div class="avatar-content">
-                            <i class="feather icon-heart text-danger font-medium-5"></i>
+                            <i class="feather icon-user text-primary font-medium-5"></i>
                         </div>
                     </div>
-                    <h2 class="text-bold-700">11</h2>
+                    <h2 class="text-bold-700">{{$total}}</h2>
                     <p class="mb-0 line-ellipsis">Total Penghuni</p>
                 </div>
             </div>
@@ -56,10 +56,10 @@
                 <div class="card-body">
                     <div class="avatar bg-rgba-danger p-50 m-0 mb-1">
                         <div class="avatar-content">
-                            <i class="feather icon-heart text-danger font-medium-5"></i>
+                            <i class="feather icon-users text-danger font-medium-5"></i>
                         </div>
                     </div>
-                    <h2 class="text-bold-700">11</h2>
+                    <h2 class="text-bold-700">{{$aktif}}</h2>
                     <p class="mb-0 line-ellipsis">Penghuni Aktif</p>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class PenghuniService {
   {
     try {
       if (!empty(Auth::user()->kamar->user_id)) {
-        $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->kamar->user_id)->get();
+        $penghuni = Transaction::where('status','Proses')->where('pemilik_id', Auth::user()->kamar->user_id)->orderBy('created_at','DESC')->get();
 
         return view('pemilik.penghuni.index', compact('penghuni'));
       } else {

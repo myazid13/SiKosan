@@ -87,11 +87,6 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole($data['role']);
-        if ($user) {
-          DataUser::create([
-            'user_id' => $user->id
-          ]);
-        }
         return $user;
     }
 }
