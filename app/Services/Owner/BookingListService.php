@@ -14,7 +14,7 @@ class BookingListService {
   {
     try {
       if (!empty(Auth::user()->kamar->id)) {
-        $booking = Transaction::where('kamar_id', Auth::user()->kamar->id)->get();
+        $booking = Transaction::where('pemilik_id', Auth::id())->get();
         return view('pemilik.booking.index', compact('booking'));
       } else {
         Session::flash('error','Data Kamar Masih Kosong');
@@ -27,10 +27,10 @@ class BookingListService {
 
 
   // Konfirmasi Pembayaran
-  public function confirm_payment()
+  public function confirm_payment($key)
   {
     try {
-      $confirm = Transaction::where('kamar_id', Auth::user()->kamar->id)->where('status','Pending')->first();
+      $confirm = Transaction::where('key', $key)->where('status','Pending')->first();
       if ($confirm) {
         return view('pemilik.booking.confirm', compact('confirm'));
       }
@@ -42,10 +42,10 @@ class BookingListService {
   }
 
   // Proses konfirmasi pembayaran
-  public function proses_confirm_payment($id)
+  public function proses_confirm_payment($key)
   {
     try {
-      $confirm = Transaction::findOrFail($id);
+      $confirm = Transaction::where('key',$key)->first();
       $confirm->status      = 'Proses';
       $confirm->updated_at  = Carbon::now();
       $confirm->save();

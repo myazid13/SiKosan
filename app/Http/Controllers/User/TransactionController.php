@@ -9,7 +9,7 @@ use Auth;
 use Str;
 use Session;
 use Carbon\carbon;
-
+use App\Http\Requests\KonfirmasiPembayaranRequest;
 class TransactionController extends Controller
 {
     // Tagihan
@@ -108,12 +108,13 @@ class TransactionController extends Controller
       }
     }
 
-    // Transaction pembayaran room
-    public function update(Request $request, $id)
+    // konfirmasi pembayaran kamar
+    public function update(KonfirmasiPembayaranRequest $request, $id)
     {
       $konfirmasi = Transaction::findOrFail($id);
-      $konfirmasi->status = 'Pending';
-      $konfirmasi->save();
+      $konfirmasi->update([
+        'status'  => 'Pending'
+      ]);
 
       if ($konfirmasi) {
         $payment = payment::where('transaction_id',$id)->first();

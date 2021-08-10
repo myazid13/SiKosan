@@ -1,5 +1,5 @@
 <?php
-use App\Models\{Province,Regency,District,User,DataUser,payment,Transaction};
+use App\Models\{Province,Regency,District,User,payment,Transaction};
 
 // Ambil nama provinsi by id
 if (! function_exists('getNameProvinsi'))
@@ -83,57 +83,6 @@ if (! function_exists('getNameUser'))
     }
 }
 
-// Ambil nomor user by id
-if (! function_exists('getTlpUser'))
-{
-    function getTlpUser($user_id=0)
-    {
-        $model = new DataUser;
-        $data  = $model::where('user_id',$user_id)->first();
-        $tlp = !empty($data) ? $data->tlp : 'Not Found';
-        $tlp = !empty($tlp) ? $tlp : 'Not Found';
-        return $tlp;
-    }
-}
-
-// Ambil nama bank by user id
-if (! function_exists('getNamaBank'))
-{
-    function getNamaBank($user_id=0)
-    {
-      $model = new DataUser;
-      $data  = $model::where('user_id',$user_id)->first();
-      $namabank = !empty($data) ? $data->nama_bank : 'Not Found';
-      $namabank = !empty($namabank) ? $namabank : 'Not Found';
-      return $namabank;
-    }
-}
-
-// Ambil nomor rek by user id
-if (! function_exists('getNoRek'))
-{
-    function getNoRek($user_id=0)
-    {
-      $model = new DataUser;
-      $data  = $model::where('user_id',$user_id)->first();
-      $norek = !empty($data) ? $data->nomor_rekening : 'Not Found';
-      $norek = !empty($norek) ? $norek : 'Not Found';
-      return $norek;
-    }
-}
-
-// Ambil nama pemilik bank by user id
-if (! function_exists('getNamePemilikBank'))
-{
-    function getNamePemilikBank($user_id=0)
-    {
-      $model = new DataUser;
-      $data  = $model::where('user_id',$user_id)->first();
-      $namepemilikbank = !empty($data) ? $data->nama_pemilik : 'Not Found';
-      $namepemilikbank = !empty($namepemilikbank) ? $namepemilikbank : 'Not Found';
-      return $namepemilikbank;
-    }
-}
 
 // Get transaksi sukses
 if (! function_exists('getTransaksiSuccess'))

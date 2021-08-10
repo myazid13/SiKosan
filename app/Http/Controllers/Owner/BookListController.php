@@ -26,10 +26,10 @@ class BookListController extends Controller
     }
 
     // Konfirmasi Pembayaran from user
-    public function confirm_payment()
+    public function confirm_payment($key)
     {
       try {
-        $result = $this->booking->confirm_payment();
+        $result = $this->booking->confirm_payment($key);
         return $result;
       } catch (ErrorException $e) {
         throw new ErrorException($e->getMessage());
