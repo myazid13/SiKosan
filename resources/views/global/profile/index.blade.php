@@ -29,7 +29,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link d-flex py-75" id="payment" data-toggle="pill" href="#data-payment" aria-expanded="true">
+                  <a class="nav-link d-flex py-75" id="rekening" data-toggle="pill" href="#data-rekening" aria-expanded="true">
                     <i class="feather icon-credit-card mr-50 font-medium-3"></i>
                       Rekening Bank
                     </a>
@@ -96,52 +96,27 @@
                     </form>
                   </div>
 
-                  {{-- Payment --}}
-                  <div role="tabpanel" class="tab-pane" id="data-payment" aria-labelledby="payment" aria-expanded="true">
-                    <form action="{{url('pemilik/payment-profile', Auth::id())}}" method="POST">
-                      @csrf
-                      @method('PUT')
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <div class="controls">
-                              <label for="Nama Bank">Nama Bank</label>
-                              <select name="nama_bank" class="form-control">
-                                <option> Pilih Bank</option>
-                                <option value="BNI" {{Auth::user()->datauser->nama_bank == 'BNI' ? 'selected' : ''}} >BNI</option>
-                                <option value="BRI" {{Auth::user()->datauser->nama_bank == 'BRI' ? 'selected' : ''}}>BRI</option>
-                                <option value="BCA" {{Auth::user()->datauser->nama_bank == 'BCA' ? 'selected' : ''}}>BCA</option>
-                                <option value="MANDIRI" {{Auth::user()->datauser->nama_bank == 'MANDIRI' ? 'selected' : ''}}>MANDIRI</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-12">
-                          <div class="form-group">
-                            <div class="controls">
-                              <label for="No Rekening">No. Rekening</label>
-                              <input type="number" name="nomor_rekening" value="{{Auth::user()->datauser->nomor_rekening}}" class="form-control" placeholder="Nomor Rekening">
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-12">
-                          <div class="form-group">
-                            <div class="controls">
-                              <label for="Nama Pemilik">Nama Pemilik</label>
-                              <input type="text" name="nama_pemilik" value="{{Auth::user()->datauser->nama_pemilik}}" class="form-control" placeholder="Nama Pemilik">
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-start">
-                          <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save changes</button>
-                          <a href="/home" class="btn btn-outline-warning">Cancel</a>
+                  {{-- Rekening --}}
+                  <div role="tabpanel" class="tab-pane" id="data-rekening" aria-labelledby="rekening" aria-expanded="true">
+                    <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#inlineForm">Tambah Rekening</a>
+                    <p>
+                      Kamu dapat menambahkan Akun Rekening Bank maksimal berjumlah 3 (tiga) akun. Rekening bank yang terdaftar dapat digunakan sebagai tujuan pembayaran.
+                    </p>
+                    @foreach ($bank as $banks)
+                      <div class="card" style="border: 1px solid white">
+                        <div class="card-body ">
+                          {{$banks->nama_bank}} <br>
+                          <small> {{$banks->no_rekening}} </small> <br>
+                          <p>{{$banks->nama_pemilik}}</p>
+                          <a class="mr-2 btn btn-outline-info btn-sm">{{$banks->is_active == 1 ? 'Aktif' : 'Inactive'}}</a>
                         </div>
                       </div>
-                    </form>
+                    @endforeach
                   </div>
+
+                 {{-- Modal tambah rekening --}}
+                 @include('pemilik.bank.index')
+                 @include('pemilik.bank.edit')
 
                   {{-- Testimoni --}}
                   <div role="tabpanel" class="tab-pane" id="data-testimoni" aria-labelledby="testimoni" aria-expanded="true">
@@ -181,4 +156,13 @@
   </section>
   <!-- account setting page end -->
 </div>
+@endsection
+@section('scripts')
+  <script type="text/javascript">
+    @if (count($errors) > 0)
+      $( document ).ready(function() {
+        $('#inlineForm').modal('show');
+      });
+    @endif
+  </script>
 @endsection

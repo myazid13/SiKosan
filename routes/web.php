@@ -30,7 +30,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
 
-    Route::put('payment-profile/{user_id}','Owner\ProfileController@payment_profile'); // Save Data Payment
+    Route::post('rekening','Owner\BankController@rekening'); // Rekening
+    Route::get('rekening/{id}','Owner\BankController@rekeningEdit'); // Rekening Edit
+    Route::get('rekening/update','Owner\BankController@rekeningUpdate'); // Rekening Update
     Route::post('testimoni','Owner\ProfileController@testimoni');
 
     Route::get('booking-list','Owner\BookListController@index')->name('booking-list'); // Booking List
@@ -53,6 +55,5 @@ Route::middleware('auth')->group(function () {
   ////// GLOBAL ROUTE \\\\\\
   Route::get('profile','GlobalController@profile');
   Route::put('profile/{id}','GlobalController@profileUpdate');
-
 });
 

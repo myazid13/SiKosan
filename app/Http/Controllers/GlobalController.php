@@ -6,7 +6,6 @@ use ErrorException;
 use Illuminate\Http\Request;
 use App\Services\GlobalService;
 
-
 class GlobalController extends Controller
 {
   protected $global;
@@ -37,4 +36,6 @@ class GlobalController extends Controller
       throw new ErrorException($e->getMessage());
     }
   }
+
+
 }
