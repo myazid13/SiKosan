@@ -14,10 +14,9 @@
                   <label for="Nama Bank">Nama Bank</label>
                   <select name="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror">
                     <option> Pilih Bank</option>
-                    <option value="BNI">BNI</option>
-                    <option value="BRI">BRI</option>
-                    <option value="BCA">BCA</option>
-                    <option value="MANDIRI">MANDIRI</option>
+                    @foreach ($listBank as $banks)
+                      <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>
+                    @endforeach
                   </select>
                   @error('nama_bank')
                     <span class="invalid-feedback" role="alert">

@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use ErrorException;
-use App\Models\{User,DataRekening};
+use App\Models\{User,DataRekening,Bank};
 use Auth;
 use Session;
 
@@ -12,8 +12,9 @@ class GlobalService {
   public function profile()
   {
     try {
+      $listBank = Bank::all();
       $bank = DataRekening::where('user_id',Auth::id())->get();
-      return view('global.profile.index', \compact('bank'));
+      return view('global.profile.index', \compact('bank','listBank'));
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
     }
