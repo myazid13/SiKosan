@@ -1,3 +1,7 @@
+<div class="card-btn d-flex justify-content-between mt-2">
+  <h2 style="color:black">Dipilih Kos nya kakak</h2>
+  <a href="" class="btn btn-outline-info" style="color:black">Lihat Semua</a>
+</div>
 <div class="row match-height">
   @foreach ($kamar as $kamars)
     <div class="col-xl-3 col-md-6 col-sm-12">

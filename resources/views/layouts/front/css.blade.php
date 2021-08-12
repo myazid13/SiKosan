@@ -1,6 +1,8 @@
  <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/css/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/css/charts/apexcharts.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/css/extensions/swiper.min.css')}}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -17,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/dashboard-ecommerce.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/card-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/banner.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/extensions/swiper.css')}}">
 
     <!-- END: Page CSS-->
 
