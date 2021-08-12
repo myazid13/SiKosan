@@ -40,6 +40,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                       <a class="dropdown-item" href="{{url('profile')}}"><i class="feather icon-user"></i>Profile</a>
+                      {{-- <a class="dropdown-item" href=""><i class="feather icon-settings"></i> Reset Password</a> --}}
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
@@ -62,8 +63,9 @@
       <div class="navbar-header d-xl-block d-none">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item">
-              <a class="navbar-brand" href="../../../html/ltr/horizontal-menu-template-dark/index.html">
-                <div class="brand-logo"></div>
+              <a class="navbar-brand" href="{{url('/home')}}">
+                  <div class="brand-logo"></div>
+                  <h2 class="brand-text mb-0">Pap!Kos</h2>
               </a>
             </li>
         </ul>
@@ -87,7 +89,7 @@
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                       <li class="dropdown-menu-header">
                         <div class="dropdown-header m-0 p-2">
-                          <h3 class="white">5 New</h3><span class="notification-title">App Notifications</span>
+                          <h3 class="white">0</h3><span class="notification-title">App Notifications</span>
                         </div>
                       </li>
                     </ul>
@@ -107,9 +109,8 @@
                       </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                      <a class="dropdown-item" href=""><i class="feather icon-user"></i> Edit Profile</a>
+                      <a class="dropdown-item" href="{{url('profile')}}"><i class="feather icon-user"></i>Profile</a>
                       <a class="dropdown-item" href="{{url('user/tagihan')}}"><i class="feather icon-book"></i> Tagihan</a>
-                      <a class="dropdown-item" href=""><i class="feather icon-settings"></i> Reset Password</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();

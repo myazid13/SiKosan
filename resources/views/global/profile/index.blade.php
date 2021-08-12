@@ -43,7 +43,12 @@
                 </li>
               @else
               {{-- Jika user sebagai penghuni --}}
-
+                <li class="nav-item">
+                  <a class="nav-link d-flex py-75 active" id="profile-user" data-toggle="pill" href="#data-profile-user" aria-expanded="true">
+                    <i class="feather icon-user mr-50 font-medium-3"></i>
+                      Profile
+                    </a>
+                </li>
               @endif
           </ul>
       </div>
@@ -145,7 +150,46 @@
                   </div>
                 @else
                 {{-- Jika User sebagai penghuni --}}
+                  {{-- Profile --}}
+                  <div role="tabpanel" class="tab-pane active" id="data-profile-profile" aria-labelledby="profile-profile" aria-expanded="true">
+                    <form action="{{url('profile', Auth::id())}}" method="POST">
+                      @csrf
+                      @method('PUT')
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="Nama Bank">Nama</label>
+                              <input type="text" name="name" class="form-control" value="{{Auth::user()->name}}">
+                            </div>
+                          </div>
+                        </div>
 
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="Email">Email</label>
+                              <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control" placeholder="Email">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="nomor wa">Nomor WhatsApp</label>
+                              <input type="number" name="no_wa" value="{{Auth::user()->no_wa ?? '0'}}" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-start">
+                          <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Simpan</button>
+                          <a href="/home" class="btn btn-outline-warning">Cancel</a>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 @endif
               </div>
             </div>
