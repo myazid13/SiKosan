@@ -12,10 +12,10 @@ class FrontendsController extends Controller
     public function homepage()
     {
       $kamar = kamar::all();
-      $countkamar = kamar::count();
-      $Testimoni = Testimoni::with('User')->get();
-      // dd($Testimoni);
-      return view('frontend.index', compact('kamar','countkamar','Testimoni'));
+      // $countkamar = kamar::count();
+      // $Testimoni = Testimoni::with('User')->get();
+      // return view('frontend.index', compact('kamar','countkamar','Testimoni'));
+      return view('front.index', \compact('kamar'));
     }
 
     // Show Kamar
