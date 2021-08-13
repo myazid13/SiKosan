@@ -24,5 +24,8 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-datepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/jquery.timepicker.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}">
+
     <!-- END: Custom CSS-->

@@ -8,4 +8,5 @@
   @include('front.cardContent')
   <br><br><br>
   @include('front.byKota')
+
 @endsection
