@@ -1,12 +1,14 @@
-
-<div class="card-btn d-flex justify-content-between mt-2">
-  <h2 style="color:black">Dipilih Kos nya kakak</h2>
-  @if ($kamar->total() >= 8)
-  <a href="" class="btn btn-outline-info" style="color:black">Lihat Semua</a>
-  @endif
-</div>
-<div class="row match-height">
-  @foreach ($kamar as $kamars)
+@if ($kamar->total() == null)
+  <h4 style="text-align: center">Belum ada kamar yang tersedia.</h4>
+@else
+  <div class="card-btn d-flex justify-content-between mt-2">
+    <h2 style="color:black">Dipilih Kos nya kakak</h2>
+    @if ($kamar->total() >= 8)
+    <a href="" class="btn btn-outline-info mb-1" style="color:black">Lihat Semua</a>
+    @endif
+  </div>
+  <div class="row match-height">
+    @foreach ($kamar as $kamars)
     <div class="col-xl-3 col-md-6 col-sm-12">
       <div class="card">
         <div class="card-content">
@@ -15,7 +17,7 @@
           </a>
           <div class="card-body">
             <a href="{{url('room', $kamars->slug)}}">
-              <h5>{{$kamars->nama_kamar}}</h5>
+              <h5 style="min-height: 40px">{{$kamars->nama_kamar}} {{ucfirst(strtolower($kamars->regencies->name))}}</h5>
               <div class="d-flex-justify-content-between">
                 <a href="" class="btn gradient-light-primary btn-sm">{{$kamars->jenis_kamar}}</a>
                 <a href="#" class="btn btn-outline-{{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}} btn-sm {{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}}">Tersisa {{$kamars->sisa_kamar}} kamar</a>
@@ -31,6 +33,9 @@
         </div>
       </div>
     </div>
-  @endforeach
-</div>
-{{ $kamar->links() }}
+    @endforeach
+  </div>
+  <div style="text-align: center;" class="mt-1">
+    {{ $kamar->links() }}
+  </div>
+@endif
