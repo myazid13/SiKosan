@@ -18,6 +18,7 @@
     <h4 class="card-title">
       <a href="/" style="font-size: 15px;"><i class="feather icon-home"></i> Home ></a>
       <a href="" style="font-size: 15px;">Kos {{ucfirst(strtolower($kamar->provinsi->name))}} ></a>
+      <a href="" style="font-size: 15px;">Kos {{ucfirst(strtolower($kamar->regencies->name))}} ></a>
       <a href="" style="font-size: 15px; color:black">{{$kamar->nama_kamar}}</a>
     </h4>
     <div class="card ">
@@ -68,7 +69,7 @@
   <div class="col-lg-8">
     <div class="card">
       <div class="card-body">
-        <h3>{{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->provinsi->name))}}</h3>
+        <h3>{{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->regencies->name))}} {{ucfirst(strtolower($kamar->provinsi->name))}}</h3>
         <button class="btn btn-outline-black btn-sm"><span style="font-size: 12px; font-weight:bold;">Kos {{$kamar->jenis_kamar}}</span></button>
         <div class="row">
           <div class="col-md-6 mt-1">
