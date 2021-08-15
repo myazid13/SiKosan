@@ -15,7 +15,8 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span>
-            {{rupiah($transaksi->harga_total)}}
+            Jumlah :
+            <span style="font-weight: bold">{{rupiah($transaksi->harga_total)}}</span>
           </span>
           <span style="font-size: 21px">
             <i class="feather icon-credit-card"></i>

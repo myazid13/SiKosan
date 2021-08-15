@@ -88,7 +88,7 @@ class TransactionController extends Controller
           }
 
           Session::flash('success','Berhasil, Silahkan Melakukan Pembayaran');
-          return redirect('/home');
+          return redirect('/user/tagihan');
         } else {
           abort(403);
         }
