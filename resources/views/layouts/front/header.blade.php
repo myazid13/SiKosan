@@ -15,12 +15,11 @@
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
                     <ul class="nav navbar-nav">
                         <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
-                        <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon feather icon-search"></i></a>
-                            <div class="search-input">
-                                <div class="search-input-icon"><i class="feather icon-search primary"></i></div>
-                                <input class="input" type="text" placeholder="Cari Kamar..." tabindex="-1" data-search="template-list">
-                                <div class="search-input-close"><i class="feather icon-x"></i></div>
-                            </div>
+                        <li class="mr-2">
+                          <i class="feather icon-airplay"></i> <a href="" style="color: black">Download App</a>
+                        </li>
+                        <li>
+                          <i class="feather icon-calendar"></i> <a href="" style="color: black">Booking kos</a>
                         </li>
                     </ul>
                 </div>
@@ -67,7 +66,7 @@
                     @else
                       <li class="nav-item">
                         <a class="nav-link nav-link-label" href="{{route('login')}}">
-                         <span class=" mr-2">Masuk</span></a>
+                         <i class="feather icon-log-in"></i> <span class=" mr-2">Masuk</span></a>
                       </li>
                     @endauth
                 </ul>

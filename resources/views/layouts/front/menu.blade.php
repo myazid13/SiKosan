@@ -19,16 +19,16 @@
                 </li> --}}
 
                 <li data-menu="">
-                  <a class="dropdown-item" href="/" data-toggle="dropdown" data-i18n="Dashboard">
+                  <a href="/" data-i18n="Dashboard">
                     <i class="feather icon-home"></i>Kos</a>
                 </li>
 
                 <li data-menu="">
-                  <a class="dropdown-item" href="/" data-toggle="dropdown" data-i18n="Dashboard">
+                  <a href="/" data-i18n="Dashboard">
                     <i class="feather icon-help-circle"></i>Pusat Bantuan</a>
                 </li>
                 <li data-menu="">
-                  <a class="dropdown-item" href="/" data-toggle="dropdown" data-i18n="Dashboard">
+                  <a href="/" data-i18n="Dashboard">
                     <i class="feather icon-book"></i>Syarat & Ketentuan</a>
                 </li>
             </ul>

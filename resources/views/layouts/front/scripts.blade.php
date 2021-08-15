@@ -5,6 +5,7 @@
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('assets/vendors/js/charts/apexcharts.min.js')}}"></script>
     <script src="{{asset('assets/vendors/js/extensions/swiper.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -18,8 +19,7 @@
     <script src="{{asset('assets/js/scripts/extensions/swiper.js')}}"></script>
     <script src="{{asset('frontend/js/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('frontend/js/jquery.timepicker.min.js')}}"></script>
-    {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --}}
     <script src="{{asset('frontend/js/custom.js')}}"></script>
-
+    <script src="{{asset('assets/js/scripts/forms/select/form-select2.js')}}"></script>
 
     <!-- END: Page JS-->

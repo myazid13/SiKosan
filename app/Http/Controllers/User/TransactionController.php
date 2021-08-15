@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Transaction,kamar,payment,User};
+use App\Models\{Transaction,kamar,payment,User,Bank};
 use Auth;
 use Str;
 use Session;
@@ -100,8 +100,9 @@ class TransactionController extends Controller
     public function detail_payment($key)
     {
       $transaksi = Transaction::where('key',$key)->first();
+      $bank = Bank::all();
       if ($transaksi->payment->status == 'Pending') {
-        return view('user.payment.show', compact('transaksi'));
+        return view('user.payment.show', compact('transaksi','bank'));
       } else {
         Session::flash('error','Pembayaran Sudah Terkirim');
         return redirect('/user/tagihan');

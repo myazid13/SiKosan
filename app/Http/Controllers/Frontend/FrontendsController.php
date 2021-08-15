@@ -8,13 +8,10 @@ use App\Models\{kamar,provinsi,Testimoni,User};
 
 class FrontendsController extends Controller
 {
-    //Homepage
+    // Homepage
     public function homepage()
     {
-      $kamar = kamar::all();
-      // $countkamar = kamar::count();
-      // $Testimoni = Testimoni::with('User')->get();
-      // return view('frontend.index', compact('kamar','countkamar','Testimoni'));
+      $kamar = kamar::paginate(8);
       return view('front.index', \compact('kamar'));
     }
 
@@ -23,6 +20,26 @@ class FrontendsController extends Controller
     {
       $kamar = kamar::where('slug', $slug)->first();
       return view('front.show', compact('kamar'));
+    }
+
+    public function cariKamar(Request $request)
+    {
+      $cari = $request->cari;
+
+      $kamar = kamar::whereHas('provinsi', function($q) use ($cari) {
+        $q->where('name', 'like', "%".$cari."%")
+        ;
+      })
+      ->orwhereHas('regencies', function($q) use ($cari){
+        $q->where('name', 'like', "%".$cari."%");
+      })
+      ->orwhereHas('district', function($q) use ($cari){
+        $q->where('name', 'like', "%".$cari."%");
+      })
+      ->orwhere('nama_kamar', 'like', "%".$cari."%")
+      ->paginate(12);
+      return $kamar;
+      return view('front.index', \compact('kamar'));
     }
 
 }

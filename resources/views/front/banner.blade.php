@@ -8,9 +8,9 @@
                         <p class="card-text mb-2">
                             Lebih mudah pesan dan sewa di Pap!Kos.
                         </p>
-                        <form>
+                        <form action="{{url('cari-kamar')}}" method="GET">
                             <fieldset class="form-group position-relative has-icon-left mb-0">
-                                <input type="text" class="form-control form-control-lg" id="searchbar" placeholder="Masukan Nama Kos...">
+                                <input type="text" name="cari" class="form-control form-control-lg" id="searchbar" placeholder="Masukan Nama Kos lokasi/kota/provinsi...">
                                 <div class="form-control-position">
                                     <i class="feather icon-search px-1"></i>
                                 </div>

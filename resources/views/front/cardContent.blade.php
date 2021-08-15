@@ -1,6 +1,8 @@
 <div class="card-btn d-flex justify-content-between mt-2">
   <h2 style="color:black">Dipilih Kos nya kakak</h2>
+  @if ($kamar->total() >= 8)
   <a href="" class="btn btn-outline-info" style="color:black">Lihat Semua</a>
+  @endif
 </div>
 <div class="row match-height">
   @foreach ($kamar as $kamars)
@@ -30,3 +32,4 @@
     </div>
   @endforeach
 </div>
+{{ $kamar->links() }}

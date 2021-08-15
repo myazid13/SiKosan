@@ -19,6 +19,7 @@ Auth::routes();
 ///// FRONTEND \\\\\
 // Homepage
 Route::get('/','Frontend\FrontendsController@homepage');
+Route::get('/cari-kamar','Frontend\FrontendsController@cariKamar');
 
 Route::get('/room/{slug}','Frontend\FrontendsController@showkamar'); //Show Kamar
 

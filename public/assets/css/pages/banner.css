@@ -2,7 +2,7 @@
         DARK LAYOUT
 =========================================================*/
 .banner-bg {
-  background : url(../../../assets/images/backgrounds/card_bg.jpg) no-repeat;
+  background : url(../../../assets/images/backgrounds/bg_banner.jpeg) no-repeat;
   background-size : cover;
 }
 .banner-bg .form-control:focus ~ .form-control-position i {

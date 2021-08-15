@@ -60,6 +60,16 @@ class kamar extends Model
       return $this->hasOne('App\Models\Province','id','province_id');
     }
 
+    public function regencies()
+    {
+      return $this->hasOne('App\Models\regency','id','regency_id');
+    }
+
+    public function district()
+    {
+      return $this->hasOne('App\Models\District','id','district_id');
+    }
+
     public function transaksi()
     {
       return $this->hasOne('App\Models\Transaction','kamar_id');
