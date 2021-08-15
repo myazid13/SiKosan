@@ -38,7 +38,6 @@ class FrontendsController extends Controller
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->paginate(12);
-      return $kamar;
       return view('front.index', \compact('kamar'));
     }
 
