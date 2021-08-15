@@ -18,9 +18,16 @@ Auth::routes();
 
 ///// FRONTEND \\\\\
 // Homepage
+<<<<<<< Updated upstream
 Route::get('/','Frontend\FrontendsController@homepage');
 
+=======
+Route::get('/','Frontend\FrontendsController@homepage'); // homepage
+>>>>>>> Stashed changes
 Route::get('/room/{slug}','Frontend\FrontendsController@showkamar'); //Show Kamar
+Route::get('show-all-room','Frontend\FrontendsController@showAllKamar'); //Show all kamar
+Route::get('filter-kamar','Frontend\FrontendsController@filterKamar'); //Filter kamar
+Route::get('kost','Frontend\FrontendsController@showByKota');
 
 Route::middleware('auth')->group(function () {
   Route::get('/home', 'HomeController@index');
