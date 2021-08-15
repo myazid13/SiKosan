@@ -8,7 +8,6 @@ use App\Models\{kamar,provinsi,Testimoni,User};
 
 class FrontendsController extends Controller
 {
-<<<<<<< HEAD
 
     // Homepage
     public function homepage(Request $request)
@@ -27,12 +26,7 @@ class FrontendsController extends Controller
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->paginate(12);
-=======
-    // Homepage
-    public function homepage()
-    {
-      $kamar = kamar::paginate(8);
->>>>>>> cc2ddec464216fc15090fb94e626982ae160a8ca
+
       return view('front.index', \compact('kamar'));
     }
 
@@ -40,7 +34,6 @@ class FrontendsController extends Controller
     public function showkamar($slug)
     {
       $kamar = kamar::where('slug', $slug)->first();
-<<<<<<< HEAD
 
       return view('front.show', compact('kamar'));
     }
@@ -50,16 +43,7 @@ class FrontendsController extends Controller
     {
       $cari = $request->cari;
       $allKamar = kamar::whereHas('provinsi', function($q) use ($cari) {
-=======
-      return view('front.show', compact('kamar'));
-    }
 
-    public function cariKamar(Request $request)
-    {
-      $cari = $request->cari;
-
-      $kamar = kamar::whereHas('provinsi', function($q) use ($cari) {
->>>>>>> cc2ddec464216fc15090fb94e626982ae160a8ca
         $q->where('name', 'like', "%".$cari."%")
         ;
       })
@@ -71,7 +55,6 @@ class FrontendsController extends Controller
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->paginate(12);
-<<<<<<< HEAD
 
       $provinsi = Kamar::with('provinsi')->select('province_id')->groupby('province_id')->get();
       $select = [];
@@ -122,9 +105,7 @@ class FrontendsController extends Controller
       })
       ->paginate(12);
       return view('front.showByKota', \compact('kamar','kota'));
-=======
-      return view('front.index', \compact('kamar'));
->>>>>>> cc2ddec464216fc15090fb94e626982ae160a8ca
+
     }
 
 }
