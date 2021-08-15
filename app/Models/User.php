@@ -43,9 +43,9 @@ class User extends Authenticatable
         return $this->hasOne(kamar::class);
     }
 
-    public function datauser()
+    public function dataRekening()
     {
-      return $this->hasOne(DataUser::class);
+      return $this->hasOne(DataRekening::class);
     }
 
     public function payment()

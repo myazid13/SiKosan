@@ -3,7 +3,7 @@
 namespace App\Services\Owner;
 use ErrorException;
 
-use App\Models\{DataUser,kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency};
+use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency};
 use Auth;
 use Session;
 use file;
@@ -20,14 +20,13 @@ class KamarService {
     }
   }
 
-
   // Create Form
   public function create()
   {
     try {
       $provinsi = Province::select('id','name')->get();
-      // Cek data bank
-      if ($this->databank()) {
+      // Cek data rekening
+      if (Auth::user()->dataRekening == null || Auth::user()->no_wa == 0) {
         Session::flash('error','Data Akun Belum Lengkap !');
         return redirect('/home');
       }
@@ -241,12 +240,5 @@ class KamarService {
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
     }
-  }
-  // Cek data bank user
-  protected function databank()
-  {
-    $databank = Auth::user()->datauser->nama_bank == NULL && Auth::user()->datauser->nama_pemilik == NULL && Auth::user()->datauser->nomor_rekening == NULL;
-
-    return $databank;
   }
 }
