@@ -11,148 +11,143 @@
         <div class="card-content">
           <div class="card-body">
             <form action="{{route('kamar.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="form-body ">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Nama Kamar</label>
-                            <input type="text" class="form-control @error('nama_kamar') is-invalid @enderror" name="nama_kamar" placeholder="Nama Kamar" value="{{old('nama_kamar')}}" autocomplete="off">
-                            @error('nama_kamar')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Kategori</label>
-                            <select name="kategori" class="form-control @error('kategori') is-invalid @enderror">
-                                <option value="">--Kategori Kamar--</option>
-                                <option value="Kost" {{old('kategori') == 'Kost' ? 'selected' : ''}} >Kost</option>
-                                <option value="Apartment" {{old('kategori') == 'Apartment' ? 'selected' : ''}}>Apartment</option>
-                            </select>
-                            @error('kategori')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Jenis Kamar</label>
-                            <select name="jenis_kamar" class="form-control @error('jenis_kamar') is-invalid @enderror">
-                                <option value="">--Putra/Putri--</option>
-                                <option value="Putra" {{old('jenis_kamar') == 'Putra' ? 'selected' : ''}}>Putra</option>
-                                <option value="Putri" {{old('jenis_kamar') == 'Putri' ? 'selected' : ''}}>Putri</option>
-                                <option value="Campur" {{old('jenis_kamar') == 'Campur' ? 'selected' : ''}}>Campur</option>
-                            </select>
-                            @error('jenis_kamar')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Background Foto Kamar</label>
-                            <input type="file" name="bg_foto" class="form-control @error('bg_foto') is-invalid @enderror ">
-                            @error('bg_foto')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Status Booking</label>
-                            <select name="book" class="form-control @error('book') is-invalid @enderror">
-                                <option value="">-- Aktif/Non-aktif --</option>
-                                <option value="1" {{old('book') == '1' ? 'selected' : ''}}>Aktif</option>
-                                <option value="0" {{old('book') == '0' ? 'selected' : ''}}>Tidak</option>
-                            </select>
-                            @error('book')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Luas Kamar</label>
-                            <input type="text" name="luas_kamar" class="form-control @error('luas_kamar') is-invalid @enderror" value="{{old('luas_kamar')}}" placeholder="Contoh 3 x 4">
-                            @error('luas_kamar')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class=" col-form-label">Stok Kamar</label>
-                            <input type="number" name="stok_kamar" class="form-control @error('stok_kamar') is-invalid @enderror"  value="{{old('stok_kamar')}}" placeholder="Kamar Tersedia">
-                            @error('stok_kamar')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-3">
-                            <label class="col-form-label">Harga Kamar</label>
-                            <input type="number" name="harga_kamar" class="form-control @error('harga_kamar') is-invalid @enderror" value="{{old('harga_kamar')}}" placeholder="Harga Kamar">
-                            @error('harga_kamar')
-                              <div class="invalid-feedback">
-                                <strong>{{ $message }}</strong>
-                              </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
+              @csrf
+              <div class="form-body ">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Biaya Listrik</label>
-                        <select name="listrik" class="form-control @error('listrik') is-invalid @enderror">
-                            <option value="">-- Listrik Kamar --</option>
-                            <option value="1" {{old('listrik') == '1' ? 'selected' : ''}}>Termasuk Listrik</option>
-                            <option value="0" {{old('listrik') == '0' ? 'selected' : ''}}>Tidak Termasuk Listrik</option>
-                        </select>
-                        @error('listrik')
-                          <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                          </div>
-                        @enderror
-                    </div>
+                  <div class="col-sm-12">
+                      <label class="col-form-label">Nama Kamar</label>
+                      <input type="text" class="form-control @error('nama_kamar') is-invalid @enderror" name="nama_kamar" placeholder="Nama Kamar" value="{{old('nama_kamar')}}" autocomplete="off">
+                      <small style="color: red">*Tanpa nama provinsi/kota/kabupaten</small>
+                      @error('nama_kamar')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Kategori</label>
+                      <select name="kategori" class="form-control @error('kategori') is-invalid @enderror">
+                          <option value="">--Kategori Kamar--</option>
+                          <option value="Kost" {{old('kategori') == 'Kost' ? 'selected' : ''}} >Kost</option>
+                          <option value="Apartment" {{old('kategori') == 'Apartment' ? 'selected' : ''}}>Apartment</option>
+                      </select>
+                      @error('kategori')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Jenis Kamar</label>
+                      <select name="jenis_kamar" class="form-control @error('jenis_kamar') is-invalid @enderror">
+                          <option value="">--Putra/Putri--</option>
+                          <option value="Putra" {{old('jenis_kamar') == 'Putra' ? 'selected' : ''}}>Putra</option>
+                          <option value="Putri" {{old('jenis_kamar') == 'Putri' ? 'selected' : ''}}>Putri</option>
+                          <option value="Campur" {{old('jenis_kamar') == 'Campur' ? 'selected' : ''}}>Campur</option>
+                      </select>
+                      @error('jenis_kamar')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Background Foto Kamar</label>
+                      <input type="file" name="bg_foto" class="form-control @error('bg_foto') is-invalid @enderror ">
+                      @error('bg_foto')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
 
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Provinsi</label>
-                        <select name="province_id" class="form-control @error('province_id') is-invalid @enderror" id="province">
-                          <option value="">-- Pilih Provinsi --</option>
-                            @foreach ($provinsi as $item)
-                                <option value="{{$item->id}}" >{{$item->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('province_id')
-                          <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                          </div>
-                        @enderror
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="col-form-label">Regency</label>
-                        <select name="regency_id" class="form-control  @error('regency_id') is-invalid @enderror" id="regency"></select>
-                        @error('regency_id')
-                          <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                          </div>
-                        @enderror
-                    </div>
-                    <div class="col-sm-3">
-                        <label class="col-form-label">District</label>
-                        <select name="district_id" class="form-control  @error('district_id') is-invalid @enderror" id="district"></select>
-                        @error('district_id')
-                          <div class="invalid-feedback">
-                            <strong>{{ $message }}</strong>
-                          </div>
-                        @enderror
-                    </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Status Booking</label>
+                      <select name="book" class="form-control @error('book') is-invalid @enderror">
+                          <option value="">-- Aktif/Non-aktif --</option>
+                          <option value="1" {{old('book') == '1' ? 'selected' : ''}}>Aktif</option>
+                          <option value="0" {{old('book') == '0' ? 'selected' : ''}}>Tidak</option>
+                      </select>
+                      @error('book')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Luas Kamar</label>
+                      <input type="text" name="luas_kamar" class="form-control @error('luas_kamar') is-invalid @enderror" value="{{old('luas_kamar')}}" placeholder="Contoh 3 x 4">
+                      @error('luas_kamar')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class=" col-form-label">Stok Kamar</label>
+                      <input type="number" name="stok_kamar" class="form-control @error('stok_kamar') is-invalid @enderror"  value="{{old('stok_kamar')}}" placeholder="Kamar Tersedia">
+                      @error('stok_kamar')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Harga Kamar</label>
+                      <input type="number" name="harga_kamar" class="form-control @error('harga_kamar') is-invalid @enderror" value="{{old('harga_kamar')}}" placeholder="Harga Kamar">
+                      @error('harga_kamar')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Biaya Listrik</label>
+                      <select name="listrik" class="form-control @error('listrik') is-invalid @enderror">
+                          <option value="">-- Listrik Kamar --</option>
+                          <option value="1" {{old('listrik') == '1' ? 'selected' : ''}}>Termasuk Listrik</option>
+                          <option value="0" {{old('listrik') == '0' ? 'selected' : ''}}>Tidak Termasuk Listrik</option>
+                      </select>
+                      @error('listrik')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+
+                  <div class="col-sm-4">
+                      <label class="col-form-label">Provinsi</label>
+                      <select name="province_id" class="form-control @error('province_id') is-invalid @enderror" id="province">
+                        <option value="">-- Pilih Provinsi --</option>
+                          @foreach ($provinsi as $item)
+                              <option value="{{$item->id}}" >{{$item->name}}</option>
+                          @endforeach
+                      </select>
+                      @error('province_id')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-4">
+                      <label class="col-form-label">Regency</label>
+                      <select name="regency_id" class="form-control  @error('regency_id') is-invalid @enderror" id="regency"></select>
+                      @error('regency_id')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+                  <div class="col-sm-4">
+                      <label class="col-form-label">District</label>
+                      <select name="district_id" class="form-control  @error('district_id') is-invalid @enderror" id="district"></select>
+                      @error('district_id')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
                 </div>
 
                 <div class="form-group ">
@@ -325,6 +320,7 @@
                         <a href="{{route('kamar.index')}}" class="btn btn-warning">Batal</a>
                     </div>
                 </div>
+              </div>
             </form>
           </div>
         </div>
