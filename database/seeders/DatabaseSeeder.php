@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IndoRegionDistrictSeeder::class);
         $this->call(IndoRegionVillageSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(IndoBankSeeder::class);
 
     }
 }

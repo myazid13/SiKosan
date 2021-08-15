@@ -4,7 +4,11 @@
   <div class="card-btn d-flex justify-content-between mt-2">
     <h2 style="color:black">Dipilih Kos nya kakak</h2>
     @if ($kamar->total() >= 8)
+<<<<<<< HEAD
     <a href="{{url('show-all-room')}}" class="btn btn-outline-info mb-1" style="color:black">Lihat Semua</a>
+=======
+    <a href="" class="btn btn-outline-info mb-1" style="color:black">Lihat Semua</a>
+>>>>>>> cc2ddec464216fc15090fb94e626982ae160a8ca
     @endif
   </div>
   <div class="row match-height">

@@ -20,6 +20,7 @@ Auth::routes();
 // Homepage
 <<<<<<< Updated upstream
 Route::get('/','Frontend\FrontendsController@homepage');
+Route::get('/cari-kamar','Frontend\FrontendsController@cariKamar');
 
 =======
 Route::get('/','Frontend\FrontendsController@homepage'); // homepage

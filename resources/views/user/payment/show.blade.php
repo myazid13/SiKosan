@@ -15,7 +15,8 @@
       <div class="card-body">
         <div class="d-flex justify-content-between">
           <span>
-            {{rupiah($transaksi->harga_total)}}
+            Jumlah :
+            <span style="font-weight: bold">{{rupiah($transaksi->harga_total)}}</span>
           </span>
           <span style="font-size: 21px">
             <i class="feather icon-credit-card"></i>
@@ -65,7 +66,12 @@
 
           <div class="form-group">
             <label for="Bank Kamu">Bank Kamu</label>
-            <input type="text" name="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror" placeholder="Bank Kamu" autocomplete="off">
+            <select name="nama_bank" class="form-control select2">
+              <option value="">-- Pilih Bank --</option>
+              @foreach ($bank as $banks)
+                <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>
+              @endforeach
+            </select>
             @error('nama_bank')
               <div class="invalid-feedback">
                 <strong>{{ $message }}</strong>
@@ -75,12 +81,11 @@
 
           <div class="form-group">
             <label for="Bank Tujuan">Bank Tujuan</label>
-            <select name="bank_tujuan"class="form-control @error('bank_tujuan') is-invalid @enderror">
-              <option value="">Pilih Bank Tujuan</option>
-              <option value="BNI">BNI</option>
-              <option value="BRI">BRI</option>
-              <option value="BCA">BCA</option>
-              <option value="MANDIRI">MANDIRI</option>
+            <select name="bank_tujuan" class="form-control">
+              <option value="">-- Pilih Bank --</option>
+              @foreach ($bank as $banks)
+                <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>
+              @endforeach
             </select>
             @error('bank_tujuan')
               <div class="invalid-feedback">
