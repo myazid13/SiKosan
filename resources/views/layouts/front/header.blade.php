@@ -16,10 +16,10 @@
                     <ul class="nav navbar-nav">
                         <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                         <li class="mr-2">
-                          <i class="feather icon-airplay"></i> <a href="" style="color: black">Download App</a>
+                          <i class="feather icon-airplay"></i> <a href="" style="color: black">App</a>
                         </li>
                         <li>
-                          <i class="feather icon-calendar"></i> <a href="" style="color: black">Booking kos</a>
+                          <i class="feather icon-calendar"></i> <a href="" style="color: black">Booking</a>
                         </li>
                     </ul>
                 </div>

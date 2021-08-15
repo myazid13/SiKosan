@@ -1,6 +1,6 @@
 <section id="banner-search">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mt-2">
             <div class="card banner-bg white">
                 <div class="card-content">
                     <div class="card-body p-sm-4 p-2">

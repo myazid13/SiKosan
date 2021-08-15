@@ -226,6 +226,7 @@
             <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
           @else
             <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
+            <small>Silahkan masuk menggunakan akun pencari untuk melanjutkan.</small>
           @endif
         @else
           <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>

@@ -1,3 +1,4 @@
+
 <div class="card-btn d-flex justify-content-between mt-2">
   <h2 style="color:black">Dipilih Kos nya kakak</h2>
   @if ($kamar->total() >= 8)
@@ -10,7 +11,7 @@
       <div class="card">
         <div class="card-content">
           <a href="{{url('room', $kamars->slug)}}">
-            <img class="card-img-top img-fluid" src="{{asset('images/bg_foto/' .$kamars->bg_foto)}}" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="{{asset('images/bg_foto/' .$kamars->bg_foto)}}" alt="Card image cap" style="max-height: 180px">
           </a>
           <div class="card-body">
             <a href="{{url('room', $kamars->slug)}}">
