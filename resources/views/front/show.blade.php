@@ -208,6 +208,14 @@
           @endauth
         </div>
         <hr>
+        <h5 style="font-weight: bold">Keterangan</h5>
+        <ul>
+          <li style="font-size: 12px"><span style="color:black">Harga Sewa</span> adalah harga kamar dalam jangka 1 bulan.</li>
+          <li style="font-size: 12px"><span style="color:black">Biaya Admin</span> adalah biaya pelayanan yang di bebankan penyewa untuk Pap!Kos.</li>
+          <li style="font-size: 12px"><span style="color:black">Deposit</span> adalah biaya untuk penjaminan selama penyewa masih menggunakan kamar/apartmenent, (biaya akan dikembalikan setelah masa sewa habis).</li>
+          <li style="font-size: 12px"><span style="color:black">Point</span> adalah jumlah reward yang di dapatkan penyewa, point dapat di tukarkan untuk pembayaran.</li>
+        </ul>
+        <hr>
         <div class="d-flex justify-content-between">
           <div>
             <p style="text-decoration:underline; color:black">
@@ -215,10 +223,10 @@
             </p>
           </div>
           <div id="harga">
-            <p style="color: black" id="hargatotal"></p>
+            <p style="color: black; font-weight:bold" id="hargatotal"></p>
           </div>
           <p id="show">
-            <span style="color: black" id="hargatotalpoints"></span>
+            <span style="color: black; font-weight:bold" id="hargatotalpoints"></span>
           </p>
         </div>
 
