@@ -90,4 +90,9 @@ class kamar extends Model
       return $this->hasOne('App\Models\Transaction','kamar_id');
     }
 
+    public function favorite()
+    {
+      return $this->hasOne(SimpanKamar::class);
+    }
+
 }

@@ -80,8 +80,23 @@
             <span style="font-weight:bold">Tersisa <span style="color: {{$kamar->sisa_kamar <= 5 ? 'red' : ''}}; font-weight:bold">{{$kamar->sisa_kamar}} kamar</span></span>
           </div>
           <div class="col-md-6 mt-1">
-            <a class="btn btn-outline-black btn-sm" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-heart"></i>  Simpan</a>
-            <a class="btn btn-outline-black btn-sm" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-share-2"></i>  Bagikan</a>
+            @auth
+              @if ($kamar->favorite == null)
+                {{-- Simpan kamar favorite --}}
+                <a data-id-simpan="{{$kamar->id}}" id="simpan" class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Simpan Kamar" style="font-size: 12px; font-weight:bold;">
+                <i class="feather icon-heart"></i> Simpan</a>
+              @else
+                {{-- Hapus kamar favorite --}}
+                @if ($kamar->favorite->kamar_id == $kamar->id)
+                  <a data-id-hapus="{{$kamar->favorite->id}}" id="hapus" class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Hapus Kamar" style="font-size: 12px; font-weight:bold;">
+                  <i class="feather icon-heart"></i> Hapus</a>
+                @endif
+              @endif
+            @else
+              <a href="{{route('login')}}" class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Silahkan Login" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-heart"></i>  Simpan</a>
+            @endauth
+              <a class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Bagikan ke facebook" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-share-2"></i>  Bagikan</a>
+              <a class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Salin link" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-copy"></i>  Copy link</a>
           </div>
         </div>
         <hr>

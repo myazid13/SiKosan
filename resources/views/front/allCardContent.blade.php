@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <div class="card">
+  <div class="card {{@$cari ? 'hidden' : ''}}">
     <div class="card-body" style="padding: 1%">
       <form action="{{url('filter-kamar')}}" method="GET">
         <div class="row">
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <section id="search-bar">
+  <section id="search-bar" class="{{@$cari ? 'hidden' : ''}}">
     <div class="search-bar">
       <form action="{{url('show-all-room')}}" method="GET">
         <fieldset class="form-group position-relative has-icon-left">
@@ -47,6 +47,8 @@
       </form>
     </div>
   </section>
+
+  <h2 class="mb-2 {{@$cari ? '' : 'hidden'}}" style="font-weight: bold; color:black">Difavortikan </h2>
 
   <div class="row match-height">
     @forelse ($allKamar as $kamars)

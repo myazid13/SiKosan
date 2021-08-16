@@ -74,3 +74,21 @@ $("#useCredit").on('change', function() {
       document.getElementById("harga").style.display = "block";
     }
 });
+
+// Simpan kamar
+$(document).on('click','#simpan', function () {
+  var id = $(this).attr('data-id-simpan');
+  $.get('/simpan/kamar', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    location.reload();
+    alert('Kamar berhasil disimpan.')
+  });
+});
+
+// Hapus kamar
+$(document).on('click','#hapus', function () {
+  var id = $(this).attr('data-id-hapus');
+  $.get('/hapus/kamar', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    location.reload();
+    alert('Kamar berhasil dihapus.')
+  });
+});

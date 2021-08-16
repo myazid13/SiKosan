@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{kamar,provinsi,Testimoni,User};
-
+use App\Models\{kamar,provinsi,Testimoni,User,SimpanKamar};
+use Auth;
 class FrontendsController extends Controller
 {
-
     // Homepage
     public function homepage(Request $request)
     {
@@ -58,6 +57,10 @@ class FrontendsController extends Controller
       ->orwhereHas('district', function($q) use ($cari){
         $q->where('name', 'like', "%".$cari."%");
       })
+
+      ->orwhereHas('favorite', function($q) use ($cari){
+        $q->where('user_id', 'like', "%".$cari."%");
+      })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->orderBy('created_at','DESC')
       ->paginate(12);
@@ -66,7 +69,8 @@ class FrontendsController extends Controller
       $select = [];
       $select['jenis_kamar'] = $request->jenis_kamar;
       $select['name']        = $request->nama_provinsi;
-      return view('front.allCardContent', \compact('allKamar','select','provinsi'));
+      $select['user_id']     = $request->user;
+      return view('front.allCardContent', \compact('allKamar','select','provinsi','cari'));
     }
 
     // Filter kamar
@@ -115,6 +119,24 @@ class FrontendsController extends Controller
       return view('front.showByKota', \compact('kamar','kota'));
     }
 
+    // Simpan kamar
+    public function simpanKamar(Request $request)
+    {
+      $simpan = new SimpanKamar;
+      $simpan->user_id  = Auth::id();
+      $simpan->kamar_id = $request->id;
+      $simpan->save();
 
+      return back();
+    }
+
+    // Hapus kamar disimpan
+    public function hapusKamar(Request $request)
+    {
+      $hapus = SimpanKamar::find($request->id);
+      $hapus->delete();
+
+      return back();
+    }
 
 }

@@ -63,4 +63,14 @@ class User extends Authenticatable
       return $this->hasOne(Testimoni::class);
     }
 
+    public function simpanKamar()
+    {
+      return $this->hasOne(SimpanKamar::class);
+    }
+
+    public function simpanKamars()
+    {
+      return $this->hasMany(SimpanKamar::class)->limit(4);
+    }
+
 }
