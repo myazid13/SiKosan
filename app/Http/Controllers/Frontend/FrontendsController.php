@@ -25,6 +25,7 @@ class FrontendsController extends Controller
         $q->where('name', 'like', "%".$cari."%");
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
+      ->orderBy('created_at','DESC')
       ->paginate(12);
 
       return view('front.index', \compact('kamar'));
@@ -33,9 +34,13 @@ class FrontendsController extends Controller
     // Show Kamar
     public function showkamar($slug)
     {
-      $kamar = kamar::where('slug', $slug)->first();
+      $kamar = kamar::with('province')->where('slug', $slug)->first();
 
-      return view('front.show', compact('kamar'));
+      $relatedKos = kamar::whereNotIn('slug', [$slug])
+        ->where('province_id', [$kamar->province_id])
+        ->limit(4)->get();
+
+      return view('front.show', compact('kamar','relatedKos'));
     }
 
     // Show semua kamar
@@ -54,6 +59,7 @@ class FrontendsController extends Controller
         $q->where('name', 'like', "%".$cari."%");
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
+      ->orderBy('created_at','DESC')
       ->paginate(12);
 
       $provinsi = Kamar::with('provinsi')->select('province_id')->groupby('province_id')->get();
@@ -78,9 +84,10 @@ class FrontendsController extends Controller
           $allKamar = kamar::whereHas('provinsi', function($q) use ($request) {
           $q->where('name', $request->nama_provinsi);
         })
+        ->orderBy('created_at','DESC')
         ->paginate(20);
       } else {
-        $allKamar = kamar::paginate(20);
+        $allKamar = kamar::orderBy('created_at','DESC')->paginate(20);
       }
 
 
@@ -103,9 +110,11 @@ class FrontendsController extends Controller
       ->orwhereHas('regencies', function($q) use ($kota){
         $q->where('name', 'like', "%".$kota."%");
       })
+      ->orderBy('created_at','DESC')
       ->paginate(12);
       return view('front.showByKota', \compact('kamar','kota'));
-
     }
+
+
 
 }

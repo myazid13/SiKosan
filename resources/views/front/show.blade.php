@@ -11,6 +11,9 @@
     padding-top: 43px;
   }
 </style>
+@section('title')
+  {{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->provinsi->name))}}
+@endsection
 @section('content')
 
 <div class="row">
@@ -39,10 +42,6 @@
       </div>
     </div>
   </div>
-
-  {{-- @foreach ($kamar->fotoKamar as $foto)
-    <img src="{{url('images/foto_kamar', $foto->foto_kamar)}}" width="400px" height="300px">
-  @endforeach --}}
 
   <div class="col-lg-4 sticky">
     <div class="card">
@@ -144,6 +143,10 @@
 
         <h5 class="mt-1" style="font-weight: bold">Peraturan selama ngekos</h5>
         {{$kamar->desc ?? '-'}}
+
+        <h5 class="mt-1" style="font-weight: bold">Lokasi</h5>
+        {{$kamar->alamat->alamat ?? '-'}} <br>
+        <small style="text-decoration:underline"> {{ucfirst(strtolower($kamar->district->name))}}, {{ucfirst(strtolower($kamar->regencies->name))}}, {{ucfirst(strtolower($kamar->provinsi->name))}} </small>
       </div>
     </div>
   </div>
@@ -249,6 +252,6 @@
       </div>
     </form>
   </div>
-
 </div>
+@include('front.relatedKos')
 @endsection
