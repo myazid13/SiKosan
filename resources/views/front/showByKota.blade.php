@@ -69,7 +69,7 @@
     @empty
     <div class="col" style="text-align:center">
       <img src="{{asset('assets/images/pages/empty.svg')}}" style="max-height: 350px">
-      <p class="mt-2">Kamar yang kamu cari tidak ditemukan.</p>
+      <p class="mt-2">Belum ada kamar untuk pencarian ini.</p>
     </div>
     @endforelse
   </div>
