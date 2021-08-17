@@ -10,7 +10,19 @@
     top: 0;
     padding-top: 43px;
   }
+  .alerts {
+    display: none;
+  }
 </style>
+
+@section('description')
+  {{$kamar->nama_kamar}}
+@endsection
+
+@section('image')
+  {{url('images/bg_foto',$kamar->bg_foto)}}
+@endsection
+
 @section('title')
   {{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->provinsi->name))}}
 @endsection
@@ -20,9 +32,9 @@
   <div class="col-lg-8">
     <h4 class="card-title">
       <a href="/" style="font-size: 15px;"><i class="feather icon-home"></i> Home ></a>
-      <a href="" style="font-size: 15px;">Kos {{ucfirst(strtolower($kamar->provinsi->name))}} ></a>
-      <a href="" style="font-size: 15px;">Kos {{ucfirst(strtolower($kamar->regencies->name))}} ></a>
-      <a href="" style="font-size: 15px; color:black">{{$kamar->nama_kamar}}</a>
+      <a href="" style="font-size: 15px;">Kost {{ucwords(strtolower($kamar->provinsi->name))}} ></a>
+      <a href="" style="font-size: 15px;">Kost {{ucwords(strtolower($kamar->regencies->name))}} ></a>
+      <a href="" style="font-size: 15px; color:black">{{$kamar->nama_kamar}} {{ucwords(strtolower($kamar->district->name))}} {{ucwords(strtolower($kamar->regencies->name))}} </a>
     </h4>
     <div class="card ">
       <div class="card-content">
@@ -70,10 +82,16 @@
     </div>
   </div>
 
+
   <div class="col-lg-8">
+    <div class="alerts alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <i class="feather icon-copy"></i>
+    URL Berhasil Disalin
+  </div>
     <div class="card">
       <div class="card-body">
-        <h3>{{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->regencies->name))}} {{ucfirst(strtolower($kamar->provinsi->name))}}</h3>
+        <h3>{{$kamar->nama_kamar}} {{ucwords(strtolower($kamar->regencies->name))}} {{ucwords(strtolower($kamar->provinsi->name))}}</h3>
         <button class="btn btn-outline-black btn-sm"><span style="font-size: 12px; font-weight:bold;">Kos {{$kamar->jenis_kamar}}</span></button>
         <div class="row">
           <div class="col-md-6 mt-1">
@@ -95,8 +113,22 @@
             @else
               <a href="{{route('login')}}" class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Silahkan Login" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-heart"></i>  Simpan</a>
             @endauth
-              <a class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Bagikan ke facebook" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-share-2"></i>  Bagikan</a>
-              <a class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Salin link" style="font-size: 12px; font-weight:bold;"> <i class="feather icon-copy"></i>  Copy link</a>
+
+              <div class="btn-group" data-toggle="tooltip" data-placement="top" title="Bagikan kamar">
+                <div class="dropdown">
+                    <button class="btn btn-outline-black btn-sm" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 12px; font-weight:bold;">
+                        <i class="feather icon-share-2"></i> Bagikan
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="share">
+                        <a class="dropdown-item" target="_blank" href="{{ Share::currentPage($kamar->nama_kamar)->facebook()->getRawLinks() }}"> <i class="fa fa-facebook"></i> Facebook</a>
+                        <a class="dropdown-item" target="_blank" href="{{ Share::currentPage($kamar->nama_kamar)->twitter()->getRawLinks() }}"><i class="fa fa-twitter"></i> Twitter</a>
+                        <a class="dropdown-item" target="_blank" href="{{ Share::currentPage($kamar->nama_kamar)->telegram()->getRawLinks() }}"><i class="fa fa-telegram"></i> Telegram</a>
+                        <a class="dropdown-item" target="_blank" href="{{ Share::currentPage($kamar->nama_kamar)->whatsapp()->getRawLinks() }}"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+              </div>
+              <p class="hidden" id="url"> {{url('room', $kamar->slug)}} </p>
+              <a onclick="copyToClipboard('#url')" id="eventshow" class="btn btn-outline-black btn-sm" data-toggle="tooltip" data-placement="top" title="Salin link" style="font-size: 12px; font-weight:bold; color:black"> <i class="feather icon-copy"></i>  Copy link</a>
           </div>
         </div>
         <hr>
