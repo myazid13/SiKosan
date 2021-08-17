@@ -28,7 +28,7 @@
                       <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-heart"></i>
                         <span class="badge badge-pill badge-primary badge-up">
                           @auth
-                            {{Auth::user()->simpanKamar != null ? Auth::user()->simpanKamar->count() : 0}}
+                            {{Auth::user()->simpanKamars != null ? Auth::user()->simpanKamars->count() : 0}}
                           @else
                             0
                           @endauth
@@ -39,7 +39,7 @@
                           <div class="dropdown-header m-0 p-2">
                               <h3 class="white">
                                 @auth
-                                  {{Auth::user()->simpanKamar != null ? Auth::user()->simpanKamar->count() : 0}}
+                                  {{Auth::user()->simpanKamars != null ? Auth::user()->simpanKamars->count() : 0}}
                                  @else
                                   0
                                 @endauth
