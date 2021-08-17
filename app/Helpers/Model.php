@@ -83,6 +83,17 @@ if (! function_exists('getNameUser'))
     }
 }
 
+// Total pelanggan
+if (! function_exists('getCountPelanggan'))
+{
+    function getCountPelanggan($pemilik_id=0)
+    {
+        $model = new Transaction;
+        $data  = $model::where('pemilik_id',$pemilik_id)->groupBy('user_id')->get();
+        return $data->count();
+    }
+}
+
 // Get point/credit user
 if (! function_exists('getPointUser'))
 {

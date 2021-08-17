@@ -62,8 +62,8 @@
           <span class="font-weight-bold" style="font-size: 20px; color:black;">{{getNameUser($kamar->user_id)}}</span>
           <p class="ml-5" style="font-size: 10px; margin-top:-3%">Pemilik Kos - Aktif Sejak {{monthyear($kamar->user->created_at)}} </p>
           <span class="btn btn-outline-primary btn-sm">
-            {{$kamar->user->transaksi->count()}} Transaksi Berhasil</span>
-          <span class="btn btn-outline-info btn-sm"> Total {{$kamar->user->transaksi->count()}} Pelanggan</span>
+            {{$kamar->user->transaksi->where('status','Proses')->count()}} Transaksi Berhasil</span>
+          <span class="btn btn-outline-info btn-sm"> Total  {{getCountPelanggan($kamar->user_id)}} Pelanggan</span>
           <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth 082248885062 @else 0822******** @endauth </p>
 
           <p class="mt-2" style="font-size: 12px">Hubungi pemilik kos untuk menanyakan lebih detail terkait kamar ini.</p>
@@ -81,7 +81,6 @@
       </div>
     </div>
   </div>
-{{-- {{$kamar->transaksi}} --}}
 
   <div class="col-lg-8">
     <div class="alerts alert alert-info alert-dismissable">
