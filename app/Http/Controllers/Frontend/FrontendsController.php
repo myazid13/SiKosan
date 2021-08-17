@@ -59,7 +59,8 @@ class FrontendsController extends Controller
       })
 
       ->orwhereHas('favorite', function($q) use ($cari){
-        $q->where('user_id', 'like', "%".$cari."%");
+        $q->where('user_id', 'like', "%".$cari."%")
+        ->where('user_id', Auth::id());
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->orderBy('created_at','DESC')

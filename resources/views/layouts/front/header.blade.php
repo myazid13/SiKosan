@@ -61,8 +61,12 @@
                               </a>
                             @endforeach
                           </li>
-                          <li class="dropdown-menu-footer {{Auth::user()->simpanKamar->count() <= 1 ? 'hidden' : ''}}">
-                            <a class="dropdown-item p-1 text-center" href="{{url('show-all-room?cari='.Auth::id())}}">Lihat Semua</a>
+                          <li class="dropdown-menu-footer {{Auth::user()->simpanKamar != null ? Auth::user()->simpanKamar->count() <= 1 ? 'hidden' : '' : ''}}">
+                            @if (Auth::user()->simpanKamar != null)
+                              <a class="dropdown-item p-1 text-center" href="{{url('show-all-room?cari='.Auth::id())}}">Lihat Semua</a>
+                            @else
+                               <a class="dropdown-item p-1 text-center" href="{{url('show-all-room')}}">Belum ada kamar favorite</a>
+                            @endif
                           </li>
                         @else
                           <li class="dropdown-menu-footer">
