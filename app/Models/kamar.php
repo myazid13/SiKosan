@@ -50,10 +50,6 @@ class kamar extends Model
       return $this->hasMany(fotokamar::class);
     }
 
-    public function datauser()
-    {
-      return $this->belongsTo('App\Models\DataUser','user_id');
-    }
 
     public function payment()
     {
@@ -87,7 +83,7 @@ class kamar extends Model
 
     public function transaksi()
     {
-      return $this->hasOne('App\Models\Transaction','kamar_id');
+      return $this->hasMany(Transaction::class);
     }
 
     public function favorite()

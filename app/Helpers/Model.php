@@ -83,19 +83,6 @@ if (! function_exists('getNameUser'))
     }
 }
 
-
-// Get transaksi sukses
-if (! function_exists('getTransaksiSuccess'))
-{
-    function getTransaksiSuccess($user_id=0)
-    {
-      $model = new Transaction;
-      $data  = $model::where('user_id',$user_id)->where('status','Proses')->get();
-      $transaksi = !empty($data) ? $data->count() : '0';
-      return $transaksi;
-    }
-}
-
 // Get point/credit user
 if (! function_exists('getPointUser'))
 {
