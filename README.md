@@ -25,8 +25,8 @@ Pap!Kos dibangun menggunakan [Laravel](http://laravel.com), the best existing PH
 Please see [Releases](../../releases) for more information what has changed recently.
     
 ## Package
-* IndoRegion [https://github.com/azishapidin/indoregion] package Laravel untuk menyimpan data wilayah Indonesia
-* IndoBank [https://github.com/andes2912/indobank] package Laravel untuk menyimpan data Nama Bank yang ada di Indonesia
+* [IndoRegion](https://github.com/azishapidin/indoregion) package Laravel untuk menyimpan data wilayah Indonesia
+* [IndoBank](https://github.com/andes2912/indobank) package Laravel untuk menyimpan data Nama Bank yang ada di Indonesia
     
 ## Sponsors
 
