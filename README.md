@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/andes2912/kos/master/public/assets/images/logo/backup-logo.png?sanitize=true&raw=true" />
+
 <p>Halo, ini adalah aplikasi Pencarian Kos dan Apartement yang dibangun dengan cinta (love). Aplikasi ini masih dalam tahap pengembangan dan masih banyak kekurangan, mohon untuk di maklumi.<br>
     
     
