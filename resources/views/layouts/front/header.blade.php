@@ -13,12 +13,12 @@
         <div class="navbar-container content">
             <div class="navbar-collapse" id="navbar-mobile">
                 <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
-                        <li class="mr-2">
+                    <ul class="nav navbar-nav ">
+                        <li class="nav-item mobile-menu d-none d-xl-block d-lg-block d-md-block mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                        <li class="mr-2 d-none d-xl-block">
                           <a href="" style="color: black" ><i class="feather icon-airplay" data-toggle="tooltip" data-placement="bottom" title="Download Aplikasi"></i> </a>
                         </li>
-                        <li>
+                        <li class="d-none d-xl-block">
                           <a href="{{url('show-all-room')}}" style="color: black"><i class="feather icon-calendar" data-toggle="tooltip" data-placement="top" title="Booking Kamar"></i> </a>
                         </li>
                     </ul>
