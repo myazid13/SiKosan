@@ -21,7 +21,7 @@
   <nav class="navbar navbar-bottom navbar-dark bg-primary navbar-expand d-lg-none d-xl-none fixed-bottom">
     <ul class="navbar-nav nav-justified w-100">
       <li class="nav-item">
-        <a href="#" class="nav-link"><i class="feather icon-home"></i>Home</a></a>
+        <a href="/" class="nav-link"><i class="feather icon-home"></i>Home</a></a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link"><i class="feather icon-help-circle"></i>Bantuan</a></a>
