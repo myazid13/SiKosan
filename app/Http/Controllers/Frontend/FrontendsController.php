@@ -34,12 +34,12 @@ class FrontendsController extends Controller
     public function showkamar($slug)
     {
       $kamar = kamar::with('province')->where('slug', $slug)->first();
-
+      $fav = SimpanKamar::where('kamar_id',$kamar->id)->where('user_id',Auth::id())->first();
       $relatedKos = kamar::whereNotIn('slug', [$slug])
         ->where('province_id', [$kamar->province_id])
         ->limit(4)->get();
 
-      return view('front.show', compact('kamar','relatedKos'));
+      return view('front.show', compact('kamar','relatedKos','fav'));
     }
 
     // Show semua kamar
