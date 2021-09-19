@@ -2,7 +2,6 @@
 
 namespace App\Services\Owner;
 use ErrorException;
-
 use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency,Alamat};
 use Auth;
 use Session;
@@ -46,8 +45,8 @@ class KamarService {
       $foto = $params->file('bg_foto');
       $nama_foto = time()."_".$foto->getClientOriginalName();
       // isi dengan nama folder tempat kemana file diupload
-      $tujuan_upload = 'images/bg_foto';
-      $foto->move($tujuan_upload,$nama_foto);
+      $tujuan_upload = 'public/images/bg_foto';
+      $foto->storeAs($tujuan_upload,$nama_foto);
 
       $slug = \Str::slug($params->nama_kamar) . "-" . \Str::random(6);
       $kamar = new Kamar;
@@ -121,8 +120,8 @@ class KamarService {
             $foto_kamar = $value['foto_kamar'];
             $nama_foto = time()."_".$foto_kamar->getClientOriginalName();
             // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'images/foto_kamar';
-            $foto_kamar->move($tujuan_upload,$nama_foto);
+            $tujuan_upload = 'public/images/foto_kamar';
+            $foto_kamar->storeAs($tujuan_upload,$nama_foto);
 
             $foto = new fotokamar;
             $foto->kamar_id = $kamar->id;
@@ -241,8 +240,8 @@ class KamarService {
             $foto_kamar = $value['foto_kamar'];
             $nama_foto = time()."_".$foto_kamar->getClientOriginalName();
             // isi dengan nama folder tempat kemana file diupload
-            $tujuan_upload = 'images/foto_kamar';
-            $foto_kamar->move($tujuan_upload,$nama_foto);
+            $tujuan_upload = 'public/images/foto_kamar';
+            $foto_kamar->storeAs($tujuan_upload,$nama_foto);
 
             $foto = new fotokamar;
             $foto->kamar_id = $id;

@@ -39,7 +39,7 @@
             <div class="swiper-wrapper">
               @foreach ($kamar->fotoKamar as $foto)
                 <div class="swiper-slide">
-                  <img class="img-fluid" src="{{url('images/foto_kamar', $foto->foto_kamar)}}" alt="banner">
+                  <img class="img-fluid" src="{{asset('storage/images/foto_kamar/'. $foto->foto_kamar)}}" alt="banner">
                 </div>
               @endforeach
             </div>
