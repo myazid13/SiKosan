@@ -7,6 +7,7 @@ use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Provin
 use Auth;
 use Session;
 use file;
+use DB;
 class KamarService {
 
   // Index
@@ -41,6 +42,7 @@ class KamarService {
   public function store($params)
   {
     try {
+      DB::beginTransaction();
       $foto = $params->file('bg_foto');
       $nama_foto = time()."_".$foto->getClientOriginalName();
       // isi dengan nama folder tempat kemana file diupload
@@ -134,9 +136,11 @@ class KamarService {
           ]);
       }
 
+      DB::commit();
       Session::flash('success','Kamar berhasil ditambah');
       return redirect('pemilik/kamar');
     } catch (ErrorException $e) {
+      DB::rollback();
       throw new ErrorException($e->getMessage());
     }
   }
@@ -169,6 +173,7 @@ class KamarService {
   public function update($id, $params)
   {
     try {
+      DB::beginTransaction();
       $kamar = Kamar::find($id);
       $kamar->user_id = auth::id();
       $kamar->nama_kamar = $params->nama_kamar;
@@ -193,9 +198,7 @@ class KamarService {
             ]);
           }
         }
-      }
 
-      if ($kamar ) {
         if ($params->addkm) {
           foreach ($params->addkm as $value) {
             $fkamar_mandi = fkamar_mandi::create([
@@ -205,9 +208,7 @@ class KamarService {
 
           }
         }
-      }
 
-      if ($kamar ) {
         if ($params->addbersama) {
           foreach ($params->addbersama as $value) {
             $fbersama = fbersama::Create([
@@ -216,9 +217,7 @@ class KamarService {
             ]);
           }
         }
-      }
 
-      if ($kamar) {
         if ($params->addparkir) {
           foreach ($params->addparkir as $value) {
             $fparkir = fparkir::Create([
@@ -227,9 +226,7 @@ class KamarService {
             ]);
           }
         }
-      }
 
-      if ($kamar) {
         if ($params->addarea) {
           foreach ($params->addarea as $value) {
             $area = new area;
@@ -238,26 +235,29 @@ class KamarService {
             $area->save();
           }
         }
-      }
 
-      if ($kamar) {
-        foreach($params->addfoto as $value) {
-          $foto_kamar = $value['foto_kamar'];
-          $nama_foto = time()."_".$foto_kamar->getClientOriginalName();
-          // isi dengan nama folder tempat kemana file diupload
-          $tujuan_upload = 'images/foto_kamar';
-          $foto_kamar->move($tujuan_upload,$nama_foto);
+        if ($params->addfoto) {
+          foreach($params->addfoto as $value) {
+            $foto_kamar = $value['foto_kamar'];
+            $nama_foto = time()."_".$foto_kamar->getClientOriginalName();
+            // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'images/foto_kamar';
+            $foto_kamar->move($tujuan_upload,$nama_foto);
 
-          $foto = new fotokamar;
-          $foto->kamar_id = $id;
-          $foto->foto_kamar = $nama_foto;
-          $foto->save();
+            $foto = new fotokamar;
+            $foto->kamar_id = $id;
+            $foto->foto_kamar = $nama_foto;
+            $foto->save();
+          }
         }
+
       }
 
+      DB::commit();
       Session::flash('success','Kamar Berhasil Di Update !');
       return redirect('pemilik/kamar');
     } catch (ErrorException $e) {
+      DB::rollback();
       throw new ErrorException($e->getMessage());
     }
   }

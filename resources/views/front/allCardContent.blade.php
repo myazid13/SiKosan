@@ -50,7 +50,7 @@
     </div>
   </section>
 
-  <h2 class="mb-2 {{@$cari ? '' : 'hidden'}}" style="font-weight: bold; color:black">Difavortikan {{$allKamar->count()}} Kamar</h2>
+  <h2 class="mb-2 {{@$cari ? '' : 'hidden'}}" style="font-weight: bold; color:black">Ditemukan {{$allKamar->count()}} Kamar</h2>
 
   <div class="row match-height">
     @forelse ($allKamar as $kamars)
