@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{kamar,provinsi,Testimoni,User,SimpanKamar};
 use Auth;
+
 class FrontendsController extends Controller
 {
     // Homepage
