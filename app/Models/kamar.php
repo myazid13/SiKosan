@@ -91,4 +91,9 @@ class kamar extends Model
       return $this->hasOne(SimpanKamar::class);
     }
 
+    public function promo()
+    {
+      return $this->hasOne(Promo::class,'kamar_id');
+    }
+
 }

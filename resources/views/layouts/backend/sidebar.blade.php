@@ -25,10 +25,13 @@
           <a href="#"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Campaign">Kamar</span></a>
           <ul class="menu-content">
             <li class="{{Request::is('pemilik/kamar') ? 'active' : ''}}">
-              <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Aktif">Data Kamar</span></a>
+              <a href="{{route('kamar.index')}}"><i></i><span class="menu-item" data-i18n="Data Kamar">Data Kamar</span></a>
+            </li>
+            <li class="{{Request::is('pemilik/promo') ? 'active' : ''}}">
+              <a href="{{route('kamar.promo')}}"><i></i><span class="menu-item" data-i18n="Promo">Promo Kamar</span></a>
             </li>
             <li class="{{Request::is('pemilik/kamar/create') ? 'active' : ''}}">
-              <a href="{{route('kamar.create')}}"><i></i><span class="menu-item" data-i18n="Selesai">Tambah Kamar</span></a>
+              <a href="{{route('kamar.create')}}"><i></i><span class="menu-item" data-i18n="Tambah">Tambah Kamar</span></a>
             </li>
           </ul>
         </li>
