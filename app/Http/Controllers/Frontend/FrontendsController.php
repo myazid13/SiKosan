@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{kamar,provinsi,Testimoni,User,SimpanKamar};
+use App\Models\{kamar,provinsi,Testimoni,User,SimpanKamar, Promo};
 use Auth;
 
 class FrontendsController extends Controller
@@ -14,7 +14,8 @@ class FrontendsController extends Controller
     {
       $cari = $request->cari;
 
-      $kamar = kamar::whereHas('provinsi', function($q) use ($cari) {
+      $kamar = kamar::with('promo')
+      ->whereHas('provinsi', function($q) use ($cari) {
         $q->where('name', 'like', "%".$cari."%")
         ;
       })
@@ -28,15 +29,21 @@ class FrontendsController extends Controller
       ->orderBy('created_at','DESC')
       ->paginate(12);
 
-      return view('front.index', \compact('kamar'));
+      $promo = Promo::with('kamar')->where('status','1')->get();
+      // return $promo;
+      return view('front.index', \compact('kamar','promo'));
     }
 
     // Show Kamar
     public function showkamar($slug)
     {
-      $kamar = kamar::with('province')->where('slug', $slug)->first();
+      $kamar = kamar::with('province')
+      ->with('promo', function($q){
+        $q->where('status','1');
+      })
+      ->where('slug', $slug)->first();
       $fav = SimpanKamar::where('kamar_id',$kamar->id)->where('user_id',Auth::id())->first();
-      $relatedKos = kamar::whereNotIn('slug', [$slug])
+      $relatedKos = kamar::with('promo')->whereNotIn('slug', [$slug])
         ->where('province_id', [$kamar->province_id])
         ->limit(4)->get();
 
@@ -47,7 +54,8 @@ class FrontendsController extends Controller
     public function showAllKamar(Request $request)
     {
       $cari = $request->cari;
-      $allKamar = kamar::whereHas('provinsi', function($q) use ($cari) {
+      $allKamar = kamar::with('promo')
+      ->whereHas('provinsi', function($q) use ($cari) {
 
         $q->where('name', 'like', "%".$cari."%")
         ;
@@ -67,7 +75,7 @@ class FrontendsController extends Controller
       ->orderBy('created_at','DESC')
       ->paginate(12);
 
-      $provinsi = Kamar::with('provinsi')->select('province_id')->groupby('province_id')->get();
+      $provinsi = Kamar::with('provinsi','promo')->select('province_id')->groupby('province_id')->get();
       $select = [];
       $select['jenis_kamar'] = $request->jenis_kamar;
       $select['name']        = $request->nama_provinsi;
@@ -79,21 +87,21 @@ class FrontendsController extends Controller
     public function filterKamar(Request $request)
     {
       if ($request->nama_provinsi != 'all' && $request->jenis_kamar != 'all') {
-        $allKamar = kamar::whereHas('provinsi', function($q) use ($request) {
+        $allKamar = kamar::with('promo')->whereHas('provinsi', function($q) use ($request) {
           $q->where('name', $request->nama_provinsi);
         })
         ->where('jenis_kamar', $request->jenis_kamar)
         ->paginate(20);
       } elseif($request->nama_provinsi == 'all' && $request->jenis_kamar != 'all') {
-        $allKamar = kamar::where('jenis_kamar', $request->jenis_kamar)->paginate(20);
+        $allKamar = kamar::with('promo')->where('jenis_kamar', $request->jenis_kamar)->paginate(20);
       } elseif($request->nama_provinsi != 'all' && $request->jenis_kamar == 'all') {
-          $allKamar = kamar::whereHas('provinsi', function($q) use ($request) {
+          $allKamar = kamar::with('promo')->whereHas('provinsi', function($q) use ($request) {
           $q->where('name', $request->nama_provinsi);
         })
         ->orderBy('created_at','DESC')
         ->paginate(20);
       } else {
-        $allKamar = kamar::orderBy('created_at','DESC')->paginate(20);
+        $allKamar = kamar::with('promo')->orderBy('created_at','DESC')->paginate(20);
       }
 
 
@@ -102,7 +110,7 @@ class FrontendsController extends Controller
       $select['name']        = $request->nama_provinsi;
 
       // select provinsi
-      $provinsi = Kamar::with('provinsi')->select('province_id')->groupby('province_id')->get();
+      $provinsi = Kamar::with('provinsi','promo')->select('province_id')->groupby('province_id')->get();
       return view('front.allCardContent', \compact('allKamar','select','provinsi'));
     }
 
@@ -110,7 +118,7 @@ class FrontendsController extends Controller
     public function showByKota(Request $request)
     {
       $kota = $request->kota;
-      $kamar = kamar::whereHas('provinsi', function($q) use ($kota) {
+      $kamar = kamar::with('promo')->whereHas('provinsi', function($q) use ($kota) {
         $q->where('name', 'like', "%".$kota."%");
       })
       ->orwhereHas('regencies', function($q) use ($kota){

@@ -46,4 +46,14 @@ class PromoController extends Controller
       throw new ErrorException($e->getMessage());
     }
   }
+
+  public function inactivePromo(Request $request)
+  {
+    try {
+      $result = $this->promo->inactivePromo($request->id);
+      return $result;
+    } catch (ErrorException $e) {
+      throw new ErrorException($e->getMessage());
+    }
+  }
 }

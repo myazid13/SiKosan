@@ -7,12 +7,12 @@
             <div class="card-body">
                 <div class="swiper-centered-slides swiper-container p-1">
                     <div class="swiper-wrapper">
-                      @foreach ($kamar as $kamars)
+                      @foreach ($promo as $promos)
                         <div class="swiper-slide rounded swiper-shadow">
-                          <a href="{{url('room', $kamars->slug)}}">
+                          <a href="{{url('room', $promos->kamar->slug)}}">
                             <i class="feather icon-percent font-large-1"></i>
-                            <div class="swiper-text pt-md-1 pt-sm-50">{{$kamars->nama_kamar}}</div>
-                            <span class="pt-md-1 pt-sm-50 mr-1" style="font-size: 10px; color:black">{{rupiah($kamars->harga_kamar)}} / Bulan</span>
+                            <div class="swiper-text pt-md-1 pt-sm-50">{{$promos->kamar->nama_kamar}}</div>
+                            <span class="pt-md-1 pt-sm-50 mr-1" style="font-size: 10px; color:black">{{rupiah($promos->harga_promo)}} / Bulan</span>
                           </a>
                         </div>
                       @endforeach

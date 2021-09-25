@@ -33,7 +33,9 @@ class TransactionController extends Controller
       try {
         DB::beginTransaction();
 
-          $room = kamar::where('id', $id)->first(); // Get Room by id
+          $room = kamar::with('promo')
+          ->where('id', $id)
+          ->first(); // Get Room by id
 
           $iduser = Auth::id(); // Get ID User
           $number = mt_rand(100, 999); // Get Random Number
@@ -59,12 +61,13 @@ class TransactionController extends Controller
 
           $points = calculatePointUser(Auth::id());
 
-          $kamar->harga_kamar         = $room->harga_kamar;
+          $kamar->harga_kamar         =  $room->promo != null && $room->promo->status == '1' ? $room->promo->harga_promo : $room->harga_kamar;
           if ($request->credit) {
-            $totalharga               = $room->harga_kamar * $request->lama_sewa + $number;
-            $kamar->harga_total       = $totalharga - $points;
+            $totalharga               =  $room->promo != null && $room->promo->status == '1' ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
+            $kamar->harga_total       = ($totalharga + $number) - $points;
           } else {
-            $kamar->harga_total       = $room->harga_kamar * $request->lama_sewa + $number;
+            $harga_total       =  $room->promo != null && $room->promo->status == '1' ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
+            $kamar->harga_total = $harga_total + $number;
           }
 
           $kamar->tgl_sewa            = Carbon::parse($request->tgl_sewa)->format('d-m-Y');

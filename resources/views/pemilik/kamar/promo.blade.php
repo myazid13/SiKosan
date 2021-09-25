@@ -51,8 +51,7 @@
                       <td>{{rupiah($item->kamar->harga_kamar)}}</td>
                       <td>{{rupiah($item->harga_promo)}}</td>
                       <td class="text-center">
-                        {{-- <a href="{{url('room', $item->kamar->slug)}}" class="btn btn-info btn-sm">Show</a> --}}
-                        <a href="" class="btn btn-warning btn-sm">Update</a>
+                        <a data-id-inactive="{{$item->id}}" id="inactive" class="btn btn-info btn-sm mr-sm-1 mb-1 mb-sm-0" style="color: black">{{$item->status == 1 ? 'In Active' : 'Active'}}</a>
                       </td>
                     </tr>
                     @endforeach
@@ -66,4 +65,7 @@
   </div>
 </section>
 
+@endsection
+@section('scripts')
+  <script src="{{asset('ctrl/backend/confirm.js')}}"></script>
 @endsection

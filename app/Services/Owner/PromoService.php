@@ -26,7 +26,8 @@ class PromoService {
   {
     try {
       $kamar = kamar::doesntHave('promo')
-      ->where('user_id', Auth::id())->get();
+      ->where('user_id', Auth::id())
+      ->get();
       return view('pemilik.kamar.promoCreate', \compact('kamar'));
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
@@ -46,6 +47,21 @@ class PromoService {
       ]);
       Session::flash('success','Promo berhasil ditambah');
       return redirect()->route('kamar.promo');
+    } catch (ErrorException $e) {
+      throw new ErrorException($e->getMessage());
+    }
+  }
+
+  // Inactive Promo
+  public function inactivePromo($params)
+  {
+    try {
+      $inactive = Promo::find($params);
+      $inactive->update([
+        'status'  => $inactive->status == '1' ? '0' : '1'
+      ]);
+      Session::flash('success','Promo berhasil di update');
+      return $inactive;
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
     }
