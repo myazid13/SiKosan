@@ -2,7 +2,7 @@
 
 namespace App\Services\Owner;
 use ErrorException;
-use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency,Alamat};
+use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency,Alamat,Promo};
 use Auth;
 use Session;
 use file;

@@ -201,9 +201,9 @@
       <div class="card-body">
         <form action="{{route('sewa.store', $kamar->id)}}" method="post">
           @csrf
-          <span> {{rupiah($kamar->harga_kamar)}} / Bulan</span>
+          <span> {{rupiah($kamar->promo != null ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan</span>
           <select class="DropChange" id="hargakamar" hidden>
-            <option value="{{$kamar->harga_kamar}}" selected></option>
+            <option value="{{$kamar->promo != null ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
           </select>
           <div class="row">
             <div class="col-md-6 mt-1">
