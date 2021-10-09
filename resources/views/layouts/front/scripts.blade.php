@@ -17,9 +17,9 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('assets/js/scripts/pages/dashboard-ecommerce.js')}}"></script>
     <script src="{{asset('assets/js/scripts/extensions/swiper.js')}}"></script>
-    <script src="{{asset('frontend/js/bootstrap-datepicker.js')}}"></script>
-    <script src="{{asset('frontend/js/jquery.timepicker.min.js')}}"></script>
-    <script src="{{asset('frontend/js/custom.js')}}"></script>
+    <script src="{{asset('ctrl/front/js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('ctrl/front/js/jquery.timepicker.min.js')}}"></script>
+    <script src="{{asset('ctrl/front/js/custom.js')}}"></script>
     <script src="{{asset('assets/js/scripts/forms/select/form-select2.js')}}"></script>
 
     <!-- END: Page JS-->
