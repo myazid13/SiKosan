@@ -14,7 +14,7 @@
 @endsection
 
 @section('image')
-  {{url('images/bg_foto',$kamar->bg_foto)}}
+  {{asset('storage/images/bg_foto/' .$kamar->bg_foto)}}
 @endsection
 
 @section('title')
@@ -60,7 +60,7 @@
           <span class="btn btn-outline-primary btn-sm">
             {{$kamar->user->transaksi->where('status','Proses')->count()}} Transaksi Berhasil</span>
           <span class="btn btn-outline-info btn-sm"> Total  {{getCountPelanggan($kamar->user_id)}} Pelanggan</span>
-          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth 082248885062 @else 0822******** @endauth </p>
+          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth {{$kamar->user->no_wa}} @else 0822******** @endauth </p>
 
           <p class="mt-2" style="font-size: 12px">Hubungi pemilik kos untuk menanyakan lebih detail terkait kamar ini.</p>
           <button class="btn btn-outline-black">Kirim pesan ke pemilik kos</button>

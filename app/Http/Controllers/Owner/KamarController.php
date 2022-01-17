@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Owner\KamarService;
 use App\Http\Requests\KamarRequest;
-use App\Models\{Province,Regency,District};
+use App\Models\{Province,regency,District};
 class KamarController extends Controller
 {
     protected $kamar;
@@ -125,7 +125,7 @@ class KamarController extends Controller
     // Select Regency
     public function selectRegency(Request $request)
     {
-      $regency = Regency::where('province_id',$request->province_id)->get();
+      $regency = regency::where('province_id',$request->province_id)->get();
       return \response()->json($regency);
     }
 

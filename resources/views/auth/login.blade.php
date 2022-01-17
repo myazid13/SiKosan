@@ -17,7 +17,7 @@
                 <form action="{{route('login')}}" method="POST">
                   @csrf
                     <fieldset class="form-label-group form-group position-relative has-icon-left">
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukan Email Kamu ...">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value=" {{old("email")}} " id="email" placeholder="Masukan Email Kamu ...">
                         @error('email')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

@@ -19,7 +19,7 @@
                       <select name="kamar_id" class="form-control @error('kamar_id') is-invalid @enderror">
                         <option value="">-- Pilih Kamar --</option>
                         @forelse ($kamar as $kamars)
-                          <option value="{{$kamars->id}}"> {{$kamars->nama_kamar}} </option>
+                          <option value="{{$kamars->id}}"> {{$kamars->nama_kamar}} - {{rupiah($kamars->harga_kamar)}} </option>
                         @empty
                           <option value="">Tidak ada kamar yang bisa di pilih.</option>
                         @endforelse

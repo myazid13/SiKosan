@@ -68,7 +68,12 @@
                 <a href="#" class="btn btn-outline-{{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}} btn-sm {{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}}">Tersisa {{$kamars->sisa_kamar}} kamar</a>
               </div>
               <p class="card-text mt-1 mb-0"><i class="feather icon-map-pin"></i> {{$kamars->provinsi->name}}</p>
-              <span class="card-text" style="color: black"> {{rupiah($kamars->promo != null ? $kamars->promo->harga_promo : $kamar->harga_kamar)}} / Bulan</span>
+              <span class="card-text" style="color: rgb(96, 93, 93);text-decoration: line-through">
+                @if ($kamars->promo != null)
+                    {{rupiah($kamars->harga_kamar)}}
+                @endif
+              </span> <br>
+              <span class="card-text" style="color: black"> {{rupiah($kamars->promo != null ? $kamars->promo->harga_promo : $kamars->harga_kamar)}} / Bulan</span>
             </a>
             <div class="card-btn d-flex justify-content-between mt-2">
               <a href="#" class="btn gradient-light-{{$kamars->kategori == 'Kost' ? 'warning' : 'info'}} text-white btn-sm">{{$kamars->kategori}}</a>

@@ -12,6 +12,7 @@
                           <a href="{{url('room', $promos->kamar->slug)}}">
                             <i class="feather icon-percent font-large-1"></i>
                             <div class="swiper-text pt-md-1 pt-sm-50">{{$promos->kamar->nama_kamar}}</div>
+                            <span class="pt-md-1 pt-sm-50 mr-1" style="font-size: 10px; color: rgb(96, 93, 93);text-decoration: line-through">{{rupiah($promos->kamar->harga_kamar)}}</span> <br>
                             <span class="pt-md-1 pt-sm-50 mr-1" style="font-size: 10px; color:black">{{rupiah($promos->harga_promo)}} / Bulan</span>
                           </a>
                         </div>

@@ -28,6 +28,8 @@ class PromoService {
       $kamar = kamar::doesntHave('promo')
       ->where('user_id', Auth::id())
       ->get();
+
+      // $harga
       return view('pemilik.kamar.promoCreate', \compact('kamar'));
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
