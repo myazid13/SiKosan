@@ -37,9 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
 
     Route::get('promo','Owner\PromoController@promo')->name('kamar.promo'); // Promo Kamar Index
-    Route::get('promo/create','Owner\PromoController@promoCreate')->name('kamar.promo.create'); // Promo Kamar Index
-    Route::post('promo/store','Owner\PromoController@promoProces')->name('kamar.promo.store'); // Promo Kamar Index
+    Route::get('promo/create','Owner\PromoController@promoCreate')->name('kamar.promo.create'); // Promo Kamar Create
+    Route::post('promo/store','Owner\PromoController@promoProces')->name('kamar.promo.store'); // Promo Kamar Proses
     Route::get('promo/inactive-promo','Owner\PromoController@inactivePromo')->name('kamar.promo.inactive'); // InActive Promo
+    Route::get('promo/edit/{id}','Owner\PromoController@promoEdit')->name('kamar.promo.edit'); // Promo Edit
+    Route::put('promo/update/{id}','Owner\PromoController@promoUpdate')->name('kamar.promo.update'); // Promo Edit
 
     Route::post('rekening','Owner\BankController@rekening'); // Rekening
     Route::get('rekening/{id}','Owner\BankController@rekeningEdit'); // Rekening Edit

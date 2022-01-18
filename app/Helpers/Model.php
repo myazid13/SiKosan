@@ -1,5 +1,6 @@
 <?php
-use App\Models\{Province,Regency,District,User,payment,Transaction};
+use App\Models\{Province,Regency,District,User,payment,Transaction,Promo};
+use Auth;
 
 // Ambil nama provinsi by id
 if (! function_exists('getNameProvinsi'))
@@ -116,5 +117,21 @@ if (! function_exists('calculatePointUser'))
       $cal = $data->credit * 2000;
       $transaksi = !empty($cal) ? $cal : '0';
       return $transaksi;
+    }
+}
+
+// Cek Promo
+if (! function_exists('cekPromo'))
+{
+    function cekPromo()
+    {
+      $model = new Promo;
+      $data  = $model::where('pemilik_id',Auth::id())->get();
+      foreach ($data as $datas) {
+        if ($datas->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $datas->status == 1) {
+          return $data->count();
+        }
+      }
+
     }
 }

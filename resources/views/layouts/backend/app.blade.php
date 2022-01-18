@@ -36,13 +36,25 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-          <div class="content-body">
-            @yield('content')
-          </div>
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper">
+        <div class="content-body">
+          @if (cekPromo())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <div class="alert-body">
+                Ada Promo yang sudah berakhir, <a href=" {{route('kamar.promo')}} ">cek disini</a>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+
+          @yield('content')
+          {{cekPromo()}}
         </div>
+      </div>
     </div>
     <!-- END: Content-->
 

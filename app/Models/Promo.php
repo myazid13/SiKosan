@@ -10,7 +10,7 @@ class Promo extends Model
     use HasFactory;
 
     protected $fillable = [
-      'kamar_id','harga_promo','pemilik_id','status','description'
+      'kamar_id','harga_promo','pemilik_id','status','description','start_date_promo','end_date_promo'
     ];
 
     public function kamar()

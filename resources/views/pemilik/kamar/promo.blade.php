@@ -31,27 +31,29 @@
                       <th width="1%">No</th>
                       <th class="text-nowrap">Nama Kamar</th>
                       <th class="text-nowrap">Status</th>
-                      <th class="text-nowrap">Jenis Kamar</th>
-                      <th class="text-nowrap">Tersedia</th>
-                      <th class="text-nowrap">Sisa</th>
                       <th class="text-nowrap">Harga Kamar</th>
                       <th class="text-nowrap">Harga Promo</th>
+                      <th class="text-nowrap">Tanggal Mulai</th>
+                      <th class="text-nowrap">Tanggal Akhir</th>
                       <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     @foreach ($promo as $key => $item)
                     <tr>
-                      <td>{{$key+1}}</td>
-                      <td>{{$item->kamar->nama_kamar}}</td>
-                      <td>{{$item->status == 1 ? 'Aktif' : 'Expired'}}</td>
-                      <td>{{$item->kamar->jenis_kamar}}</td>
-                      <td>{{$item->kamar->stok_kamar}}</td>
-                      <td>{{$item->kamar->sisa_kamar}}</td>
-                      <td>{{rupiah($item->kamar->harga_kamar)}}</td>
-                      <td>{{rupiah($item->harga_promo)}}</td>
-                      <td class="text-center">
-                        <a data-id-inactive="{{$item->id}}" id="inactive" class="btn btn-info btn-sm mr-sm-1 mb-1 mb-sm-0" style="color: black">{{$item->status == 1 ? 'In Active' : 'Active'}}</a>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} " >{{$key+1}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{$item->kamar->nama_kamar}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{$item->status == 1 ? 'Aktif' : 'Expired'}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{rupiah($item->kamar->harga_kamar)}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{rupiah($item->harga_promo)}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{$item->kamar->promo->start_date_promo ?? '-'}}</td>
+                      <td style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">{{$item->kamar->promo->end_date_promo ?? '-'}}</td>
+                      <td class="text-center" style="background-color: {{$item->kamar->promo->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $item->kamar->promo->status == 1 ? 'red' : '' }} ">
+                        @if ($item->status == 1)
+                          <a data-id-inactive="{{$item->id}}" id="inactive" class="btn btn-info btn-sm mr-sm-1 mb-1 mb-sm-0" style="color: black">{{$item->status == 1 ? 'In Active' : ''}}</a>
+                        @else
+                        <a href=" {{route('kamar.promo.edit',$item->id)}} " class="btn btn-info btn-sm mr-sm-1 mb-1 mb-sm-0" style="color: black">Update</a>
+                        @endif
                       </td>
                     </tr>
                     @endforeach
