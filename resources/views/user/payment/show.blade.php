@@ -83,7 +83,7 @@
             <label for="Bank Tujuan">Bank Tujuan</label>
             <select name="bank_tujuan" class="form-control">
               <option value="">-- Pilih Bank --</option>
-              @foreach ($bank as $banks)
+              @foreach ($transaksi->bank as $banks)
                 <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>
               @endforeach
             </select>

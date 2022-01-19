@@ -134,3 +134,18 @@ if (! function_exists('cekPromo'))
 
     }
 }
+
+// Cek Pemesanan
+if (! function_exists('cekPemesanan'))
+{
+    function cekPemesanan()
+    {
+      $model = new Transaction;
+      $data  = $model::with('payment')->where('user_id',Auth::id())->get();
+      foreach ($data as $datas) {
+        if ($datas->payment->status == 'Pending') {
+          return $data;
+        }
+      }
+    }
+}

@@ -40,7 +40,7 @@
       <div class="header-navbar-shadow"></div>
       <div class="content-wrapper">
         <div class="content-body">
-          @if (cekPromo())
+          @if (cekPromo()) {{-- Cek promo jika sudah ada yg berakhir --}}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <div class="alert-body">
                 Ada Promo yang sudah berakhir, <a href=" {{route('kamar.promo')}} ">cek disini</a>
@@ -49,6 +49,15 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+          @elseif(cekPemesanan()) {{-- cek pemesanan jika belum terbayar --}}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert-body">
+              Segera selesaikan pembayaran kamar kamu yuk, <a href=" {{url('user/tagihan')}} ">lihat disini</a>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           @endif
 
           @yield('content')
