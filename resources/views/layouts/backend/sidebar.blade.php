@@ -38,7 +38,9 @@
 
         {{-- Booking / Sewa --}}
         <li class="nav-item {{ (request()->is('')) ? 'active' : '' }}">
-          <a href="{{url('pemilik/booking-list')}}"><i class="feather icon-book"></i><span class="menu-title" data-i18n="Booking">Booking</span>
+          <a href="{{url('pemilik/booking-list')}}"><i class="feather icon-book"></i>
+            <span class="menu-title" data-i18n="Booking">Booking</span>
+            <span class="badge badge-light-info badge-pill ml-auto mr-1">{{countBook()}}</span>
           </a>
         </li>
 

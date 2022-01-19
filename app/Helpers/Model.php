@@ -149,3 +149,18 @@ if (! function_exists('cekPemesanan'))
       }
     }
 }
+
+// Count Book on pemilik
+if (! function_exists('countBook'))
+{
+    function countBook()
+    {
+      $model = new Transaction;
+      $data  = $model::with(['payment'=> function($a) {
+        $a->where('status','Success');
+      }])->where('pemilik_id',Auth::id())
+      ->where('status','Pending')
+      ->get();
+      return $data->count();
+    }
+}
