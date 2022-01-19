@@ -164,3 +164,36 @@ if (! function_exists('countBook'))
       return $data->count();
     }
 }
+
+// Get Notifikasi Payment
+if (! function_exists('getNotifikasi'))
+{
+    function getNotifikasi()
+    {
+      $model = new Transaction;
+      $data  = $model::with(['payment'=> function($a) {
+        $a->where('status','Pending');
+      }])
+      ->where('pemilik_id',Auth::id())
+      ->where('status','Pending')
+      ->get();
+      return $data;
+    }
+}
+
+// Get Notifikasi End Sewa
+if (! function_exists('getNotifikasiEndSewa'))
+{
+    function getNotifikasiEndSewa()
+    {
+      $model = new Transaction;
+      $data  = $model::where('pemilik_id',Auth::id())
+      ->get();
+
+     foreach ($data as $datas) {
+        if ($datas->end_date_sewa >= Carbon\carbon::now()->format('d-m-Y') && $datas->status == 'Proses') {
+          return $data;
+        }
+      }
+    }
+}

@@ -58,10 +58,17 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          @elseif(getNotifikasiEndSewa())
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert-body">
+             Ada kamar yang sudah habis sewa, <a href=" {{url('pemilik/booking-list')}} ">lihat disini</a>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
           @endif
-
           @yield('content')
-          {{cekPromo()}}
         </div>
       </div>
     </div>
