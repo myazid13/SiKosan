@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class kamar extends Model
 {
     protected $fillable = [
-        'user_id','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','province_id','regency_id','district_id'
+        'user_id','nama_kamar','jenis_kamar','luas_kamar','stok_kamar','harga_kamar','sisa_kamar','bg_foto','ket_lain','ket_biaya','desc','kategori','book','listrik','province_id','regency_id','district_id','deposit','biaya_admin'
     ];
 
     public function getRouteKeyName()

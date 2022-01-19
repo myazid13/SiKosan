@@ -60,7 +60,7 @@
           <span class="btn btn-outline-primary btn-sm">
             {{$kamar->user->transaksi->where('status','Proses')->count()}} Transaksi Berhasil</span>
           <span class="btn btn-outline-info btn-sm"> Total  {{getCountPelanggan($kamar->user_id)}} Pelanggan</span>
-          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth {{$kamar->user->no_wa}} @else 0822******** @endauth </p>
+          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth <a href="tel:+62{{$kamar->user->no_wa}}"> {{$kamar->user->no_wa}}</a>  @else 0822******** @endauth </p>
 
           <p class="mt-2" style="font-size: 12px">Hubungi pemilik kos untuk menanyakan lebih detail terkait kamar ini.</p>
           <button class="btn btn-outline-black">Kirim pesan ke pemilik kos</button>
@@ -236,12 +236,12 @@
           <div>
             <p style="color: black">
               <span id="sewakamar"></span> <br>
-              Rp. 10.000.00 <br>
-              Rp. 300.000 <br>
+              Rp. {{rupiah($kamar->biaya_admin)}} <br>
+              Rp. {{rupiah($kamar->deposit)}} <br>
               + 2 Points
             </p>
-            <input type="hidden" class="DropChange" id="depost" value="300000">
-            <input type="hidden" class="DropChange" id="biayadmin" value="10000">
+            <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
+            <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
             @auth
               <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
             @endauth

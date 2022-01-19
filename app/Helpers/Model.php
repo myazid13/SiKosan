@@ -1,6 +1,5 @@
 <?php
 use App\Models\{Province,Regency,District,User,payment,Transaction,Promo};
-use Auth;
 
 // Ambil nama provinsi by id
 if (! function_exists('getNameProvinsi'))
@@ -114,7 +113,7 @@ if (! function_exists('calculatePointUser'))
     {
       $model = new User;
       $data  = $model::select('id','credit')->where('id',$id)->first();
-      $cal = $data->credit * 2000;
+      $cal = $data->credit * 500;
       $transaksi = !empty($cal) ? $cal : '0';
       return $transaksi;
     }
