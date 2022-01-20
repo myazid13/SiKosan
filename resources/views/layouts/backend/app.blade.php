@@ -49,7 +49,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          @elseif(cekPemesanan()) {{-- cek pemesanan jika belum terbayar --}}
+          @endif
+          @if(cekPemesanan()) {{-- cek pemesanan jika belum terbayar --}}
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <div class="alert-body">
               Segera selesaikan pembayaran kamar kamu yuk, <a href=" {{url('user/tagihan')}} ">lihat disini</a>
@@ -58,7 +59,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          @elseif(getNotifikasiEndSewa())
+          @endif
+          @if(getNotifikasiEndSewa())
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <div class="alert-body">
              Ada kamar yang sudah habis sewa, <a href=" {{url('pemilik/booking-list')}} ">lihat disini</a>

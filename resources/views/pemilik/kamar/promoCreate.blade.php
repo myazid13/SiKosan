@@ -43,7 +43,7 @@
 
                   <div class="col-sm-6">
                       <label class="col-form-label">Tanggal Mulai</label>
-                      <input type="date" class="form-control @error('start_date_promo') is-invalid @enderror" name="start_date_promo" placeholder="Rp.">
+                      <input type="date" class="form-control pickadate @error('start_date_promo') is-invalid @enderror" name="start_date_promo" placeholder="Tanggal Mulai">
                       @error('start_date_promo')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
 
                   <div class="col-sm-6">
                       <label class="col-form-label">Tanggal Berakhir</label>
-                      <input type="date" class="form-control @error('end_date_promo') is-invalid @enderror" name="end_date_promo" placeholder="Rp.">
+                      <input type="date" class="form-control pickadate @error('end_date_promo') is-invalid @enderror" name="end_date_promo" placeholder="Tanggal Berakhir">
                       @error('end_date_promo')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>

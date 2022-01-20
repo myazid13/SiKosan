@@ -127,7 +127,12 @@ if (! function_exists('cekPromo'))
       $model = new Promo;
       $data  = $model::where('pemilik_id',Auth::id())->get();
       foreach ($data as $datas) {
-        if ($datas->end_date_promo <= Carbon\carbon::now()->format('Y-m-d') && $datas->status == 1) {
+        if (
+          Carbon\carbon::parse($datas->end_date_promo)->format('d') <= Carbon\carbon::now()->format('d') &&
+          Carbon\carbon::parse($datas->end_date_promo)->format('m') <= Carbon\carbon::now()->format('m') &&
+          Carbon\carbon::parse($datas->end_date_promo)->format('Y') <= Carbon\carbon::now()->format('Y')
+          && $datas->status == 1
+          ) {
           return $data->count();
         }
       }
@@ -191,7 +196,12 @@ if (! function_exists('getNotifikasiEndSewa'))
       ->get();
 
      foreach ($data as $datas) {
-        if ($datas->end_date_sewa >= Carbon\carbon::now()->format('d-m-Y') && $datas->status == 'Proses') {
+        if (
+          Carbon\carbon::parse($datas->end_date_sewa)->format('d') <= Carbon\carbon::now()->format('d') &&
+          Carbon\carbon::parse($datas->end_date_sewa)->format('m') <= Carbon\carbon::now()->format('m') &&
+          Carbon\carbon::parse($datas->end_date_sewa)->format('Y') <= Carbon\carbon::now()->format('Y')
+          && $datas->status == 'Proses'
+          ) {
           return $data;
         }
       }
