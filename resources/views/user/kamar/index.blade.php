@@ -49,6 +49,7 @@
                       <th class="text-nowrap">Harga</th>
                       <th class="text-nowrap">Keterangan</th>
                       <th class="text-nowrap">Status</th>
+                      <th class="text-nowrap">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,6 +74,13 @@
                             <span class="badge badge-warning">Sewa Batal</span>
                           @elseif($item->status == 'Reject')
                             <span class="badge badge-danger">Sewa Ditolak</span>
+                          @endif
+                        </td>
+                        <td>
+                          @if ($item->review == null)
+                            <a href=" {{url('user/review', $item->key)}} " class="btn btn-danger btn-sm">Tulis Ulasan</a>
+                          @else
+                            <a href=" {{url('room', $item->kamar->slug)}} " class="btn btn-info btn-sm">Lihat Ulasan</a>
                           @endif
                         </td>
                       </tr>
