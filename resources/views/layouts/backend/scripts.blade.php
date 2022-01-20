@@ -21,6 +21,8 @@
 <script src="{{asset('assets/js/scripts/datatables/datatable.js')}}"></script>
 <script src="{{asset('assets/js/scripts/pages/user-profile.js')}}"></script>
 <script src="{{asset('assets/js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
+<script src=" {{asset('assets/js/scripts/extensions/ext-component-ratings.js')}} "></script>
+<script src=" {{asset('assets/vendors/js/extensions/jquery.rateyo.min.js')}} "></script>
 
 <!-- END: Page JS-->
 

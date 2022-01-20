@@ -32,4 +32,9 @@ class Transaction extends Model
     {
       return $this->hasMany('App\Models\DataRekening','user_id','pemilik_id');
     }
+
+    public function review()
+    {
+      return $this->hasOne(Review::class,'transaksi_id','id');
+    }
 }

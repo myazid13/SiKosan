@@ -297,5 +297,6 @@
     </form>
   </div>
 </div>
+
 @include('front.relatedKos')
 @endsection
