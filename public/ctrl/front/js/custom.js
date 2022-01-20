@@ -54,7 +54,7 @@ $(function () {
 
 // Tampil tombol and jumlah harga
 document.getElementById('lamasewa').addEventListener('change', function () {
-  var style = this.value == 1 ? 'block' : this.value == 3 ? 'block' : this.value == 6 ? 'block' : this.value == 12 ? 'block' : 'none';
+  var style = this.value == 1 ? 'block' : this.value == 3 ? 'block' :  'none';
 
   document.getElementById('tampil').style.display = style;
 });

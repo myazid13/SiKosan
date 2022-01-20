@@ -215,8 +215,6 @@
               <option>Lama Sewa</option>
               <option value="1">1 Bulan</option>
               <option value="3">3 Bulan</option>
-              <option value="6">6 Bulan</option>
-              <option value="12">1 Tahun</option>
             </select>
             </div>
           </div>

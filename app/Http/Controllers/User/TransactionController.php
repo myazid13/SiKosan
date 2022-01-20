@@ -53,10 +53,6 @@ class TransactionController extends Controller
             $kamar->hari              = 30;
           } elseif($request->lama_sewa == 3) {
             $kamar->hari              = 90;
-          } elseif($request->lama_sewa == 6) {
-            $kamar->hari              = 180;
-          } elseif ($request->lama_sewa == 12) {
-            $kamar->hari              = 360;
           }
 
           $points = calculatePointUser(Auth::id());
