@@ -1,39 +1,38 @@
 @extends('layouts.backend.app')
-@section('title','Tambah Promo Kosan')
+@section('title','Update Promo Kosan')
 @section('content')
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
       <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Form Tambah Promo Kosan</h4>
+            <h4 class="card-title">Form Update Promo Kosan  </h4>
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form action="{{route('kamar.promo.store')}}" method="POST">
+            <form action="{{route('kamar.promo.update', $kamar->id)}}" method="POST">
               @csrf
+              @method('PUT')
               <div class="form-body ">
                 <div class="row">
                   <div class="col-sm-6">
                       <label class="col-form-label">Pilih Kamar Kosan</label>
-                      <select name="kamar_id" class="form-control @error('kamar_id') is-invalid @enderror">
-                        <option value="">-- Pilih Kamar --</option>
-                        @forelse ($kamar as $kamars)
-                          <option value="{{$kamars->id}}"> {{$kamars->nama_kamar}} - {{rupiah($kamars->harga_kamar)}} </option>
-                        @empty
-                          <option value="">Tidak ada kamar yang bisa di pilih.</option>
-                        @endforelse
-                      </select>
-                      @error('kamar_id')
+                      <input type="text" class="form-control" value="{{$kamar->kamar->nama_kamar}}" disabled>
+                  </div>
+
+                  <div class="col-sm-3">
+                      <label class="col-form-label">Harga Kamar Saat Ini</label>
+                      <input type="text" class="form-control" value="{{rupiah($kamar->kamar->harga_kamar)}}" disabled>
+                      @error('harga_promo')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>
                         </div>
                       @enderror
                   </div>
 
-                  <div class="col-sm-6">
+                  <div class="col-sm-3">
                       <label class="col-form-label">Harga Kamar Promo</label>
-                      <input type="number" class="form-control @error('harga_promo') is-invalid @enderror" name="harga_promo" placeholder="Rp.">
+                      <input type="text" class="form-control @error('harga_promo') is-invalid @enderror" name="harga_promo" value=" {{$kamar->harga_promo}} " placeholder="Rp.">
                       @error('harga_promo')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>
@@ -73,7 +72,7 @@
                 </div>
                 <div class="form-group row ">
                     <div class="col-sm-10 mt-1">
-                        <button type="submit" class="btn btn-primary">Tambah Promo</button>
+                        <button type="submit" class="btn btn-primary">Update Promo</button>
                         <a href="{{route('kamar.promo')}}" class="btn btn-warning">Batal</a>
                     </div>
                 </div>

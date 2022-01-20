@@ -58,4 +58,15 @@ class BookListController extends Controller
       }
     }
 
+    // Done Sewa
+    public function doneSewa(Request $request)
+    {
+      try {
+        $result = $this->booking->doneSewa($request->id);
+        return $result;
+      } catch (ErrorException $e) {
+        throw new ErrorException($e->getMessage());
+      }
+    }
+
 }

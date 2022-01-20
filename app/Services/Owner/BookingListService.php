@@ -86,4 +86,28 @@ class BookingListService {
       throw new ErrorException($e->getMessage());
     }
   }
+
+  // Done Sewa Kamar
+  public function doneSewa($params)
+  {
+    try {
+      DB::beginTransaction();
+      $done = Transaction::with('kamar')->findOrFail($params);
+      $done->update([
+        'status'      => 'Done',
+        'updated_at'  => carbon::now()
+      ]);
+
+      $kamar = kamar::where('id',$done->kamar_id)
+      ->update([
+        'sisa_kamar' => $done->kamar->sisa_kamar + 1
+      ]);
+      DB::commit();
+      Session::flash('error','Kamar Berhasil Di Update');
+      return redirect('/pemilik/booking-list');
+    } catch (ErrorException $e) {
+      DB::rollback();
+      throw new ErrorException($e->getMessage());
+    }
+  }
 }

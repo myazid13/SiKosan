@@ -16,7 +16,7 @@
                 <form action="{{route('register')}}" method="POST">
                   @csrf
                     <fieldset class="form-label-group form-group position-relative has-icon-left">
-                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Masukan Nama Kamu ...">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" id="name" placeholder="Masukan Nama Kamu ...">
                         @error('name')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -28,7 +28,7 @@
                     </fieldset>
 
                     <fieldset class="form-label-group form-group position-relative has-icon-left">
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Masukan Email Kamu ...">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value=" {{old("email")}} " id="email" placeholder="Masukan Email Kamu ...">
                         @error('email')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

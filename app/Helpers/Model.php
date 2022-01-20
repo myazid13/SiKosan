@@ -1,5 +1,5 @@
 <?php
-use App\Models\{Province,Regency,District,User,payment,Transaction};
+use App\Models\{Province,Regency,District,User,payment,Transaction,Promo};
 
 // Ambil nama provinsi by id
 if (! function_exists('getNameProvinsi'))
@@ -113,8 +113,97 @@ if (! function_exists('calculatePointUser'))
     {
       $model = new User;
       $data  = $model::select('id','credit')->where('id',$id)->first();
-      $cal = $data->credit * 2000;
+      $cal = $data->credit * 500;
       $transaksi = !empty($cal) ? $cal : '0';
       return $transaksi;
+    }
+}
+
+// Cek Promo
+if (! function_exists('cekPromo'))
+{
+    function cekPromo()
+    {
+      $model = new Promo;
+      $data  = $model::where('pemilik_id',Auth::id())->get();
+      foreach ($data as $datas) {
+        if (
+          Carbon\carbon::parse($datas->end_date_promo)->format('d') <= Carbon\carbon::now()->format('d') &&
+          Carbon\carbon::parse($datas->end_date_promo)->format('m') <= Carbon\carbon::now()->format('m') &&
+          Carbon\carbon::parse($datas->end_date_promo)->format('Y') <= Carbon\carbon::now()->format('Y')
+          && $datas->status == 1
+          ) {
+          return $data->count();
+        }
+      }
+
+    }
+}
+
+// Cek Pemesanan
+if (! function_exists('cekPemesanan'))
+{
+    function cekPemesanan()
+    {
+      $model = new Transaction;
+      $data  = $model::with('payment')->where('user_id',Auth::id())->get();
+      foreach ($data as $datas) {
+        if ($datas->payment->status == 'Pending') {
+          return $data;
+        }
+      }
+    }
+}
+
+// Count Book on pemilik
+if (! function_exists('countBook'))
+{
+    function countBook()
+    {
+      $model = new Transaction;
+      $data  = $model::with(['payment'=> function($a) {
+        $a->where('status','Success');
+      }])->where('pemilik_id',Auth::id())
+      ->where('status','Pending')
+      ->get();
+      return $data->count();
+    }
+}
+
+// Get Notifikasi Payment
+if (! function_exists('getNotifikasi'))
+{
+    function getNotifikasi()
+    {
+      $model = new Transaction;
+      $data  = $model::with(['payment'=> function($a) {
+        $a->where('status','Pending');
+      }])
+      ->where('pemilik_id',Auth::id())
+      ->where('status','Pending')
+      ->get();
+      return $data;
+    }
+}
+
+// Get Notifikasi End Sewa
+if (! function_exists('getNotifikasiEndSewa'))
+{
+    function getNotifikasiEndSewa()
+    {
+      $model = new Transaction;
+      $data  = $model::where('pemilik_id',Auth::id())
+      ->get();
+
+     foreach ($data as $datas) {
+        if (
+          Carbon\carbon::parse($datas->end_date_sewa)->format('d') <= Carbon\carbon::now()->format('d') &&
+          Carbon\carbon::parse($datas->end_date_sewa)->format('m') <= Carbon\carbon::now()->format('m') &&
+          Carbon\carbon::parse($datas->end_date_sewa)->format('Y') <= Carbon\carbon::now()->format('Y')
+          && $datas->status == 'Proses'
+          ) {
+          return $data;
+        }
+      }
     }
 }

@@ -48,26 +48,28 @@ class KamarService {
       $tujuan_upload = 'public/images/bg_foto';
       $foto->storeAs($tujuan_upload,$nama_foto);
 
-      $slug = \Str::slug($params->nama_kamar) . "-" . \Str::random(6);
-      $kamar = new Kamar;
-      $kamar->id = $params->id;
-      $kamar->user_id = auth::id();
-      $kamar->slug = $slug;
-      $kamar->nama_kamar = $params->nama_kamar;
-      $kamar->jenis_kamar = $params->jenis_kamar;
-      $kamar->luas_kamar = $params->luas_kamar;
-      $kamar->stok_kamar = $params->stok_kamar;
-      $kamar->sisa_kamar = $kamar->stok_kamar;
-      $kamar->harga_kamar = $params->harga_kamar;
-      $kamar->ket_lain = $params->ket_lain;
-      $kamar->ket_biaya = $params->ket_biaya;
-      $kamar->desc = $params->desc;
-      $kamar->kategori = $params->kategori;
-      $kamar->book = $params->book;
-      $kamar->bg_foto = $nama_foto;
-      $kamar->province_id = $params->province_id;
-      $kamar->regency_id = $params->regency_id;
-      $kamar->district_id = $params->district_id;
+      $slug                   = \Str::slug($params->nama_kamar) . "-" . \Str::random(6);
+      $kamar                  = new Kamar;
+      $kamar->id              = $params->id;
+      $kamar->user_id         = auth::id();
+      $kamar->slug            = $slug;
+      $kamar->nama_kamar      = $params->nama_kamar;
+      $kamar->jenis_kamar     = $params->jenis_kamar;
+      $kamar->luas_kamar      = $params->luas_kamar;
+      $kamar->stok_kamar      = $params->stok_kamar;
+      $kamar->sisa_kamar      = $kamar->stok_kamar;
+      $kamar->harga_kamar     = $params->harga_kamar;
+      $kamar->deposit         = $params->deposit;
+      $kamar->biaya_admin     = $params->biaya_admin;
+      $kamar->ket_lain        = $params->ket_lain;
+      $kamar->ket_biaya       = $params->ket_biaya;
+      $kamar->desc            = $params->desc;
+      $kamar->kategori        = $params->kategori;
+      $kamar->book            = $params->book;
+      $kamar->bg_foto         = $nama_foto;
+      $kamar->province_id     = $params->province_id;
+      $kamar->regency_id      = $params->regency_id;
+      $kamar->district_id     = $params->district_id;
       $kamar->save();
 
       if ($kamar) {
@@ -173,19 +175,21 @@ class KamarService {
   {
     try {
       DB::beginTransaction();
-      $kamar = Kamar::find($id);
-      $kamar->user_id = auth::id();
-      $kamar->nama_kamar = $params->nama_kamar;
+      $kamar              = Kamar::find($id);
+      $kamar->user_id     = auth::id();
+      $kamar->nama_kamar  = $params->nama_kamar;
       $kamar->jenis_kamar = $params->jenis_kamar;
-      $kamar->luas_kamar = $params->luas_kamar;
-      $kamar->stok_kamar = $params->stok_kamar;
-      $kamar->sisa_kamar = $kamar->stok_kamar;
+      $kamar->luas_kamar  = $params->luas_kamar;
+      $kamar->stok_kamar  = $params->stok_kamar;
+      $kamar->sisa_kamar  = $kamar->stok_kamar;
       $kamar->harga_kamar = $params->harga_kamar;
-      $kamar->ket_lain = $params->ket_lain;
-      $kamar->ket_biaya = $params->ket_biaya;
-      $kamar->desc = $params->desc;
-      $kamar->kategori = $params->kategori;
-      $kamar->book = $params->book;
+      $kamar->deposit     = $params->deposit;
+      $kamar->biaya_admin = $params->biaya_admin;
+      $kamar->ket_lain    = $params->ket_lain;
+      $kamar->ket_biaya   = $params->ket_biaya;
+      $kamar->desc        = $params->desc;
+      $kamar->kategori    = $params->kategori;
+      $kamar->book        = $params->book;
       $kamar->save();
 
        if ($kamar) {

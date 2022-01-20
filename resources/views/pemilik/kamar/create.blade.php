@@ -148,6 +148,27 @@
                         </div>
                       @enderror
                   </div>
+
+                  <div class="col-sm-4">
+                      <label class="col-form-label">Biaya Deposit</label>
+                      <input type="number" name="deposit" class="form-control @error('deposit') is-invalid @enderror" value="{{old('deposit')}}" placeholder="Biaya Deposit">
+                      @error('deposit')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+
+                  <div class="col-sm-4">
+                      <label class="col-form-label">Biaya Admin</label>
+                      <input type="number" name="biaya_admin" class="form-control @error('biaya_admin') is-invalid @enderror" value="{{old('biaya_admin')}}" placeholder="Biaya Admin">
+                      @error('biaya_admin')
+                        <div class="invalid-feedback">
+                          <strong>{{ $message }}</strong>
+                        </div>
+                      @enderror
+                  </div>
+
                   <div class="col-12">
                     <label class="col-form-label">Alamat Lengkap Kos</label>
                     <textarea name="alamat" class="form-control  @error('alamat') is-invalid @enderror" id="alamat" rows="4" placeholder="Tulis lengkap alamat kos disini"></textarea>

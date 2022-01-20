@@ -36,13 +36,43 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-          <div class="content-body">
-            @yield('content')
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper">
+        <div class="content-body">
+          @if (cekPromo()) {{-- Cek promo jika sudah ada yg berakhir --}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <div class="alert-body">
+                Ada Promo yang sudah berakhir, <a href=" {{route('kamar.promo')}} ">cek disini</a>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          @endif
+          @if(cekPemesanan()) {{-- cek pemesanan jika belum terbayar --}}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert-body">
+              Segera selesaikan pembayaran kamar kamu yuk, <a href=" {{url('user/tagihan')}} ">lihat disini</a>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          @endif
+          @if(getNotifikasiEndSewa())
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert-body">
+             Ada kamar yang sudah habis sewa, <a href=" {{url('pemilik/booking-list')}} ">lihat disini</a>
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
+          @yield('content')
         </div>
+      </div>
     </div>
     <!-- END: Content-->
 

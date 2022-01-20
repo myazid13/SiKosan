@@ -57,7 +57,15 @@
                              <a href="{{url('pemilik/room', $bookings->key)}}">Konfirmasi </a>
                             @endif
                           @elseif($bookings->status == 'Proses')
-                            <span class="badge badge-primary">Aktif</span>
+                            @if (
+                                  Carbon\carbon::parse($bookings->end_date_sewa)->format('d') <= Carbon\carbon::now()->format('d') &&
+                                  Carbon\carbon::parse($bookings->end_date_sewa)->format('m') <= Carbon\carbon::now()->format('m') &&
+                                  Carbon\carbon::parse($bookings->end_date_sewa)->format('Y') <= Carbon\carbon::now()->format('Y')
+                                )
+                              <a data-id-done="{{$bookings->id}}" id="done" class="btn btn-info btn-sm mr-sm-1 mb-1 mb-sm-0" style="color: black">Expired</a>
+                            @else
+                              <span class="badge badge-primary">Aktif</span>
+                            @endif
                           @elseif($bookings->status == 'Done')
                             <span class="badge badge-info">Selesai</span>
                           @elseif($bookings->status == 'Cancel')
@@ -80,4 +88,7 @@
     </div>
   </div>
 </section>
+@endsection
+@section('scripts')
+  <script src="{{asset('ctrl/backend/confirm.js')}}"></script>
 @endsection

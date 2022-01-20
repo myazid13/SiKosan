@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Carbon\carbon;
-use App\Models\Transaction;
+use App\Models\{Transaction,payment,kamar,SimpanKamar};
 
 class HomeController extends Controller
 {
@@ -28,9 +28,24 @@ class HomeController extends Controller
     {
       if (Auth::check()) {
         if (Auth::user()->role == 'Pemilik') {
-          $aktif = Transaction::where('pemilik_id',Auth::id())->where('status','Proses')->count();
-          $total = Transaction::where('pemilik_id',Auth::id())->whereIn('status',['Proses','Done'])->count();
-          return view('pemilik.index', \compact('aktif','total'));
+          $aktif = Transaction::where('pemilik_id',Auth::id())->where('status','Proses')->count(); // Penghuni Aktif
+          $total = Transaction::where('pemilik_id',Auth::id())->whereIn('status',['Proses','Done'])->count(); // Total Penghuni
+
+          $pendapatan = payment::with(['transaksi' => function($a) {
+            $a->where('pemilik_id',Auth::id());
+          }])
+          ->sum('jumlah_bayar');
+
+          $jenis_kamar = kamar::where('user_id',Auth::id())->count();
+
+          $stok_kamar = kamar::where('user_id',Auth::id())->sum('stok_kamar');
+          $sisa_kamar = kamar::where('user_id',Auth::id())->sum('sisa_kamar');
+          $favorite = SimpanKamar::with(['kamar' => function($x) {
+            $x->where('user_id',Auth::id());
+          }])
+          ->count();
+
+          return view('pemilik.index', \compact('aktif','total','pendapatan','jenis_kamar','stok_kamar','sisa_kamar','favorite'));
         } elseif(Auth::user()->role == 'Pencari') {
           $aktif = Transaction::where('user_id',Auth::id())->where('status','Proses')->count();
           return view('user.index', \compact('aktif'));

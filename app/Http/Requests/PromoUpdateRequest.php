@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PromoRequest extends FormRequest
+class PromoUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,6 @@ class PromoRequest extends FormRequest
     public function rules()
     {
         return [
-            'kamar_id'          => ['required'],
             'harga_promo'       => ['required','numeric'],
             'start_date_promo'  => ['required'],
             'end_date_promo'    => ['required'],
@@ -34,7 +33,6 @@ class PromoRequest extends FormRequest
     public function messages()
     {
       return [
-        'kamar_id.required'         => 'Kamar harus di pilih.',
         'harga_promo.required'      => 'Harga Promo tidak boleh kosong.',
         'harga_promo.numeric'       => 'Harga Promo hanya mendukung angka.',
         'start_date_promo.required' =>  'Tanggal mulai tidak boleh kosong.',

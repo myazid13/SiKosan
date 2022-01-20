@@ -13,15 +13,36 @@
                 </div>
                 <ul class="nav navbar-nav float-right">
                   <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
-                  <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">0</span></a>
+                  <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">{{getNotifikasi()->count()}}</span></a>
                       <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header m-0 p-2">
-                                <h3 class="white">0</h3><span class="grey darken-2">Notifications</span>
+                                <h3 class="white">{{getNotifikasi()->count()}}</h3><span class="grey darken-2">Notifications</span>
                             </div>
                         </li>
 
-                        {{-- <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="javascript:void(0)">Read all notifications</a></li> --}}
+                        <li class="scrollable-container media-list">
+                          @foreach (getNotifikasi() as $notif)
+                            <a class="d-flex" href="{{url('pemilik/room',$notif->key)}}">
+                              <div class="media d-flex align-items-start">
+                                <div class="media-left">
+                                  <div class="">
+                                      <h2><i class="feather icon-dollar-sign" class="avatar-icon mr-10"></i></h2>
+                                  </div>
+                                </div>
+                                <div class="media-body">
+                                  <p class="media-heading"><span class="font-weight-bolder">
+                                  <span style="color: rgb(0, 106, 255)">Pembayaran Masuk</span> <br>
+                                  <small class="notification-text"> {{countBook()}} Pembayaran Menuggu Konfirmasi</small>
+                                  </p>
+                                </div>
+                              </div>
+                            </a>
+                          @endforeach
+                        </li>
+                        @if (getNotifikasi()->count() >= 6)
+                          <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="javascript:void(0)">Read all notifications</a></li>
+                        @endif
                       </ul>
                   </li>
                   <li class="dropdown dropdown-user nav-item">

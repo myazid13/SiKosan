@@ -14,7 +14,7 @@
 @endsection
 
 @section('image')
-  {{url('images/bg_foto',$kamar->bg_foto)}}
+  {{asset('storage/images/bg_foto/' .$kamar->bg_foto)}}
 @endsection
 
 @section('title')
@@ -60,19 +60,20 @@
           <span class="btn btn-outline-primary btn-sm">
             {{$kamar->user->transaksi->where('status','Proses')->count()}} Transaksi Berhasil</span>
           <span class="btn btn-outline-info btn-sm"> Total  {{getCountPelanggan($kamar->user_id)}} Pelanggan</span>
-          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth 082248885062 @else 0822******** @endauth </p>
+          <p class="mt-1"> <i class="feather icon-phone-call"></i> @auth <a href="tel:+62{{$kamar->user->no_wa}}"> {{$kamar->user->no_wa}}</a>  @else 0822******** @endauth </p>
 
           <p class="mt-2" style="font-size: 12px">Hubungi pemilik kos untuk menanyakan lebih detail terkait kamar ini.</p>
           <button class="btn btn-outline-black">Kirim pesan ke pemilik kos</button>
           <hr>
-          <p class="mt-2" style="font-weight: bold; font-size:18px; color:black">DISKONNYA BIKIN HEMAT!</p>
-          <span>Diskon sebesar Rp75.000* gunakan APIKMERDEKA</span> <br>
-          <p class="mt-1" style="text-decoration: underline">Syarat & ketentuan berlaku</p>
-          <ul>
-            <li>Kuota terbatas</li>
-            <li>Hanya berlaku untuk pengguna baru</li>
-            <li>Periode 1 Agustus - 30 Oktober 2021</li>
-          </ul>
+          @if ($kamar->promo)
+            <p class="mt-2" style="font-weight: bold; font-size:18px; color:black">DISKONNYA BIKIN HEMAT!</p>
+            <p class="mt-1" style="text-decoration: underline">Syarat & ketentuan berlaku</p>
+            <ul>
+              <li>Kuota terbatas</li>
+              <li>Berlaku untuk semua pengguna</li>
+              <li>Periode <span style="color: rgb(236, 151, 101)"> {{Carbon\carbon::parse($kamar->promo->start_date_promo)->format('d F Y')}} - {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} </span></li>
+            </ul>
+          @endif
         </div>
       </div>
     </div>
@@ -201,7 +202,7 @@
       <div class="card-body">
         <form action="{{route('sewa.store', $kamar->id)}}" method="post">
           @csrf
-          <span> {{rupiah($kamar->promo != null ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan</span>
+          <span> {{rupiah($kamar->promo != null ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan </span> <span style="font-size: 9px"> {{$kamar->promo != null ? 'Harga Promo' : ''}} </span>
           <select class="DropChange" id="hargakamar" hidden>
             <option value="{{$kamar->promo != null ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
           </select>
@@ -214,8 +215,6 @@
               <option>Lama Sewa</option>
               <option value="1">1 Bulan</option>
               <option value="3">3 Bulan</option>
-              <option value="6">6 Bulan</option>
-              <option value="12">1 Tahun</option>
             </select>
             </div>
           </div>
@@ -235,12 +234,12 @@
           <div>
             <p style="color: black">
               <span id="sewakamar"></span> <br>
-              Rp. 10.000.00 <br>
-              Rp. 300.000 <br>
+              Rp. {{rupiah($kamar->biaya_admin)}} <br>
+              Rp. {{rupiah($kamar->deposit)}} <br>
               + 2 Points
             </p>
-            <input type="hidden" class="DropChange" id="depost" value="300000">
-            <input type="hidden" class="DropChange" id="biayadmin" value="10000">
+            <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
+            <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
             @auth
               <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
             @endauth

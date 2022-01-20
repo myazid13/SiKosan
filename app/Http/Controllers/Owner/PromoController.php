@@ -6,7 +6,7 @@ use ErrorException;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\Owner\PromoService;
-use App\Http\Requests\PromoRequest;
+use App\Http\Requests\{PromoRequest,PromoUpdateRequest};
 
 class PromoController extends Controller
 {
@@ -51,6 +51,26 @@ class PromoController extends Controller
   {
     try {
       $result = $this->promo->inactivePromo($request->id);
+      return $result;
+    } catch (ErrorException $e) {
+      throw new ErrorException($e->getMessage());
+    }
+  }
+
+  public function promoEdit($id)
+  {
+    try {
+      $result = $this->promo->promoEdit($id);
+      return $result;
+    } catch (ErrorException $e) {
+      throw new ErrorException($e->getMessage());
+    }
+  }
+
+  public function promoUpdate(PromoUpdateRequest $request,$id)
+  {
+    try {
+      $result = $this->promo->promoUpdate($request,$id);
       return $result;
     } catch (ErrorException $e) {
       throw new ErrorException($e->getMessage());
