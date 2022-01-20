@@ -69,62 +69,49 @@
       <div class="col-xl-9 col-md-6 col-12">
         <div class="card card-statistics">
             <div class="card-header">
-                <h4 class="card-title">Statistics</h4>
+                <h4 class="card-title">Pendapatan</h4>
                 <div class="d-flex align-items-center">
                     <p class="card-text font-small-2 mr-25 mb-0">Updated 1 minute ago</p>
                 </div>
             </div>
             <div class="card-body statistics-body">
                 <div class="row">
-                    <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                    <div class="col-xl-4 col-sm-6 col-12 mb-2 mb-xl-0">
                         <div class="media">
                             <div class="avatar bg-rgba-primary mr-2 p-50 m-0 mb-1">
                                 <div class="avatar-content">
-                                    <i class="feather icon-home" class="avatar-icon"></i>
+                                    <i class="feather icon-dollar-sign" class="avatar-icon"></i>
                                 </div>
                             </div>
                             <div class="media-body my-auto">
-                                <h4 class="font-weight-bolder mb-0">{{$stok_kamar}}</h4>
-                                <p class="card-text font-small-3 mb-1">Jumlah Kamar</p>
+                                <h4 class="font-weight-bolder mb-0">{{rupiah($pendapatanYear)}}</h4>
+                                <p class="card-text font-small-3 mb-1">Tahun ini <small>({{date('Y')}})</small></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                    <div class="col-xl-4 col-sm-6 col-12 mb-2 mb-xl-0">
                         <div class="media">
                             <div class="avatar bg-rgba-info mr-2 p-50 m-0 mb-1">
                                 <div class="avatar-content">
-                                    <i class="feather icon-home" class="avatar-icon"></i>
+                                    <i class="feather icon-dollar-sign" class="avatar-icon"></i>
                                 </div>
                             </div>
                             <div class="media-body my-auto">
-                                <h4 class="font-weight-bolder mb-0">{{$sisa_kamar}}</h4>
-                                <p class="card-text font-small-3 mb-1">Kamar Kosong</p>
+                                <h4 class="font-weight-bolder mb-0">{{rupiah($pendapatanMonth)}}</h4>
+                                <p class="card-text font-small-3 mb-1">Bulan ini <small>({{date('F')}})</small> </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                    <div class="col-xl-4 col-sm-6 col-12 mb-2 mb-sm-0">
                         <div class="media">
                             <div class="avatar bg-rgba-success mr-2 p-50 m-0 mb-1">
                                 <div class="avatar-content">
-                                    <i class="feather icon-trending-up" class="avatar-icon"></i>
+                                    <i class="feather icon-dollar-sign" class="avatar-icon"></i>
                                 </div>
                             </div>
                             <div class="media-body my-auto">
-                                <h4 class="font-weight-bolder mb-0">{{($stok_kamar - $sisa_kamar)}}</h4>
-                                <p class="card-text font-small-3 mb-1">Kamar Aktif</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 col-12">
-                        <div class="media">
-                            <div class="avatar bg-rgba-danger mr-2 p-50 m-0 mb-1">
-                                <div class="avatar-content">
-                                    <i class="feather icon-heart" class="avatar-icon"></i>
-                                </div>
-                            </div>
-                            <div class="media-body my-auto">
-                                <h4 class="font-weight-bolder mb-0"> {{$favorite}} </h4>
-                                <p class="card-text font-small-3 mb-1">Favorite</p>
+                                <h4 class="font-weight-bolder mb-0">{{rupiah($pendapatanPrevYear)}}</h4>
+                                <p class="card-text font-small-3 mb-1">Tahun sebelumnya <small>({{date("Y",strtotime("-1 year"))}})</small></p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +125,7 @@
             <div class="col-lg-12 col-md-3 col-6">
                 <div class="card">
                     <div class="card-body pb-50">
-                        <h6>Pendapatan</h6>
+                        <h6>Total Pendapatan</h6>
                         <h2 class="font-weight-bolder mb-1"><i class="feather icon-dollar-sign" class="avatar-icon"></i> {{rupiah($pendapatan)}}</h2>
                         @php
                           $p = new NumberFormatter("id", NumberFormatter::SPELLOUT);
@@ -149,6 +136,93 @@
                 </div>
             </div>
         </div>
+      </div>
+
+      <div class="col-xl-9 col-md-6 col-12">
+        <div class="card card-statistics">
+            <div class="card-header">
+                <h4 class="card-title">Statistics</h4>
+                <div class="d-flex align-items-center">
+                    <p class="card-text font-small-2 mr-25 mb-0">Updated 1 minute ago</p>
+                </div>
+            </div>
+            <div class="card-body statistics-body">
+              <div class="row">
+                  <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                      <div class="media">
+                          <div class="avatar bg-rgba-primary mr-2 p-50 m-0 mb-1">
+                              <div class="avatar-content">
+                                  <i class="feather icon-home" class="avatar-icon"></i>
+                              </div>
+                          </div>
+                          <div class="media-body my-auto">
+                              <h4 class="font-weight-bolder mb-0">{{$stok_kamar}}</h4>
+                              <p class="card-text font-small-3 mb-1">Jumlah Kamar</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                      <div class="media">
+                          <div class="avatar bg-rgba-info mr-2 p-50 m-0 mb-1">
+                              <div class="avatar-content">
+                                  <i class="feather icon-home" class="avatar-icon"></i>
+                              </div>
+                          </div>
+                          <div class="media-body my-auto">
+                              <h4 class="font-weight-bolder mb-0">{{$sisa_kamar}}</h4>
+                              <p class="card-text font-small-3 mb-1">Kamar Kosong</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                      <div class="media">
+                          <div class="avatar bg-rgba-success mr-2 p-50 m-0 mb-1">
+                              <div class="avatar-content">
+                                  <i class="feather icon-trending-up" class="avatar-icon"></i>
+                              </div>
+                          </div>
+                          <div class="media-body my-auto">
+                              <h4 class="font-weight-bolder mb-0">{{($stok_kamar - $sisa_kamar)}}</h4>
+                              <p class="card-text font-small-3 mb-1">Kamar Aktif</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-3 col-sm-6 col-12">
+                      <div class="media">
+                          <div class="avatar bg-rgba-danger mr-2 p-50 m-0 mb-1">
+                              <div class="avatar-content">
+                                  <i class="feather icon-heart" class="avatar-icon"></i>
+                              </div>
+                          </div>
+                          <div class="media-body my-auto">
+                              <h4 class="font-weight-bolder mb-0"> {{$favorite}} </h4>
+                              <p class="card-text font-small-3 mb-1">Favorite</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-12">
+        <div class="row match-height">
+            <div class="col-lg-12 col-md-3 col-6">
+                <div class="card">
+                    <div class="card-body pb-50">
+                        <h6>Rating Rata-rata</h6>
+                        <h2 class="font-weight-bolder mb-1">
+                          <div class="read-only-ratings" data-rateyo-read-only="true"></div>
+                        </h2>
+                        <p style="font-size: 13px; color:lightcoral">Ratings: 7</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
     </div>
   </section>
+
+
 @endsection

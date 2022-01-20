@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::put('konfirmasi-payment/{id}','User\TransactionController@update'); // Konfirmasi Payment
     Route::get('tagihan','User\TransactionController@tagihan'); // Ambil data tagihan
     Route::get('myroom','User\MyRoomsController@myroom'); // Kamar aktif
+    Route::get('review/{key}','User\MyRoomsController@review'); // Review Kamar
+    Route::post('review-proses/{key}','User\MyRoomsController@reviewProses'); // Review Kamar
   });
 
   ////// GLOBAL ROUTE \\\\\\

@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/themes/dark-layout.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/themes/semi-dark-layout.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendors/css/extensions/jquery.rateyo.min.css')}}">
 
 <!-- BEGIN: Page CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/menu/menu-types/vertical-menu.css')}}">
@@ -21,6 +22,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/faq.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/dashboard-analytics.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/users.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins/extensions/ext-component-ratings.css')}}">
 @if (Auth::user()->role == 'Pencari')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/core/menu/menu-types/horizontal-menu.css')}}">
 @endif

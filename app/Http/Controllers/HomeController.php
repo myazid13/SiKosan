@@ -36,6 +36,25 @@ class HomeController extends Controller
           }])
           ->sum('jumlah_bayar');
 
+          $pendapatanMonth = payment::with(['transaksi' => function($a) {
+            $a->where('pemilik_id',Auth::id());
+          }])
+          ->whereMonth('updated_at',Carbon::now()->format('m'))
+          ->whereYear('updated_at',Carbon::now()->format('Y'))
+          ->sum('jumlah_bayar');
+
+          $pendapatanYear = payment::with(['transaksi' => function($a) {
+            $a->where('pemilik_id',Auth::id());
+          }])
+          ->whereYear('updated_at',Carbon::now()->format('Y'))
+          ->sum('jumlah_bayar');
+
+          $pendapatanPrevYear = payment::with(['transaksi' => function($a) {
+            $a->where('pemilik_id',Auth::id());
+          }])
+          ->whereYear('updated_at',date("Y",strtotime("-1 year")))
+          ->sum('jumlah_bayar');
+
           $jenis_kamar = kamar::where('user_id',Auth::id())->count();
 
           $stok_kamar = kamar::where('user_id',Auth::id())->sum('stok_kamar');
@@ -45,7 +64,7 @@ class HomeController extends Controller
           }])
           ->count();
 
-          return view('pemilik.index', \compact('aktif','total','pendapatan','jenis_kamar','stok_kamar','sisa_kamar','favorite'));
+          return view('pemilik.index', \compact('aktif','total','pendapatan','pendapatanMonth','pendapatanYear','pendapatanPrevYear','jenis_kamar','stok_kamar','sisa_kamar','favorite'));
         } elseif(Auth::user()->role == 'Pencari') {
           $aktif = Transaction::where('user_id',Auth::id())->where('status','Proses')->count();
           return view('user.index', \compact('aktif'));
