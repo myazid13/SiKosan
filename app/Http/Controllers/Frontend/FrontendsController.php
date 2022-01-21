@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{kamar,provinsi,Testimoni,User,SimpanKamar, Promo};
 use Auth;
+use Carbon\carbon;
 
 class FrontendsController extends Controller
 {
@@ -29,7 +30,7 @@ class FrontendsController extends Controller
       ->orderBy('created_at','DESC')
       ->paginate(12);
 
-      $promo = Promo::with('kamar')->where('status','1')->get();
+      $promo = Promo::with('kamar')->where('status','1')->where('start_date_promo', '<=' ,carbon::now()->format('d F, Y'))->get();
       // return $promo;
       return view('front.index', \compact('kamar','promo'));
     }
