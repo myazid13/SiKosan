@@ -28,7 +28,7 @@ class FrontendsController extends Controller
       })
       ->orwhere('nama_kamar', 'like', "%".$cari."%")
       ->orderBy('created_at','DESC')
-      ->paginate(12);
+      ->paginate(8);
 
       $promo = Promo::with('kamar')->where('status','1')->where('start_date_promo', '<=' ,carbon::now()->format('d F, Y'))->get();
       // return $promo;
@@ -92,17 +92,17 @@ class FrontendsController extends Controller
           $q->where('name', $request->nama_provinsi);
         })
         ->where('jenis_kamar', $request->jenis_kamar)
-        ->paginate(20);
+        ->paginate(12);
       } elseif($request->nama_provinsi == 'all' && $request->jenis_kamar != 'all') {
-        $allKamar = kamar::with('promo')->where('jenis_kamar', $request->jenis_kamar)->paginate(20);
+        $allKamar = kamar::with('promo')->where('jenis_kamar', $request->jenis_kamar)->paginate(12);
       } elseif($request->nama_provinsi != 'all' && $request->jenis_kamar == 'all') {
           $allKamar = kamar::with('promo')->whereHas('provinsi', function($q) use ($request) {
           $q->where('name', $request->nama_provinsi);
         })
         ->orderBy('created_at','DESC')
-        ->paginate(20);
+        ->paginate(12);
       } else {
-        $allKamar = kamar::with('promo')->orderBy('created_at','DESC')->paginate(20);
+        $allKamar = kamar::with('promo')->orderBy('created_at','DESC')->paginate(12);
       }
 
 

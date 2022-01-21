@@ -96,10 +96,10 @@
                             <span class="user-status">{{Auth::user()->role}}</span>
                           </div>
                           <span>
-                            @if (Auth::user()->photo == NULL)
+                            @if (Auth::user()->foto == NULL)
                               <img class="round" src="{{asset('assets/images/profile/profile.jpg')}}" alt="avatar" height="40" width="40">
                             @else
-                              <img class="round" src="{{ url('/photo_profile_admin/'. Auth::user()->photo) }}" alt="avatar" height="40" width="40">
+                              <img class="round" src="{{ asset('storage/images/foto_profile/'. Auth::user()->foto) }}" alt="avatar" height="40" width="40">
                             @endif
                           </span>
                         </a>
