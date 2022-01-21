@@ -69,11 +69,14 @@
               </div>
               <p class="card-text mt-1 mb-0"><i class="feather icon-map-pin"></i> {{$kamars->provinsi->name}}</p>
               <span class="card-text" style="color: rgb(96, 93, 93);text-decoration: line-through">
-                @if ($kamars->promo != null && $kamars->promo->status == 1)
+                @if ($kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y'))
                     {{rupiah($kamars->harga_kamar)}}
                 @endif
               </span> <br>
-              <span class="card-text" style="color: black"> {{rupiah($kamars->promo != null && $kamars->promo->status == 1 ? $kamars->promo->harga_promo : $kamars->harga_kamar)}} / Bulan</span>
+              <span class="card-text" style="color: black"> {{rupiah(
+                $kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y')
+                ? $kamars->promo->harga_promo : $kamars->harga_kamar)}} / Bulan
+              </span>
             </a>
             <div class="card-btn d-flex justify-content-between mt-2">
               <a href="#" class="btn gradient-light-{{$kamars->kategori == 'Kost' ? 'warning' : 'info'}} text-white btn-sm">{{$kamars->kategori}}</a>
