@@ -111,7 +111,7 @@
                             </div>
                             <div class="media-body my-auto">
                                 <h4 class="font-weight-bolder mb-0">{{rupiah($pendapatanPrevYear)}}</h4>
-                                <p class="card-text font-small-3 mb-1">Tahun sebelumnya <small>({{date("Y",strtotime("-1 year"))}})</small></p>
+                                <p class="card-text font-small-3 mb-1">Tahun sebelumnya <small>({{date("Y",strtotime("-1 year")) ?? 0}})</small></p>
                             </div>
                         </div>
                     </div>
