@@ -62,7 +62,7 @@
                 @if (Auth::user()->role == 'Pemilik')
                   {{-- Profile --}}
                   <div role="tabpanel" class="tab-pane active" id="data-profile" aria-labelledby="profile" aria-expanded="true">
-                    <form action="{{url('profile', Auth::id())}}" method="POST">
+                    <form action="{{url('profile', Auth::id())}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       @method('PUT')
                       <div class="row">
@@ -89,6 +89,15 @@
                             <div class="controls">
                               <label for="nomor wa">Nomor WhatsApp</label>
                               <input type="number" name="no_wa" value="{{Auth::user()->no_wa ?? '0'}}" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="nomor wa">{{Auth::user()->foto == null ? 'Foto Profile' : 'Update Foto Profile'}}</label>
+                              <input type="file" name="foto" class="form-control">
                             </div>
                           </div>
                         </div>
@@ -152,7 +161,7 @@
                 {{-- Jika User sebagai penghuni --}}
                   {{-- Profile --}}
                   <div role="tabpanel" class="tab-pane active" id="data-profile-profile" aria-labelledby="profile-profile" aria-expanded="true">
-                    <form action="{{url('profile', Auth::id())}}" method="POST">
+                    <form action="{{url('profile', Auth::id())}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       @method('PUT')
                       <div class="row">
@@ -179,6 +188,15 @@
                             <div class="controls">
                               <label for="nomor wa">Nomor WhatsApp</label>
                               <input type="number" name="no_wa" value="{{Auth::user()->no_wa ?? '0'}}" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <div class="form-group">
+                            <div class="controls">
+                              <label for="nomor wa">{{Auth::user()->foto == null ? 'Foto Profile' : 'Update Foto Profile'}}</label>
+                              <input type="file" name="foto" class="form-control">
                             </div>
                           </div>
                         </div>

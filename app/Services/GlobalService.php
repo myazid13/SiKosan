@@ -24,10 +24,17 @@ class GlobalService {
   public function profileUpdate($id, $data)
   {
     try {
+      $foto = $data->file('foto');
+      $nama_foto = time()."_".$foto->getClientOriginalName();
+      // isi dengan nama folder tempat kemana file diupload
+      $tujuan_upload = 'public/images/foto_profile';
+      $foto->storeAs($tujuan_upload,$nama_foto);
+
       $result = User::find($id);
       $result->name   = $data['name'];
       $result->email  = $data['email'];
       $result->no_wa  = $data['no_wa'];
+      $result->foto   = $nama_foto;
       $result->update();
 
       Session::flash('success','Profile berhasil di update.');
