@@ -193,6 +193,16 @@
         <h5 class="mt-1" style="font-weight: bold">Lokasi</h5>
         {{$kamar->alamat->alamat ?? '-'}} <br>
         <small style="text-decoration:underline"> {{ucfirst(strtolower($kamar->district->name))}}, {{ucfirst(strtolower($kamar->regencies->name))}}, {{ucfirst(strtolower($kamar->provinsi->name))}} </small>
+        <hr>
+          <h3 style="font-weight: bold">Reviews</h3> <br>
+            @foreach ($kamar->reviews as $review)
+              <div class="mb-3">
+                <img src="https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_1280.png" width="40px" height="40px" class="rounded">
+                <span class="font-weight-bold ml-1" style="font-size: 20px; color:black;">{{getNameUser($review->user_id)}}</span>
+                <p class="ml-5" style="font-size: 10px; margin-top:-2%;">{{monthyear($review->created_at)}} </p>
+                <span>{{$review->ulasan}}</span>
+              </div>
+            @endforeach
       </div>
     </div>
   </div>
