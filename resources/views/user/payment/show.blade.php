@@ -66,7 +66,7 @@
 
           <div class="form-group">
             <label for="Bank Kamu">Bank Kamu</label>
-            <select name="nama_bank" class="form-control select2">
+            <select name="nama_bank" class="select2 form-control">
               <option value="">-- Pilih Bank --</option>
               @foreach ($bank as $banks)
                 <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>
@@ -81,7 +81,7 @@
 
           <div class="form-group">
             <label for="Bank Tujuan">Bank Tujuan</label>
-            <select name="bank_tujuan" class="form-control">
+            <select name="bank_tujuan" class="form-control select2">
               <option value="">-- Pilih Bank --</option>
               @foreach ($transaksi->bank as $banks)
                 <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>

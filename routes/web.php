@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,13 @@ Route::middleware('auth')->group(function () {
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
 
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
+    Route::prefix('delete')->group(function(){
+      Route::get('fasilitas-kamar/{id}','Owner\KamarController@delFasilitasKamarService');
+      Route::get('fasilitas-kamar-mandi/{id}','Owner\KamarController@delFasilitasKamarMandiService');
+      Route::get('fasilitas-parkir/{id}','Owner\KamarController@delFasilitasParkirService');
+      Route::get('area/{id}','Owner\KamarController@delAreaService');
+      Route::get('foto-kamar/{foto_kamar}','Owner\KamarController@delFotoKamarService');
+    });
 
     Route::get('promo','Owner\PromoController@promo')->name('kamar.promo'); // Promo Kamar Index
     Route::get('promo/create','Owner\PromoController@promoCreate')->name('kamar.promo.create'); // Promo Kamar Create

@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <div class="form-group">
                   <label for="Nama Bank">Nama Bank</label>
-                  <select name="nama_bank" class="form-control @error('nama_bank') is-invalid @enderror">
+                  <select name="nama_bank" class="select2 form-control @error('nama_bank') is-invalid @enderror">
                     <option> Pilih Bank</option>
                     @foreach ($listBank as $banks)
                       <option value="{{$banks->nama_bank}}">{{$banks->nama_bank}}</option>

@@ -23,7 +23,7 @@
 <script src="{{asset('assets/js/scripts/pickers/dateTime/pick-a-datetime.js')}}"></script>
 <script src=" {{asset('assets/js/scripts/extensions/ext-component-ratings.js')}} "></script>
 <script src=" {{asset('assets/vendors/js/extensions/jquery.rateyo.min.js')}} "></script>
-
+<script src="{{asset('assets/js/scripts/forms/select/form-select2.js')}}"></script>
 <!-- END: Page JS-->
 
 

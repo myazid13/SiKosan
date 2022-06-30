@@ -3,10 +3,11 @@
 namespace App\Services\Owner;
 use ErrorException;
 use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency,Alamat,Promo};
-use Auth;
-use Session;
-use file;
-use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 class KamarService {
 
   // Index
@@ -263,5 +264,65 @@ class KamarService {
       DB::rollback();
       throw new ErrorException($e->getMessage());
     }
+  }
+
+  // Delete fasilitas kamar
+  public function delFasilitasKamar($id)
+  {
+    $del = fkamar::whereId($id)->first();
+    $del->delete();
+    Session::flash('success','Delete Success.');
+    return back();
+  }
+
+  // Delete fasilitas kamar Mandi
+  public function delFasilitasKamarMandi($id)
+  {
+    $del = fkamar_mandi::whereId($id)->first();
+    $del->delete();
+    Session::flash('success','Delete Success.');
+    return back();
+  }
+
+  // Delete fasilitas Bersama
+  public function delFasilitasBersama($id)
+  {
+    $del = fbersama::whereId($id)->first();
+    $del->delete();
+    Session::flash('success','Delete Success.');
+    return back();
+  }
+
+  // Delete fasilitas Bersama
+  public function delFasilitasParkir($id)
+  {
+    $del = fparkir::whereId($id)->first();
+    $del->delete();
+    Session::flash('success','Delete Success.');
+    return back();
+  }
+
+  // Delete Area
+  public function delArea($id)
+  {
+    $del = area::whereId($id)->first();
+    $del->delete();
+    Session::flash('success','Delete Success.');
+    return back();
+  }
+
+  // Delete Foto Kamar
+  public function delFotoKamar($image)
+  {
+    $img = fotokamar::where('foto_kamar', $image)->first();
+      if(File::exists(public_path('storage/images/foto_kamar/'. $img->foto_kamar))){
+          File::delete(public_path('storage/images/foto_kamar/'. $img->foto_kamar));
+          $img->delete();
+      }else{
+          dd('File does not exists.');
+      }
+
+      Session::flash('success','Delete Image Success.');
+      return back();
   }
 }
