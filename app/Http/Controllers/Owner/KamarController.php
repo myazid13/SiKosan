@@ -135,4 +135,40 @@ class KamarController extends Controller
       $district = District::where('regency_id',$request->regency_id)->get();
       return \response()->json($district);
     }
+
+    // Del Fasilitas Kamar
+    public function delFasilitasKamarService($id)
+    {
+      return $this->kamar->delFasilitasKamar($id);
+    }
+
+    // Del Fasilitas Kamar Mandi
+    public function delFasilitasKamarMandiService($id)
+    {
+      return $this->kamar->delFasilitasKamarMandi($id);
+    }
+
+    // Del Fasilitas Bersama
+    public function delFasilitasBersamaService($id)
+    {
+      return $this->kamar->delFasilitasBersama($id);
+    }
+
+    // Del Fasilitas Parkir
+    public function delFasilitasParkirService($id)
+    {
+      return $this->kamar->delFasilitasParkir($id);
+    }
+
+    // Del Area
+    public function delAreaService($id)
+    {
+      return $this->kamar->delArea($id);
+    }
+
+     // Del Foto Kamar
+    public function delFotoKamarService($image)
+    {
+      return $this->kamar->delFotoKamar($image);
+    }
 }
