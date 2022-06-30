@@ -118,7 +118,7 @@
 
                   <div class="col-sm-4">
                       <label class="col-form-label">Provinsi</label>
-                      <select name="province_id" class="form-control @error('province_id') is-invalid @enderror" id="province">
+                      <select name="province_id" class="form-control select2 @error('province_id') is-invalid @enderror" id="province">
                         <option value="">-- Pilih Provinsi --</option>
                           @foreach ($provinsi as $item)
                               <option value="{{$item->id}}" >{{$item->name}}</option>
@@ -132,7 +132,7 @@
                   </div>
                   <div class="col-sm-4">
                       <label class="col-form-label">Regency</label>
-                      <select name="regency_id" class="form-control  @error('regency_id') is-invalid @enderror" id="regency"></select>
+                      <select name="regency_id" class="form-control select2  @error('regency_id') is-invalid @enderror" id="regency"></select>
                       @error('regency_id')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="col-sm-4">
                       <label class="col-form-label">District</label>
-                      <select name="district_id" class="form-control  @error('district_id') is-invalid @enderror" id="district"></select>
+                      <select name="district_id" class="form-control select2  @error('district_id') is-invalid @enderror" id="district"></select>
                       @error('district_id')
                         <div class="invalid-feedback">
                           <strong>{{ $message }}</strong>
