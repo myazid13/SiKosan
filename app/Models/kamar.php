@@ -96,4 +96,9 @@ class kamar extends Model
       return $this->hasOne(Promo::class,'kamar_id');
     }
 
+    public function reviews()
+    {
+      return $this->hasMany(Review::class, 'kamar_id');
+    }
+
 }
