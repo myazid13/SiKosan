@@ -1,6 +1,17 @@
 @extends('layouts.backend.app')
 @section('title','Edit Data Kosan')
 @section('content')
+  @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @elseif($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @endif
 <section id="basic-vertical-layouts">
   <div class="row match-height">
     <div class="col-md-12 col-12">
@@ -157,6 +168,7 @@
                             <div class="col-lg-5 col-xl-5 col-10">
                               <label class="col-form-label">Fasilitas Kamar</label>
                               <input type="text" class="form-control" value="{{$fkamar->name}}" placeholder="Fasilitas Kamar" readonly>
+                              <a href="{{url('pemilik/delete/fasilitas-kamar', $fkamar->id)}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                           @endforeach
                         <div class="col-2 col-lg-1 col-xl-1">
@@ -175,6 +187,7 @@
                               <div class="col-lg-5 col-xl-5 col-10">
                                 <label class="col-form-label">Fasilitas Kama Mandi</label>
                                 <input type="text" class="form-control" value="{{$kamandis->name}}" placeholder="Fasilitas Kama Mandi" readonly>
+                                <a href="{{url('pemilik/delete/fasilitas-kamar-mandi', $kamandis->id)}}" class="btn btn-danger btn-sm">Delete</a>
                               </div>
                             @endforeach
                             <div class="col-2 col-lg-1 col-xl-1">
@@ -193,6 +206,7 @@
                                   <div class="col-lg-5 col-xl-5 col-10">
                                     <label class="col-form-label">Fasilitas Bersama</label>
                                     <input type="text" class="form-control" value="{{$fbersamas->name}}" placeholder="Fasilitas Bersama" readonly>
+                                    <a href="{{url('pemilik/delete/fasilitas-bersama', $fbersamas->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                   </div>
                                 @endforeach
                                 <div class="col-2 col-lg-1 col-xl-1">
@@ -211,6 +225,7 @@
                             <div class="col-lg-5 col-xl-5 col-10">
                               <label class="col-form-label">Fasilitas Parkir</label>
                               <input type="text" class="form-control" value="{{$parkir->name}}" placeholder="Fasilitas Parkir" readonly>
+                              <a href="{{url('pemilik/delete/fasilitas-parkir', $parkir->id)}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                           @endforeach
                           <div class="col-2 col-lg-1 col-xl-1">
@@ -229,6 +244,7 @@
                             <div class="col-lg-5 col-xl-5 col-10">
                               <label class="col-form-label">Area Lingkungan</label>
                               <input type="text" class="form-control" value="{{$area->name}}" placeholder="Area Lingkungan" readonly>
+                              <a href="{{url('pemilik/delete/area', $parkir->id)}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                           @endforeach
                           <div class="col-2 col-lg-1 col-xl-1">
@@ -240,11 +256,23 @@
                 {{-- End Area --}}
 
                 {{-- Start Image --}}
+                <div class="form-group ">
+                    <div class="row">
+                      @foreach ($edit->fotoKamar as $foto)
+                        <div class="col-lg-1 col-xl-1 col-2">
+                            <label class="col-form-label">Foto Kamar</label> <br>
+                            <img src="{{asset('storage/images/foto_kamar/' .$foto->foto_kamar)}}" style="width: 80px">
+                            <a href="{{url('pemilik/delete/foto-kamar', $foto->foto_kamar)}}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                      @endforeach
+                    </div>
+                </div>
+
                 <span id="image">
                     <div class="form-group ">
                         <div class="row">
                             <div class="col-lg-5 col-xl-5 col-10">
-                                <label class="col-form-label">Foto Kamar</label>
+                              <label class="col-form-label">Tambah Foto Kamar</label>
                                 <input type="file" class="form-control @error('addfoto[0][name]') is-invalid @enderror" name="addfoto[0][foto_kamar]">
                                 @error('addfoto[0][name]')
                                   <div class="invalid-feedback">
