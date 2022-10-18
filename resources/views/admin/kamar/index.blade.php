@@ -45,7 +45,6 @@
                       <td><span class="btn btn-{{$item->is_active == 0 ? 'primary' : 'success'}} btn-sm text-white">{{$item->is_active == 1 ? 'Aktif' : 'Tidak Aktif'}}</span></td>
                       <td class="text-center">
                         <a href="{{url('room', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
-                        <a href="{{route('kamar.edit', $item->slug)}}" class="btn btn-warning btn-sm">Edit</a>
                         @if ($item->status == 0)
                            <a data-id-kamar="{{$item->id}}" id="statusKamar" class="btn btn-danger btn-sm">{{$item->status == 0 ? 'Setujui' : ''}}</a>
                         @endif
