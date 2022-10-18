@@ -23,7 +23,7 @@
 
 
 <!-- BEGIN: Body-->
-<body class="{{auth::user()->role == 'Pemilik' ? 'vertical' : 'horizontal'}}-layout {{auth::user()->role == 'Pemilik' ? 'vertical' : 'horizontal'}}-menu-modern dark-layout 2-columns  navbar-sticky footer-static  " data-open="hover" data-menu="{{auth::user()->role == 'Pemilik' ? 'vertical' : 'horizontal'}}-menu{{auth::user()->role == 'Pemilik' ? '-modern' : ''}}" data-col="2-columns" data-layout="dark-layout">
+<body class="{{auth::user()->role == 'Pencari' ? 'horizontal' : 'vertical'}}-layout {{auth::user()->role == 'Pencari' ? 'horizontal' : 'vertical'}}-menu-modern dark-layout 2-columns  navbar-sticky footer-static  " data-open="hover" data-menu="{{auth::user()->role == 'Pencari' ? 'horizontal' : 'vertical'}}-menu{{auth::user()->role == 'Pemilik' ? '-modern' : ''}}" data-col="2-columns" data-layout="dark-layout">
 
     <!-- BEGIN: Header-->
       @include('layouts.backend.header')

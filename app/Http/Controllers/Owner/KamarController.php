@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Owner;
 use ErrorException;
 
-use App\Http\Controllers\Controller;
+use App\Models\kamar;
 use Illuminate\Http\Request;
-use App\Services\Owner\KamarService;
 use App\Http\Requests\KamarRequest;
+use App\Http\Controllers\Controller;
+use App\Services\Owner\KamarService;
+use Illuminate\Support\Facades\Session;
 use App\Models\{Province,regency,District};
+
 class KamarController extends Controller
 {
     protected $kamar;
@@ -171,4 +174,11 @@ class KamarController extends Controller
     {
       return $this->kamar->delFotoKamar($image);
     }
+
+    // Non-aktif dan aktifkan kamar
+    public function statusKamar(Request $params)
+    {
+        return $this->kamar->isActive($params);
+    }
 }
+

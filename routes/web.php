@@ -33,10 +33,20 @@ Route::get('hapus/kamar','Frontend\FrontendsController@hapusKamar'); // proses h
 Route::middleware('auth')->group(function () {
   Route::get('/home', 'HomeController@index');
 
+  ////// ADMIN \\\\\\\
+  Route::prefix('/admin')->middleware('role:Admin')->group(function () {
+    Route::resources([
+        '/admin-kamar' => 'Admin\AdminController'
+    ]);
+
+    Route::get('status-kamar','Admin\AdminController@statusKamar');
+  });
+
   ////// PEMILIK \\\\\\
   Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
 
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
+    Route::get('is-aktif-kamar','Owner\KamarController@statusKamar');
     Route::prefix('delete')->group(function(){
       Route::get('fasilitas-kamar/{id}','Owner\KamarController@delFasilitasKamarService');
       Route::get('fasilitas-kamar-mandi/{id}','Owner\KamarController@delFasilitasKamarMandiService');

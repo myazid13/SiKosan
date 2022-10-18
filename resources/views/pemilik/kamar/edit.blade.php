@@ -130,7 +130,7 @@
                             <strong>{{ $message }}</strong>
                           </div>
                         @enderror
-                  </div>
+                    </div>
 
                     <div class="col-12">
                       <label class="col-form-label">Alamat Lengkap Kos</label>
