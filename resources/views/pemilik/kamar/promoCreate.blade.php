@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                       <label class="col-form-label">Pilih Kamar Kosan</label>
-                      <select name="kamar_id" class="form-control @error('kamar_id') is-invalid @enderror">
+                      <select name="kamar_id" class="form-control select2 @error('kamar_id') is-invalid @enderror">
                         <option value="">-- Pilih Kamar --</option>
                         @forelse ($kamar as $kamars)
                           <option value="{{$kamars->id}}"> {{$kamars->nama_kamar}} - {{rupiah($kamars->harga_kamar)}} </option>
