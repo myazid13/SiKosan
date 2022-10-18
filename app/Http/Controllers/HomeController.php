@@ -28,7 +28,13 @@ class HomeController extends Controller
 
         if (Auth::check()) {
             if ($auth == 'Admin') {
-                return view('admin.index');
+                $aktif = Transaction::where('status','Proses')->count(); // Penghuni Aktif
+                $total = Transaction::whereIn('status',['Proses','Done'])->count(); // Total Penghuni
+
+                $stok_kamar = kamar::sum('stok_kamar');
+                $sisa_kamar = kamar::sum('sisa_kamar');
+                $favorite = SimpanKamar::count();
+                return view('admin.index', compact('aktif','total','stok_kamar','sisa_kamar','favorite'));
             }
             elseif (Auth::user()->role == 'Pemilik') {
                 $aktif = Transaction::where('pemilik_id',Auth::id())->where('status','Proses')->count(); // Penghuni Aktif
