@@ -19,7 +19,6 @@
         <div class="card">
           <div class="card-header">
               <h4 class="card-title">Data List Kamar
-                <a href="{{route('kamar.create')}}" class="btn btn-primary btn-sm">Tambah Kamar</a>
               </h4>
           </div>
           <div class="card-content">
@@ -32,9 +31,6 @@
                       <th class="text-nowrap">Nama Kamar</th>
                       <th class="text-nowrap">Type Kamar</th>
                       <th class="text-nowrap">Jenis Kamar</th>
-                      <th class="text-nowrap">Tersedia</th>
-                      <th class="text-nowrap">Sisa</th>
-                      <th class="text-nowrap">Harga Kamar</th>
                       <th class="text-nowrap">Status Kamar</th>
                       <th class="text-center">Action</th>
                     </tr>
@@ -45,17 +41,12 @@
                       <td>{{$key+1}}</td>
                       <td>{{$item->nama_kamar}}</td>
                       <td>{{$item->kategori}}</td>
-                      <td>{{$item->jenis_kamar}}</td>
-                      <td>{{$item->stok_kamar}}</td>
-                      <td>{{$item->sisa_kamar}}</td>
                       <td>{{rupiah($item->harga_kamar)}}</td>
                       <td><span class="btn btn-{{$item->is_active == 0 ? 'primary' : 'success'}} btn-sm text-white">{{$item->is_active == 1 ? 'Aktif' : 'Tidak Aktif'}}</span></td>
                       <td class="text-center">
                         <a href="{{url('room', $item->slug)}}" class="btn btn-info btn-sm">Show</a>
-                        <a href="{{route('kamar.edit', $item->slug)}}" class="btn btn-warning btn-sm">Edit</a>
-                        <a data-id-kamar="{{$item->id}}" id="isAktifKamar" class="btn btn-danger btn-sm">{{$item->is_active == 0 ? 'Aktifkan' : 'Non-Aktifkan'}}</a>
                         @if ($item->status == 0)
-                            <span class="btn btn-primary btn-sm text-white">Review</span>
+                           <a data-id-kamar="{{$item->id}}" id="statusKamar" class="btn btn-danger btn-sm">{{$item->status == 0 ? 'Setujui' : ''}}</a>
                         @endif
                       </td>
                     </tr>
@@ -73,10 +64,10 @@
 @endsection
 @section('scripts')
 <script type="text/javascript">
-    // Non-aktif dan aktifkan Kamar
-    $(document).on('click', '#isAktifKamar', function () {
+    // Status Kamar
+    $(document).on('click', '#statusKamar', function () {
     var id = $(this).attr('data-id-kamar');
-    $.get('is-aktif-kamar', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+    $.get('status-kamar', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
         location.reload()
     });
     });

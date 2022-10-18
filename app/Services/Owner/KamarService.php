@@ -2,11 +2,20 @@
 
 namespace App\Services\Owner;
 use ErrorException;
-use App\Models\{kamar,fkamar,fkamar_mandi,fbersama,fparkir,area,fotokamar,Province,Regency,Alamat,Promo};
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use App\Models\area;
+use App\Models\kamar;
+use App\Models\Alamat;
+use App\Models\fkamar;
+use App\Models\fparkir;
+use App\Models\fbersama;
+use App\Models\Province;
+use App\Models\fotokamar;
+use App\Models\fkamar_mandi;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class KamarService {
 
@@ -49,7 +58,7 @@ class KamarService {
       $tujuan_upload = 'public/images/bg_foto';
       $foto->storeAs($tujuan_upload,$nama_foto);
 
-      $slug                   = \Str::slug($params->nama_kamar) . "-" . \Str::random(6);
+      $slug                   = Str::slug($params->nama_kamar) . "-" . Str::random(6);
       $kamar                  = new Kamar;
       $kamar->id              = $params->id;
       $kamar->user_id         = auth::id();
@@ -324,5 +333,15 @@ class KamarService {
 
       Session::flash('success','Delete Image Success.');
       return back();
+  }
+
+  public function isActive($params)
+  {
+    $kamar = kamar::find($params->id);
+    $kamar->update([
+        'is_active' =>  $kamar->is_active == 0 ? 1 : 0
+    ]);
+    Session::flash('success','Update Kamar Sukses.');
+    return $kamar;
   }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Schema;
 
 class RoleSeeder extends Seeder
 {
@@ -15,13 +16,15 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $name = [ 'Pemilik','Pencari'];
-
-       foreach($name as $item) {
-        $role = new Role;
-        $role->name = $item;
-        $role->Save();
-
+        Schema::disableForeignKeyConstraints();
+        Role::truncate();
+        Schema::enableForeignKeyConstraints();
+        foreach($name as $item) {
+            $role = new Role;
+            $role->name = $item;
+            $role->Save();
        };
+
 
     }
 }
