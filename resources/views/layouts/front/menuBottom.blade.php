@@ -24,7 +24,7 @@
         <a href="/" class="nav-link text-white"><i class="feather icon-home"></i>Home</a></a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link text-white"><i class="feather icon-help-circle"></i>Bantuan</a></a>
+        <a href="{{url('show-all-room')}}" class="nav-link text-white"><i class="feather icon-calendar"></i>Booking</a></a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link text-white"> <i class="feather icon-book"></i>Ketentuan</a>
