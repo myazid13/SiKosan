@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\TransactionRequest;
-use App\Models\{Transaction,kamar,payment,User,Bank};
-use Auth;
-use ErrorException;
-use DB;
-use Str;
-use Session;
 use Carbon\carbon;
+use ErrorException;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\TransactionRequest;
 use App\Http\Requests\KonfirmasiPembayaranRequest;
+use App\Models\{Transaction,kamar,payment,User,Bank};
+
 class TransactionController extends Controller
 {
     // Tagihan
@@ -37,6 +37,16 @@ class TransactionController extends Controller
           ->where('id', $id)
           ->first(); // Get Room by id
 
+            //  Cek kamar aktif / tidak
+          if ($room->is_active == 0 || $room->status == 0) {
+            Session::flash('error','Pemesanan kamar gagal, kamar sedang tidak aktif !');
+            return back();
+
+            //  Cek kamar tersedia atau tidak
+          } elseif ($room->sisa_kamar == 0 || $room->sisa_kamar > 0) {
+            Session::flash('error','Kamar Penuh !');
+            return back();
+          }
           $iduser = Auth::id(); // Get ID User
           $number = mt_rand(100, 999); // Get Random Number
           $date = date('dmy'); // Get Date Now

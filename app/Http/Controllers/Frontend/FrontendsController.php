@@ -44,7 +44,6 @@ class FrontendsController extends Controller
         ->with('promo', function($q){
             $q->where('status','1');
         })
-        ->where('is_active',1)
         ->where('slug', $slug)->first();
         $fav = SimpanKamar::where('kamar_id',$kamar->id)->where('user_id',Auth::id())->first();
         $relatedKos = kamar::with('promo')->whereNotIn('slug', [$slug])
