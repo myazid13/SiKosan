@@ -36,8 +36,15 @@ class TransactionController extends Controller
           $room = kamar::with('promo')
           ->where('id', $id)
           ->first(); // Get Room by id
+
+            //  Cek kamar aktif / tidak
           if ($room->is_active == 0 || $room->status == 0) {
             Session::flash('error','Pemesanan kamar gagal, kamar sedang tidak aktif !');
+            return back();
+
+            //  Cek kamar tersedia atau tidak
+          } elseif ($room->sisa_kamar == 0 || $room->sisa_kamar > 0) {
+            Session::flash('error','Kamar Penuh !');
             return back();
           }
           $iduser = Auth::id(); // Get ID User

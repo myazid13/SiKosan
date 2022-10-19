@@ -239,77 +239,81 @@
             </div>
 
             <div class="card">
-            <div class="card-body" id="tampil">
-                <div class="d-flex justify-content-between">
-                <div>
-                    <p>Harga Sewa <br>
-                    Biaya Admin <br>
-                    Deposit <br>
-                    Point
-                    </p>
-                </div>
-                <div>
-                    <p style="color: black">
-                    <span id="sewakamar"></span> <br>
-                    Rp. {{rupiah($kamar->biaya_admin)}} <br>
-                    Rp. {{rupiah($kamar->deposit)}} <br>
-                    + 2 Points
-                    </p>
-                    <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
-                    <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
+                <div class="card-body" id="tampil">
+                    <div class="d-flex justify-content-between">
+                    <div>
+                        <p>Harga Sewa <br>
+                        Biaya Admin <br>
+                        Deposit <br>
+                        Point
+                        </p>
+                    </div>
+                    <div>
+                        <p style="color: black">
+                        <span id="sewakamar"></span> <br>
+                        Rp. {{rupiah($kamar->biaya_admin)}} <br>
+                        Rp. {{rupiah($kamar->deposit)}} <br>
+                        + 2 Points
+                        </p>
+                        <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
+                        <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
+                        @auth
+                        <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+                        @endauth
+                    </div>
+                    </div>
+                    <div class="mb-1 d-flex justify-content-between">
                     @auth
-                    <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+                    <div>
+                        <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
+                        <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
+                        <label class="custom-control-label" for="useCredit">
+                        </label>
+                        </div>
+                    </div>
+                    <div>
+                    {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
+                    </div>
+                    @endauth
+                    </div>
+                    <hr>
+                    <h5 style="font-weight: bold">Keterangan</h5>
+                    <ul>
+                    <li style="font-size: 12px"><span style="color:black">Harga Sewa</span> adalah harga kamar dalam jangka 1 bulan.</li>
+                    <li style="font-size: 12px"><span style="color:black">Biaya Admin</span> adalah biaya pelayanan yang di bebankan penyewa untuk Pap!Kos.</li>
+                    <li style="font-size: 12px"><span style="color:black">Deposit</span> adalah biaya untuk penjaminan selama penyewa masih menggunakan kamar/apartmenent, (biaya akan dikembalikan setelah masa sewa habis).</li>
+                    <li style="font-size: 12px"><span style="color:black">Point</span> adalah jumlah reward yang di dapatkan penyewa, point dapat di tukarkan untuk pembayaran.</li>
+                    </ul>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                    <div>
+                        <p style="text-decoration:underline; color:black">
+                        Total Pembayaran
+                        </p>
+                    </div>
+                    <div id="harga">
+                        <p style="color: black; font-weight:bold" id="hargatotal"></p>
+                    </div>
+                    <p id="show">
+                        <span style="color: black; font-weight:bold" id="hargatotalpoints"></span>
+                    </p>
+                    </div>
+
+                    @auth
+                    @if (Auth::user()->role == 'Pencari')
+                        @if ($kamar->sisa_kamar != 0 || $kamar->sisa_kamar > 0)
+                            <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+                        @else
+                            <button class="btn btn-success btn-block" disabled>Penuh</button>
+                        @endif
+                    @else
+                        <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
+                        <small>Silahkan masuk menggunakan akun pencari untuk melanjutkan.</small>
+                    @endif
+                    @else
+                    <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
                     @endauth
                 </div>
-                </div>
-                <div class="mb-1 d-flex justify-content-between">
-                @auth
-                <div>
-                    <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
-                    <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
-                    <label class="custom-control-label" for="useCredit">
-                    </label>
-                    </div>
-                </div>
-                <div>
-                {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
-                </div>
-                @endauth
-                </div>
-                <hr>
-                <h5 style="font-weight: bold">Keterangan</h5>
-                <ul>
-                <li style="font-size: 12px"><span style="color:black">Harga Sewa</span> adalah harga kamar dalam jangka 1 bulan.</li>
-                <li style="font-size: 12px"><span style="color:black">Biaya Admin</span> adalah biaya pelayanan yang di bebankan penyewa untuk Pap!Kos.</li>
-                <li style="font-size: 12px"><span style="color:black">Deposit</span> adalah biaya untuk penjaminan selama penyewa masih menggunakan kamar/apartmenent, (biaya akan dikembalikan setelah masa sewa habis).</li>
-                <li style="font-size: 12px"><span style="color:black">Point</span> adalah jumlah reward yang di dapatkan penyewa, point dapat di tukarkan untuk pembayaran.</li>
-                </ul>
-                <hr>
-                <div class="d-flex justify-content-between">
-                <div>
-                    <p style="text-decoration:underline; color:black">
-                    Total Pembayaran
-                    </p>
-                </div>
-                <div id="harga">
-                    <p style="color: black; font-weight:bold" id="hargatotal"></p>
-                </div>
-                <p id="show">
-                    <span style="color: black; font-weight:bold" id="hargatotalpoints"></span>
-                </p>
-                </div>
-
-                @auth
-                @if (Auth::user()->role == 'Pencari')
-                    <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
-                @else
-                    <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
-                    <small>Silahkan masuk menggunakan akun pencari untuk melanjutkan.</small>
-                @endif
-                @else
-                <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
-                @endauth
-            </div>
             </div>
             </form>
         </div>
