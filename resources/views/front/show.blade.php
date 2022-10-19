@@ -21,7 +21,12 @@
   {{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->provinsi->name))}}
 @endsection
 @section('content')
-
+ @if($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @endif
 <div class="row">
   <div class="col-12">
     <h4 class="card-title">
@@ -206,106 +211,117 @@
       </div>
     </div>
   </div>
+    {{-- Cek jika kamar aktif --}}
+    @if ($kamar->is_active == 1 && $kamar->status == 1)
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{route('sewa.store', $kamar->id)}}" method="post">
+                    @csrf
+                    <span> {{rupiah($kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan </span> <span style="font-size: 9px"> {{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? 'Harga Promo' : ''}} </span>
+                    <select class="DropChange" id="hargakamar" hidden>
+                        <option value="{{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
+                    </select>
+                    <div class="row">
+                        <div class="col-md-6 mt-1">
+                        <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" placeholder="Mulai Kos"  autocomplete="off" required>
+                        </div>
+                        <div class="col-md-6 mt-1">
+                        <select name="lama_sewa" id="lamasewa" class="form-control DropChange">
+                        <option>Lama Sewa</option>
+                        <option value="1">1 Bulan</option>
+                        <option value="3">3 Bulan</option>
+                        </select>
+                        </div>
+                    </div>
+                    <small>Kamu bisa mengajukan kos 2 bulan dari sekarang.</small>
+                </div>
+            </div>
 
-  <div class="col-lg-4">
-    <div class="card">
-      <div class="card-body">
-        <form action="{{route('sewa.store', $kamar->id)}}" method="post">
-          @csrf
-          <span> {{rupiah($kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan </span> <span style="font-size: 9px"> {{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? 'Harga Promo' : ''}} </span>
-          <select class="DropChange" id="hargakamar" hidden>
-            <option value="{{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
-          </select>
-          <div class="row">
-            <div class="col-md-6 mt-1">
-              <input type="text" name="tgl_sewa" class="form-control datepicker mr-2" placeholder="Mulai Kos"  autocomplete="off" required>
-            </div>
-            <div class="col-md-6 mt-1">
-              <select name="lama_sewa" id="lamasewa" class="form-control DropChange">
-              <option>Lama Sewa</option>
-              <option value="1">1 Bulan</option>
-              <option value="3">3 Bulan</option>
-            </select>
-            </div>
-          </div>
-          <small>Kamu bisa mengajukan kos 2 bulan dari sekarang.</small>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body" id="tampil">
-        <div class="d-flex justify-content-between">
-          <div>
-            <p>Harga Sewa <br>
-              Biaya Admin <br>
-              Deposit <br>
-              Point
-            </p>
-          </div>
-          <div>
-            <p style="color: black">
-              <span id="sewakamar"></span> <br>
-              Rp. {{rupiah($kamar->biaya_admin)}} <br>
-              Rp. {{rupiah($kamar->deposit)}} <br>
-              + 2 Points
-            </p>
-            <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
-            <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
-            @auth
-              <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
-            @endauth
-          </div>
-        </div>
-        <div class="mb-1 d-flex justify-content-between">
-          @auth
-          <div>
-            <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
-              <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
-              <label class="custom-control-label" for="useCredit">
-              </label>
-            </div>
-          </div>
-          <div>
-          {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
-          </div>
-          @endauth
-        </div>
-        <hr>
-        <h5 style="font-weight: bold">Keterangan</h5>
-        <ul>
-          <li style="font-size: 12px"><span style="color:black">Harga Sewa</span> adalah harga kamar dalam jangka 1 bulan.</li>
-          <li style="font-size: 12px"><span style="color:black">Biaya Admin</span> adalah biaya pelayanan yang di bebankan penyewa untuk Pap!Kos.</li>
-          <li style="font-size: 12px"><span style="color:black">Deposit</span> adalah biaya untuk penjaminan selama penyewa masih menggunakan kamar/apartmenent, (biaya akan dikembalikan setelah masa sewa habis).</li>
-          <li style="font-size: 12px"><span style="color:black">Point</span> adalah jumlah reward yang di dapatkan penyewa, point dapat di tukarkan untuk pembayaran.</li>
-        </ul>
-        <hr>
-        <div class="d-flex justify-content-between">
-          <div>
-            <p style="text-decoration:underline; color:black">
-              Total Pembayaran
-            </p>
-          </div>
-          <div id="harga">
-            <p style="color: black; font-weight:bold" id="hargatotal"></p>
-          </div>
-          <p id="show">
-            <span style="color: black; font-weight:bold" id="hargatotalpoints"></span>
-          </p>
-        </div>
+            <div class="card">
+            <div class="card-body" id="tampil">
+                <div class="d-flex justify-content-between">
+                <div>
+                    <p>Harga Sewa <br>
+                    Biaya Admin <br>
+                    Deposit <br>
+                    Point
+                    </p>
+                </div>
+                <div>
+                    <p style="color: black">
+                    <span id="sewakamar"></span> <br>
+                    Rp. {{rupiah($kamar->biaya_admin)}} <br>
+                    Rp. {{rupiah($kamar->deposit)}} <br>
+                    + 2 Points
+                    </p>
+                    <input type="hidden" class="DropChange" id="depost" value="{{$kamar->deposit}}">
+                    <input type="hidden" class="DropChange" id="biayadmin" value="{{$kamar->biaya_admin}}">
+                    @auth
+                    <input type="hidden" class="DropChange" id="points" value="{{calculatePointUser(Auth::id())}}">
+                    @endauth
+                </div>
+                </div>
+                <div class="mb-1 d-flex justify-content-between">
+                @auth
+                <div>
+                    <div class="custom-control custom-switch custom-switch-danger switch-md mr-2 mb-1">
+                    <input type="checkbox" name="credit" class="custom-control-input" id="useCredit" value="false">
+                    <label class="custom-control-label" for="useCredit">
+                    </label>
+                    </div>
+                </div>
+                <div>
+                {{getPointUser(Auth::id())}} Points ( {{rupiah(calculatePointUser(Auth::id()))}} )
+                </div>
+                @endauth
+                </div>
+                <hr>
+                <h5 style="font-weight: bold">Keterangan</h5>
+                <ul>
+                <li style="font-size: 12px"><span style="color:black">Harga Sewa</span> adalah harga kamar dalam jangka 1 bulan.</li>
+                <li style="font-size: 12px"><span style="color:black">Biaya Admin</span> adalah biaya pelayanan yang di bebankan penyewa untuk Pap!Kos.</li>
+                <li style="font-size: 12px"><span style="color:black">Deposit</span> adalah biaya untuk penjaminan selama penyewa masih menggunakan kamar/apartmenent, (biaya akan dikembalikan setelah masa sewa habis).</li>
+                <li style="font-size: 12px"><span style="color:black">Point</span> adalah jumlah reward yang di dapatkan penyewa, point dapat di tukarkan untuk pembayaran.</li>
+                </ul>
+                <hr>
+                <div class="d-flex justify-content-between">
+                <div>
+                    <p style="text-decoration:underline; color:black">
+                    Total Pembayaran
+                    </p>
+                </div>
+                <div id="harga">
+                    <p style="color: black; font-weight:bold" id="hargatotal"></p>
+                </div>
+                <p id="show">
+                    <span style="color: black; font-weight:bold" id="hargatotalpoints"></span>
+                </p>
+                </div>
 
-        @auth
-          @if (Auth::user()->role == 'Pencari')
-            <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
-          @else
-            <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
-            <small>Silahkan masuk menggunakan akun pencari untuk melanjutkan.</small>
-          @endif
-        @else
-          <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
-        @endauth
-      </div>
-      </div>
-    </form>
-  </div>
+                @auth
+                @if (Auth::user()->role == 'Pencari')
+                    <button type="submit" class="btn btn-success btn-block">Ajukan Sewa</button>
+                @else
+                    <button disabled="disabled" class="btn btn-info btn-block">Hanya Login Sebagai Pencari</button>
+                    <small>Silahkan masuk menggunakan akun pencari untuk melanjutkan.</small>
+                @endif
+                @else
+                <a href="{{route('login')}}" class="btn btn-outline-primary btn-block">Masuk</a>
+                @endauth
+            </div>
+            </div>
+            </form>
+        </div>
+    @else
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <small class="text-danger">Kamar sedang tidak aktif dan tidak dapat dipesan.</small>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 
 @include('front.relatedKos')
