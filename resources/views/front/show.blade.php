@@ -76,7 +76,7 @@
             <ul>
               <li>Kuota terbatas</li>
               <li>Berlaku untuk semua pengguna</li>
-              <li>Periode <span style="color: rgb(236, 151, 101)"> {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} - {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} </span></li>
+              <li>Periode <span style="color: rgb(236, 151, 101)"> {{Carbon\carbon::parse($kamar->promo->start_date_promo)->format('d F Y')}} - {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} </span></li>
             </ul>
           @endif
         </div>
