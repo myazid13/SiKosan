@@ -33,7 +33,7 @@ class FrontendsController extends Controller
         ->where('is_active',1)
         ->orderBy('created_at','DESC')
         ->paginate(8);
-        $promo = Promo::with('kamar')->where('status','1')->where('start_date_promo', '<=' ,carbon::now()->format('d F, Y'))->get();
+        $promo = Promo::with('kamar')->where('end_date_promo', '>=' ,carbon::now()->format('d F, Y'))->get();
         return view('front.index', \compact('kamar','promo'));
     }
 
