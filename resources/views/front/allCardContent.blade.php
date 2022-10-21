@@ -65,7 +65,13 @@
               <h5 style="min-height: 40px">{{$kamars->nama_kamar}} {{ucfirst(strtolower($kamars->regencies->name))}}</h5>
               <div class="d-flex-justify-content-between">
                 <a href="" class="btn gradient-light-primary btn-sm">{{$kamars->jenis_kamar}}</a>
-                <a href="#" class="btn btn-outline-{{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}} btn-sm {{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}}">Tersisa {{$kamars->sisa_kamar}} kamar</a>
+                <a href="#" class="btn btn-outline-{{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}} btn-sm {{$kamars->sisa_kamar > 5 ? 'primary' : 'danger'}}">
+                    @if ($kamars->sisa_kamar != 0 || $kamars->sisa_kamar != null)
+                        Tersisa {{$kamars->sisa_kamar}} kamar
+                    @else
+                        Kamar Penuh
+                    @endif
+                </a>
               </div>
               <p class="card-text mt-1 mb-0"><i class="feather icon-map-pin"></i> {{$kamars->provinsi->name}}</p>
               <span class="card-text" style="color: rgb(96, 93, 93);text-decoration: line-through">

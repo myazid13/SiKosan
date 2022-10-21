@@ -21,7 +21,7 @@
   {{$kamar->nama_kamar}} {{ucfirst(strtolower($kamar->provinsi->name))}}
 @endsection
 @section('content')
- @if($message = Session::get('error'))
+  @if($message = Session::get('error'))
     <div class="alert alert-danger alert-block">
     <button type="button" class="close" data-dismiss="alert">×</button>
       <strong>{{ $message }}</strong>
@@ -96,7 +96,11 @@
         <button class="btn btn-outline-black btn-sm"><span style="font-size: 12px; font-weight:bold;">Kos {{$kamar->jenis_kamar}}</span></button>
         <div class="row">
           <div class="col-md-6 mt-1">
-            <span style="font-weight:bold">Tersisa <span style="color: {{$kamar->sisa_kamar <= 5 ? 'red' : ''}}; font-weight:bold">{{$kamar->sisa_kamar}} kamar</span></span>
+            @if ($kamar->sisa_kamar != 0 || $kamar->sisa_kamar != null)
+                <span style="font-weight:bold">Tersisa <span style="color: {{$kamar->sisa_kamar <= 5 ? 'red' : ''}}; font-weight:bold">{{$kamar->sisa_kamar}} kamar</span></span>
+            @else
+                <span style="font-weight:bold; color:red">Kamar Penuh</span></span>
+            @endif
           </div>
           <div class="col-md-6 mt-1">
             @auth
