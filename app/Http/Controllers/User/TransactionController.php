@@ -43,7 +43,7 @@ class TransactionController extends Controller
             return back();
 
             //  Cek kamar tersedia atau tidak
-          } elseif ($room->sisa_kamar == 0 || $room->sisa_kamar > 0) {
+          } elseif ($room->sisa_kamar == 0 || $room->sisa_kamar <= 0) {
             Session::flash('error','Kamar Penuh !');
             return back();
           }
@@ -67,12 +67,12 @@ class TransactionController extends Controller
 
           $points = calculatePointUser(Auth::id());
 
-          $kamar->harga_kamar         =  $room->promo != null && $room->promo->status == '1' && $room->promo->start_date_promo <= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar;
+          $kamar->harga_kamar         =  $room->promo != null && $room->promo->status == '1' && $room->promo->end_date_promo >= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar;
           if ($request->credit) {
-            $totalharga               =  $room->promo != null && $room->promo->status == '1' && $room->promo->start_date_promo <= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
+            $totalharga               =  $room->promo != null && $room->promo->status == '1' && $room->promo->end_date_promo >= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
             $kamar->harga_total       = ($totalharga + $number) - $points;
           } else {
-            $harga_total       =  $room->promo != null && $room->promo->status == '1' && $room->promo->start_date_promo <= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
+            $harga_total       =  $room->promo != null && $room->promo->status == '1' && $room->promo->end_date_promo >= carbon::now()->format('d F, Y') ? $room->promo->harga_promo : $room->harga_kamar * $request->lama_sewa;
             $kamar->harga_total = $harga_total + $number;
           }
 

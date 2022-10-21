@@ -24,7 +24,7 @@
               </div>
               <p class="card-text mt-1 mb-0"><i class="feather icon-map-pin"></i> {{$kamars->provinsi->name}}</p>
               <span class="card-text" style="color: rgb(96, 93, 93);text-decoration: line-through">
-                @if ($kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y'))
+                @if ($kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y'))
                     {{rupiah($kamars->harga_kamar)}}
                 @endif
               </span> <br>

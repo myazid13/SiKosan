@@ -70,13 +70,13 @@
           <p class="mt-2" style="font-size: 12px">Hubungi pemilik kos untuk menanyakan lebih detail terkait kamar ini.</p>
           <button class="btn btn-outline-black">Kirim pesan ke pemilik kos</button>
           <hr>
-          @if ($kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') && $kamar->promo->status == 1 )
+          @if ($kamar->promo != null && $kamar->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y') && $kamar->promo->status == 1 )
             <p class="mt-2" style="font-weight: bold; font-size:18px; color:black">DISKONNYA BIKIN HEMAT!</p>
             <p class="mt-1" style="text-decoration: underline">Syarat & ketentuan berlaku</p>
             <ul>
               <li>Kuota terbatas</li>
               <li>Berlaku untuk semua pengguna</li>
-              <li>Periode <span style="color: rgb(236, 151, 101)"> {{Carbon\carbon::parse($kamar->promo->start_date_promo)->format('d F Y')}} - {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} </span></li>
+              <li>Periode <span style="color: rgb(236, 151, 101)"> {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} - {{Carbon\carbon::parse($kamar->promo->end_date_promo)->format('d F Y')}} </span></li>
             </ul>
           @endif
         </div>
@@ -218,9 +218,9 @@
                 <div class="card-body">
                     <form action="{{route('sewa.store', $kamar->id)}}" method="post">
                     @csrf
-                    <span> {{rupiah($kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan </span> <span style="font-size: 9px"> {{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? 'Harga Promo' : ''}} </span>
+                    <span> {{rupiah($kamar->promo != null && $kamar->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar)}} / Bulan </span> <span style="font-size: 9px"> {{$kamar->promo != null && $kamar->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y') ? 'Harga Promo' : ''}} </span>
                     <select class="DropChange" id="hargakamar" hidden>
-                        <option value="{{$kamar->promo != null && $kamar->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
+                        <option value="{{$kamar->promo != null && $kamar->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y') ? $kamar->promo->harga_promo : $kamar->harga_kamar}}" selected></option>
                     </select>
                     <div class="row">
                         <div class="col-md-6 mt-1">
