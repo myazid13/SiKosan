@@ -29,7 +29,7 @@
                 @endif
               </span> <br>
               <span class="card-text" style="color: black"> {{rupiah(
-                $kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->start_date_promo <= Carbon\carbon::now()->format('d F, Y')
+                $kamars->promo != null && $kamars->promo->status == 1 && $kamars->promo->end_date_promo >= Carbon\carbon::now()->format('d F, Y')
                 ? $kamars->promo->harga_promo : $kamars->harga_kamar
                 )}} / Bulan
               </span>
