@@ -51,7 +51,7 @@
 
                 <fieldset>
                   <div class="vs-checkbox-con vs-checkbox-danger" data-toggle="tooltip" data-placement="top" title="Aktifkan Bank">
-                    <input type="checkbox" name="is_active" value="1" >
+                    <input type="checkbox" name="is_active" value="1" id="is_active">
                       <span class="vs-checkbox vs-checkbox-lg" >
                           <span class="vs-checkbox--check">
                               <i class="vs-icon feather icon-check"></i>

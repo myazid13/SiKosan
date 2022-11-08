@@ -123,6 +123,13 @@
                           <small> {{$banks->no_rekening}} </small> <br>
                           <p>{{$banks->nama_pemilik}}</p>
                           <a class="mr-2 btn btn-outline-info btn-sm">{{$banks->is_active == 1 ? 'Aktif' : 'Inactive'}}</a>
+                          <a class="mr-2 btn btn-outline-warning btn-sm" id="klik_edit_bank" data-toggle="modal" data-target="#editBank"
+                          data-id="{{$banks->id}}"
+                          data-rekening={{$banks->no_rekening}}
+                          data-nama-pemilik={{$banks->nama_pemilik}}
+                          data-nama-bank={{$banks->nama_bank}}
+                          >Edit</a>
+                          <a id="is_active" data-id={{$banks->id}} class="mr-2 btn btn-outline-{{$banks->is_active == 1 ? 'primary' : 'danger'}} btn-sm">{{$banks->is_active == 0 ? 'Aktifkan' : 'Non Aktifkan'}}</a>
                         </div>
                       </div>
                     @endforeach
@@ -221,10 +228,48 @@
 @endsection
 @section('scripts')
   <script type="text/javascript">
+
     @if (count($errors) > 0)
       $( document ).ready(function() {
         $('#inlineForm').modal('show');
       });
     @endif
+
+    // Tampilkan Modal Edit Bank
+    $(document).on('click','#klik_edit_bank', function(){
+        var id = $(this).attr('data-id');
+        var no_rekening = $(this).attr('data-rekening')
+        var nama_pemilik = $(this).attr('data-nama-pemilik')
+        var nama_bank = $(this).attr('data-nama-bank')
+
+        $("#id_bank").val(id)
+        $("#no_rekening").val(no_rekening)
+        $("#nama_pemilik").val(nama_pemilik)
+        $("#nama_bank").val(nama_bank)
+    });
+
+    // Proses Edit Bank
+    $(document).on('click','#update_bank', function(){
+        var id_bank = $("#id_bank").val();
+        var no_rekening = $("#no_rekening").val();
+        var nama_pemilik = $("#nama_pemilik").val();
+        var nama_bank = $("#nama_bank").val();
+
+        $.get('{{Url("rekening/update")}}',{'_token': $('meta[name=csrf-token]').attr('content'),id_bank:id_bank,no_rekening:no_rekening,nama_pemilik:nama_pemilik,nama_bank:nama_bank}, function(resp){
+            $("#id_bank").val('');
+            $("#no_rekening").val('');
+            $("#nama_pemilik").val('');
+            $("#nama_bank").val('');
+            location.reload();
+        });
+    });
+
+    // Non Aktifkan / Aktifkan Bank
+    $(document).on('click', '#is_active', function () {
+        var id = $(this).attr('data-id');
+        $.get('is-active-bank', {'_token' : $('meta[name=csrf-token]').attr('content'),id:id}, function(_resp){
+            location.reload()
+        });
+    });
   </script>
 @endsection
