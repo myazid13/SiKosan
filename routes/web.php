@@ -33,6 +33,9 @@ Route::get('hapus/kamar','Frontend\FrontendsController@hapusKamar'); // proses h
 Route::middleware('auth')->group(function () {
   Route::get('/home', 'HomeController@index');
 
+  Route::get('rekening/update','Owner\BankController@rekeningUpdate'); // Rekening Update
+  Route::get('is-active-bank','Owner\BankController@IsActiveBank'); // Aktifkan dan Non Aktifkan Bank
+
   ////// ADMIN \\\\\\\
   Route::prefix('/admin')->middleware('role:Admin')->group(function () {
     Route::resources([
@@ -43,7 +46,7 @@ Route::middleware('auth')->group(function () {
   });
 
   ////// PEMILIK \\\\\\
-  Route::prefix('/pemilik')->middleware('role:Pemilik')->group(function () {
+  Route::prefix('pemilik')->middleware('role:Pemilik')->group(function () {
 
     Route::resource('kamar','Owner\KamarController'); //Data Kamar
     Route::get('is-aktif-kamar','Owner\KamarController@statusKamar');
@@ -63,8 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::put('promo/update/{id}','Owner\PromoController@promoUpdate')->name('kamar.promo.update'); // Promo Edit
 
     Route::post('rekening','Owner\BankController@rekening'); // Rekening
-    Route::get('rekening/{id}','Owner\BankController@rekeningEdit'); // Rekening Edit
-    Route::get('rekening/update','Owner\BankController@rekeningUpdate'); // Rekening Update
     Route::post('testimoni','Owner\ProfileController@testimoni');
 
     Route::get('booking-list','Owner\BookListController@index')->name('booking-list'); // Booking List

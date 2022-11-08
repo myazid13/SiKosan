@@ -9,5 +9,5 @@ class DataRekening extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','no_rekening','nama_bank','nama_pemilik','is_active'];
+    protected $guarded = [];
 }
