@@ -107,6 +107,7 @@
 }
 
 .horizontal-menu .horizontal-menu-wrapper {
+
   position : fixed;
   top : 62px;
   z-index : 990;
@@ -123,14 +124,14 @@
 }
 
 .horizontal-menu .header-navbar {
-  background : #FFFFFF;
+  background : #7082d9ba;
   z-index : 999 !important;
   line-height : 1;
   min-height : auto;
 }
 .horizontal-menu .header-navbar.navbar-horizontal.floating-nav {
   width : calc(100vw - (100vw - 100%) - calc(2.2rem * 2));
-  background : #FFFFFF;
+  background : #0c9fe561;
 }
 .horizontal-menu .header-navbar .navbar-container {
   padding-left : 2.2rem;

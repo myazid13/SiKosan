@@ -68,7 +68,16 @@
     </div>
     <!-- END: Content-->
 
+<div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
 
+    <!-- BEGIN: Footer-->
+    @include('layouts.front.footer')
+    <!-- END: Footer-->
+
+
+    {{-- Scripts --}}
+    @include('layouts.front.scripts')
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->

@@ -1,14 +1,17 @@
 @extends('layouts.auth')
 
 @section('title')
-  Pap!Kos - Login Page
+  SiKosan - Login Page
 @endsection
+
+  @include('layouts.front.header')
+    @include('layouts.front.menu')
 @section('content')
 <div class="col-lg-6 col-12 p-0">
     <div class="card rounded-0 mb-0 px-2">
         <div class="card-header pb-1">
             <div class="card-title">
-                <h4 class="mb-0" style="text-align: center">Cari Kost dan Apartement Makin Mudah di Pap!Kos</h4>
+                <h4 class="mb-0" style="text-align: center">Cari Kost Makin Mudah di SiKosan</h4>
             </div>
         </div>
         {{-- <p class="px-5">Selamat datang kembali, silahkan login untuk masuk ke akun kamu.</p> --}}
@@ -76,4 +79,10 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection
+
+
+

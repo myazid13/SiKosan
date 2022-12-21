@@ -1,9 +1,9 @@
 @extends('layouts.front.app')
 @section('description')
-  Papikos, cari kos dan apartement makin mudah hanya di papikos. aplikasi pencari kos di indonesia.
+  SiKosan, cari kos makin mudah hanya di SiKosan. aplikasi pencari kos di indonesia.
 @endsection
 @section('title')
-  Selamat Datang di Pap!Kos
+  Selamat Datang di SiKosan
 @endsection
 
 

@@ -7,7 +7,7 @@
 <section class="ftco-section testimony-section">
   <h2>Area Kos Berdasarkan Kota</h2>
     <div class="row">
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=DKI+JAKARTA')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/jakarta.png')}}" class="card-img" height="180px" alt="...">
@@ -16,9 +16,9 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=DI+YOGYAKARTA')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/jogja.png')}}" class="card-img" height="180px" alt="...">
@@ -27,7 +27,7 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
       <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=KOTA+SURABAYA')}}">
@@ -40,7 +40,7 @@
         </a>
       </div>
 
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=KABUPATEN+BANDUNG')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/bandung.png')}}" class="card-img" height="180px" alt="...">
@@ -49,9 +49,9 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=KABUPATEN+MALANG')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/malang.png')}}" class="card-img" height="180px" alt="...">
@@ -60,9 +60,9 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=KABUPATEN+SEMARANG')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/semarang.png')}}" class="card-img" height="180px" alt="...">
@@ -71,9 +71,9 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
-      <div class="col-md-3 mb-4">
+      {{-- <div class="col-md-3 mb-4">
         <a href="{{url('kost/?kota=KOTA+MEDAN')}}">
           <div class="card shadow">
             <img src="{{asset('assets/images/city/medan.png')}}" class="card-img" height="180px" alt="...">
@@ -82,7 +82,7 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> --}}
 
       <div class="col-md-3 mb-4">
        <a href="{{url('show-all-room')}}">

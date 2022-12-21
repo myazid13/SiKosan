@@ -1,9 +1,9 @@
 @extends('layouts.front.app')
 @section('description')
-  Papikos, cari kos dan apartement makin mudah hanya di papikos. aplikasi pencari kos di indonesia.
+  SiKosan, cari kos makin mudah hanya di SiKosan. aplikasi pencari kos di indonesia.
 @endsection
 @section('title')
-  Selamat Datang di Pap!Kos
+  Selamat Datang di SiKosan
 @endsection
 
 @section('content')
@@ -21,23 +21,6 @@
   </section>
 
   <div class="mb-2" style="font-weight: bold">
-    @if ($kota == 'DKI JAKARTA')
-      Kost Jakarta
-    @elseif($kota == 'DI YOGYAKARTA')
-      Kost Jogja
-    @elseif($kota == 'KOTA SURABAYA')
-      Kost Surabaya
-    @elseif($kota == 'KABUPATEN BANDUNG')
-      Kost Bandung
-    @elseif($kota == 'KABUPATEN MALANG')
-      Kost Malang
-    @elseif($kota == 'KABUPATEN SEMARANG')
-      Kost Semarang
-    @elseif($kota == 'KOTA MEDAN')
-      Kost Medan
-    @else
-    Kota tidak ditemukan.
-    @endif
   </div>
 
   <div class="row match-height">

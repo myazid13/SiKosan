@@ -4,7 +4,7 @@
             <li class="nav-item">
               <a class="navbar-brand" href="/">
                 <div class="brand-logo"></div>
-                <h2>Pap!Kos</h2>
+                {{-- <h2>SiKosan</h2> --}}
               </a>
             </li>
         </ul>
@@ -16,11 +16,11 @@
                     <ul class="nav navbar-nav ">
                         <li class="nav-item mobile-menu d-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                         <li class="mr-2 d-none d-xl-block">
-                          <a href="" style="color: black" ><i class="feather icon-airplay" data-toggle="tooltip" data-placement="bottom" title="Download Aplikasi"></i> Download Aplikasi</a>
+                          <a href="#" style="color: black" ><i class="feather icon-airplay" data-toggle="tooltip" data-placement="bottom" title="Download Aplikasi"></i> Situs cari kosan mudah & terpercaya</a>
                         </li>
-                        <li class="d-none d-xl-block">
+                        {{-- <li class="d-none d-xl-block">
                           <a href="{{url('show-all-room')}}" style="color: black"><i class="feather icon-calendar" data-toggle="tooltip" data-placement="top" title="Booking Kamar"></i> Booking Kamar</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <ul class="nav navbar-nav float-right">
@@ -117,9 +117,23 @@
                         </div>
                       </li>
                     @else
-                      <li class="nav-item">
-                        <a class="nav-link nav-link-label" href="{{route('login')}}">
+                      {{-- <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary" href="{{route('login')}}">
                          <i class="feather icon-log-in"></i> <span class=" mr-2">Masuk</span></a>
+                      </li>
+                       <li class="nav-item">
+                        <a class="nav-link nav-link-label" href="{{route('register')}}">
+                         <i class="feather icon-log-in"></i> <span class=" mr-2">Daftar</span></a>
+                      </li> --}}
+
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">
+                         <i class="feather icon-log-in btn-inline"></i> <span class=" btn-inline">Masuk</span></a>
+                      </li>
+
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{route('register')}}">
+                         <i class="feather icon-log-in btn-inline"></i> <span class=" btn-inline">Daftar</span></a>
                       </li>
                     @endauth
                 </ul>
